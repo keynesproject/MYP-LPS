@@ -21,7 +21,7 @@ namespace LPS.Model.DataAccessObject
         private DaoSQL()
         {
         }
-
+        
         #endregion Singleton物件宣告
 
         #region event
@@ -179,25 +179,39 @@ namespace LPS.Model.DataAccessObject
             return new DaoErrMsg();
         }
 
-        #region FDA Database
-
         /// <summary>
-        /// 取得要連接的指紋機訊息
+        /// 取的機器代碼資訊
         /// </summary>
-        /// <returns>[ID, Name, MachineNo, IP, Port, Enable]</returns>
-        internal List<DaoFingerPrint> GetMachineInfo()
+        /// <returns>[機台代碼]</returns>
+        internal List<DaoMachine> GetMachineNo()
         {
-            string strSchema = "select * from tbMACHINE;";
+            string strSchema = @"SELECT * FROM 機台資訊;";
 
             DataTable dt = GetDataTable(strSchema);
 
-            dt.Columns.Add("AttendanceCount", typeof(int));
-            dt.Columns.Add("Connect", typeof(bool));
-            dt.Columns.Add("strConnect", typeof(string));
-            dt.Columns.Add("strEnable", typeof(string));
+            dt.Columns.Add("Serial", typeof(string));
 
-            return dt.ToList<DaoFingerPrint>().ToList();
+            return dt.ToList<DaoMachine>().ToList();
         }
+        
+
+        /// <summary>
+        /// 取得作業員姓名
+        /// </summary>
+        /// <returns></returns>
+        internal List<DaoUser> GetUser()
+        {
+            string strSchema = @"SELECT * FROM 作業員 order by 代碼;";
+
+            DataTable dt = GetDataTable(strSchema);
+
+            dt.Columns.Add("Serial", typeof(string));
+            dt.Columns.Add("Permission", typeof(bool));
+
+            return dt.ToList<DaoUser>().ToList();
+        }
+        
+        #region FDA Database
 
         /// <summary>
         /// 新增指紋機連接資訊
@@ -352,42 +366,6 @@ namespace LPS.Model.DataAccessObject
 
             string Count = string.Empty;
             m_SQL.ExecuteNonQuery(strSchema);
-        }
-
-        internal void SetAttendance(int DeviceID, List<DaoAttendance> AttInfo)
-        {
-            StringBuilder sbSchema = new StringBuilder();
-            int Count = 0;
-            foreach(DaoAttendance Info in AttInfo)
-            {
-                sbSchema.AppendFormat(@"INSERT INTO RECORDS_V2([SERIAL], [USERID], [RECORDTIME], [ENAME], [CARDNUM], [LOC], [USERID2])
-                                                     values((select SERIAL FROM EMPLOYEES_V2 WHERE USERID='{0}'),
-                                                            '{0}', 
-                                                            convert(datetime, '{1}', 120),
-                                                            (select ENAME FROM EMPLOYEES_V2 WHERE USERID='{0}'), 
-                                                            (select CARDNUM FROM EMPLOYEES_V2 WHERE USERID='{0}'),
-                                                            '{2}',
-                                                            '{3}');",
-                                                            Info.sUserID,
-                                                            Info.RecordTime.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                            Info.Location,
-                                                            Info.UserID);
-
-                Count++;
-                if (Count == 40)
-                {
-                    m_SQL.ExecuteNonQuery(sbSchema.ToString());
-                    Count = 0;
-                    sbSchema.Init();
-                }
-            }
-
-            if(Count != 0)
-                m_SQL.ExecuteNonQuery(sbSchema.ToString());
-
-            sbSchema.Init();
-            sbSchema.AppendFormat("update tbMACHINE set ReadedIndex = ReadedIndex + {0} where ID = {1};", AttInfo.Count, DeviceID);
-            m_SQL.ExecuteNonQuery(sbSchema.ToString());
         }
 
         /// <summary>

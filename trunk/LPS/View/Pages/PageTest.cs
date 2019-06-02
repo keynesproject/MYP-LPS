@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace LPS.View.Forms
+namespace LPS.View.Pages
 {
-    public partial class FormMain : Form
+    public partial class PageTest : UserControl
     {
-        public FormMain()
+        public PageTest()
         {
             InitializeComponent();
-        }
-
-        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

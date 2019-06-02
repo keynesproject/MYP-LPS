@@ -65,11 +65,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\DataAccessObject\DaoAttendance.cs" />
     <Compile Include="Model\DataAccessObject\DaoConfigFile.cs" />
     <Compile Include="Model\DataAccessObject\DaoDbCommon.cs" />
-    <Compile Include="Model\DataAccessObject\DaoFingerPrint.cs" />
+    <Compile Include="Model\DataAccessObject\DaoMachine.cs" />
     <Compile Include="Model\DataAccessObject\DaoSQL.cs" />
+    <Compile Include="Model\DataAccessObject\DaoUser.cs" />
     <Compile Include="Model\DataAccessObject\DaoUserInfo.cs" />
     <Compile Include="Model\Extension\AssemblyInfoExtension.cs" />
     <Compile Include="Model\Extension\DataTableExtension.cs" />
@@ -100,6 +100,12 @@
     <Compile Include="View\Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\PageTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Pages\PageTest.Designer.cs">
+      <DependentUpon>PageTest.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Pages\PageTest.resx">
+      <DependentUpon>PageTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -154,9 +163,7 @@
   <ItemGroup>
     <None Include="Resources\LogoMYP.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>@echo off

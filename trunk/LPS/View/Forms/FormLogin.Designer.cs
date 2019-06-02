@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
             this.pbLogoUniCalsonic = new System.Windows.Forms.PictureBox();
             this.tlpLogin = new System.Windows.Forms.TableLayoutPanel();
             this.lblMachineNo = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblPW = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbMachineNo = new System.Windows.Forms.ComboBox();
+            this.cbUser = new System.Windows.Forms.ComboBox();
             this.tbPW = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblSplit1 = new System.Windows.Forms.Label();
@@ -43,13 +44,13 @@
             this.tlpSupport = new System.Windows.Forms.TableLayoutPanel();
             this.lblSupport = new System.Windows.Forms.Label();
             this.pbLogoMYP = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbLogoHarmony = new System.Windows.Forms.PictureBox();
             this.tlpBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoUniCalsonic)).BeginInit();
             this.tlpLogin.SuspendLayout();
             this.tlpSupport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoMYP)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHarmony)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpBase
@@ -84,6 +85,7 @@
             this.pbLogoUniCalsonic.Size = new System.Drawing.Size(392, 126);
             this.pbLogoUniCalsonic.TabIndex = 0;
             this.pbLogoUniCalsonic.TabStop = false;
+            this.pbLogoUniCalsonic.Click += new System.EventHandler(this.PbLogoUniCalsonic_Click);
             // 
             // tlpLogin
             // 
@@ -95,8 +97,8 @@
             this.tlpLogin.Controls.Add(this.lblMachineNo, 1, 0);
             this.tlpLogin.Controls.Add(this.lblUser, 1, 1);
             this.tlpLogin.Controls.Add(this.lblPW, 1, 2);
-            this.tlpLogin.Controls.Add(this.comboBox1, 2, 0);
-            this.tlpLogin.Controls.Add(this.comboBox2, 2, 1);
+            this.tlpLogin.Controls.Add(this.cbMachineNo, 2, 0);
+            this.tlpLogin.Controls.Add(this.cbUser, 2, 1);
             this.tlpLogin.Controls.Add(this.tbPW, 2, 2);
             this.tlpLogin.Controls.Add(this.btnLogin, 2, 3);
             this.tlpLogin.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -146,27 +148,29 @@
             this.lblPW.Text = "密碼";
             this.lblPW.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox1
+            // cbMachineNo
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.Font = new System.Drawing.Font("Arial", 11F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(143, 10);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(203, 25);
-            this.comboBox1.TabIndex = 3;
+            this.cbMachineNo.DisplayMember = "Serial";
+            this.cbMachineNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbMachineNo.Font = new System.Drawing.Font("Arial", 11F);
+            this.cbMachineNo.FormattingEnabled = true;
+            this.cbMachineNo.Location = new System.Drawing.Point(143, 10);
+            this.cbMachineNo.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cbMachineNo.Name = "cbMachineNo";
+            this.cbMachineNo.Size = new System.Drawing.Size(203, 25);
+            this.cbMachineNo.TabIndex = 3;
             // 
-            // comboBox2
+            // cbUser
             // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.Font = new System.Drawing.Font("Arial", 11F);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(143, 53);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(203, 25);
-            this.comboBox2.TabIndex = 4;
+            this.cbUser.DisplayMember = "Serial";
+            this.cbUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbUser.Font = new System.Drawing.Font("Arial", 11F);
+            this.cbUser.FormattingEnabled = true;
+            this.cbUser.Location = new System.Drawing.Point(143, 53);
+            this.cbUser.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.cbUser.Name = "cbUser";
+            this.cbUser.Size = new System.Drawing.Size(203, 25);
+            this.cbUser.TabIndex = 4;
             // 
             // tbPW
             // 
@@ -179,6 +183,7 @@
             this.tbPW.PasswordChar = '*';
             this.tbPW.Size = new System.Drawing.Size(203, 24);
             this.tbPW.TabIndex = 5;
+            this.tbPW.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbPW_KeyPress);
             // 
             // btnLogin
             // 
@@ -191,6 +196,7 @@
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "登入";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLogin_MouseUp);
             // 
             // lblSplit1
             // 
@@ -221,7 +227,7 @@
             this.tlpSupport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpSupport.Controls.Add(this.lblSupport, 0, 0);
             this.tlpSupport.Controls.Add(this.pbLogoMYP, 3, 0);
-            this.tlpSupport.Controls.Add(this.pictureBox1, 1, 0);
+            this.tlpSupport.Controls.Add(this.pbLogoHarmony, 1, 0);
             this.tlpSupport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpSupport.Location = new System.Drawing.Point(0, 320);
             this.tlpSupport.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
@@ -256,19 +262,21 @@
             this.pbLogoMYP.Size = new System.Drawing.Size(83, 30);
             this.pbLogoMYP.TabIndex = 0;
             this.pbLogoMYP.TabStop = false;
+            this.pbLogoMYP.Click += new System.EventHandler(this.PbLogoMYP_Click);
             // 
-            // pictureBox1
+            // pbLogoHarmony
             // 
-            this.pictureBox1.BackgroundImage = global::LPS.Properties.Resources.LogoHarmony;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(269, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(41, 30);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.pbLogoHarmony.BackgroundImage = global::LPS.Properties.Resources.LogoHarmony;
+            this.pbLogoHarmony.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbLogoHarmony.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbLogoHarmony.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbLogoHarmony.Location = new System.Drawing.Point(269, 0);
+            this.pbLogoHarmony.Margin = new System.Windows.Forms.Padding(0);
+            this.pbLogoHarmony.Name = "pbLogoHarmony";
+            this.pbLogoHarmony.Size = new System.Drawing.Size(41, 30);
+            this.pbLogoHarmony.TabIndex = 1;
+            this.pbLogoHarmony.TabStop = false;
+            this.pbLogoHarmony.Click += new System.EventHandler(this.PbLogoHarmony_Click);
             // 
             // FormLogin
             // 
@@ -278,6 +286,7 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormLogin";
@@ -291,7 +300,7 @@
             this.tlpSupport.ResumeLayout(false);
             this.tlpSupport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoMYP)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogoHarmony)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,15 +313,15 @@
         private System.Windows.Forms.Label lblMachineNo;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Label lblPW;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbMachineNo;
+        private System.Windows.Forms.ComboBox cbUser;
         private System.Windows.Forms.Label lblSplit1;
         private System.Windows.Forms.Label lblSplit2;
         private System.Windows.Forms.TextBox tbPW;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TableLayoutPanel tlpSupport;
         private System.Windows.Forms.PictureBox pbLogoMYP;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbLogoHarmony;
         private System.Windows.Forms.Label lblSupport;
     }
 }
