@@ -31,7 +31,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,14 +65,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Model\DataAccessObject\DaoAttendance.cs" />
+    <Compile Include="Model\DataAccessObject\DaoConfigFile.cs" />
+    <Compile Include="Model\DataAccessObject\DaoDbCommon.cs" />
+    <Compile Include="Model\DataAccessObject\DaoFingerPrint.cs" />
+    <Compile Include="Model\DataAccessObject\DaoSQL.cs" />
+    <Compile Include="Model\DataAccessObject\DaoUserInfo.cs" />
+    <Compile Include="Model\Extension\AssemblyInfoExtension.cs" />
+    <Compile Include="Model\Extension\DataTableExtension.cs" />
+    <Compile Include="Model\Extension\DateTimeExtension.cs" />
+    <Compile Include="Model\Extension\ObjectExtension.cs" />
+    <Compile Include="Model\Extension\StringBuilderExtension.cs" />
+    <Compile Include="Model\Extension\StringExtension.cs" />
+    <Compile Include="Model\Log\Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Component\MessageBoxEx.cs" />
+    <Compile Include="View\Component\PageDataGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Component\PageDataGridView.Designer.cs">
+      <DependentUpon>PageDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EventHandlers\KeyEventHandlers.cs" />
+    <Compile Include="View\Forms\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -60,7 +108,18 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\Component\PageDataGridView.resx">
+      <DependentUpon>PageDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -71,5 +130,42 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestNG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconDisableDevice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconEnableDevice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconRefresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoHarmony.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoUniCalsonic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogoMYP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Pages\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>@echo off
+echo copy necessary files...
+xcopy "$(SolutionDir)NecessaryFiles" "$(TargetDir)" /s /y /a /e
+IF $(ConfigurationName) NEQ Debug ( 
+    echo -------- Delete config files -------- 
+) ELSE ( 
+   echo -------- Debug Mode --------  
+)</PreBuildEvent>
+  </PropertyGroup>
 </Project>
