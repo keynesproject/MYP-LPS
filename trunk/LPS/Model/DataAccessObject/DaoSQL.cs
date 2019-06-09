@@ -21,7 +21,7 @@ namespace LPS.Model.DataAccessObject
         private DaoSQL()
         {
         }
-        
+
         #endregion Singleton物件宣告
 
         #region event
@@ -35,7 +35,7 @@ namespace LPS.Model.DataAccessObject
         /// 資料庫連線狀態更新事件
         /// </summary>
         public event DatabaseConnectedChangeDelegate DatabaseConnectedChange;
-
+        
         #endregion event
 
         /// <summary>
@@ -194,7 +194,6 @@ namespace LPS.Model.DataAccessObject
             return dt.ToList<DaoMachine>().ToList();
         }
         
-
         /// <summary>
         /// 取得作業員姓名
         /// </summary>
@@ -210,7 +209,64 @@ namespace LPS.Model.DataAccessObject
 
             return dt.ToList<DaoUser>().ToList();
         }
+
+        /// <summary>
+        /// 取得所有的件號資料
+        /// </summary>
+        /// <param name="PN"></param>
+        /// <returns>[件號,車型,簡碼]</returns>
+        internal DataTable GetPartNumber()
+        {
+            string strSchema = "SELECT * FROM 車型資料";
+
+            return GetDataTable(strSchema);
+        }
+
+        /// <summary>
+        /// 取得指定的件號資料
+        /// </summary>
+        /// <param name="PN"></param>
+        /// <returns>[件號,車型,簡碼]</returns>
+        internal DaoPartNumber GetPartNumber(string PN)
+        {
+            string strSchema = string.Format(@"SELECT * FROM 車型資料 WHERE 件號='{0}';", PN);
+
+            DataTable dt = GetDataTable(strSchema);
+
+            if (dt.Rows.Count > 0)
+                return dt.ToList<DaoPartNumber>().ToList()[0];
+
+            return null;
+        }
         
+        /// <summary>
+        /// 搜尋件號資訊
+        /// </summary>
+        /// <param name="Part">開頭字串</param>
+        /// <returns></returns>
+        internal DataTable SerachPartNumber(string Part)
+        {
+            string strSchema = string.Format(@"SELECT * FROM 車型資料 WHERE 件號 LIKE '{0}%'", Part);
+
+            return GetDataTable(strSchema);
+        }
+
+        internal DaoErrMsg SaveTestResult(string Serial, DaoMachine Machine, DaoUser User, DaoPartNumber PN, string Result, DateTime TestTime)
+        {
+            string ResultSerial = string.Format("{0}{1}{2}", Machine.Serial, PN.簡碼, Serial);
+
+            string strSchema = string.Format(@"INSERT INTO 測試結果(流水號, 件號, 車型名稱, 生產日期, 生產時間, 測試結果, 作業員代碼)
+                                                            VALUES('{0}','{1}','{2}','{3}','{3}','{4}','{5}');",
+                                                             ResultSerial,
+                                                             PN.件號,
+                                                             PN.車型,
+                                                             TestTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                             Result,
+                                                             User.代碼);
+
+            return m_SQL.ExecuteNonQuery(strSchema);
+        }
+
         #region FDA Database
 
         /// <summary>
@@ -258,40 +314,6 @@ namespace LPS.Model.DataAccessObject
                                                ID, isEnable == true ? 1 : 0);
 
             return m_SQL.ExecuteNonQuery(strSchema);
-        }
-
-        /// <summary>
-        /// 設定員工資訊
-        /// </summary>
-        /// <param name="Employees"></param>
-        /// <returns></returns>
-        internal DaoErrMsg SetEmployees(List<DaoUserInfo> Employees)
-        {
-            DaoErrMsg Msg = new DaoErrMsg();
-
-            StringBuilder sbSchema = new StringBuilder();
-            int Count = 0;
-            foreach (DaoUserInfo Info in Employees)
-            {
-                sbSchema.AppendFormat(@"IF NOT EXISTS (SELECT * FROM EMPLOYEES_V2 WHERE [USERID]='{0}')
-                                            INSERT INTO EMPLOYEES_V2([USERID], [ENAME], [CARDNUM], [RECORDTIME], [USERID2])
-                                                           values('{0}', '{1}', '{2}', GETDATE(), '{3}')
-                                        ELSE
-                                            UPDATE EMPLOYEES_V2 SET [ENAME]='{1}', [CARDNUM]='{2}' WHERE [USERID]='{0}';",
-                                        Info.sUserID, Info.Name, Info.CardNum, Info.UserID);
-                Count++;
-                if (Count == 40)
-                {
-                    Msg = m_SQL.ExecuteNonQuery(sbSchema.ToString());
-                    Count = 0;
-                    sbSchema.Init();
-                }
-            }
-
-            if(Count != 0)
-                return m_SQL.ExecuteNonQuery(sbSchema.ToString());
-
-            return Msg;
         }
 
         /// <summary>

@@ -110,7 +110,7 @@
             this.tlpLogin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpLogin.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpLogin.Size = new System.Drawing.Size(392, 173);
-            this.tlpLogin.TabIndex = 1;
+            this.tlpLogin.TabIndex = 0;
             // 
             // lblMachineNo
             // 
@@ -152,25 +152,29 @@
             // 
             this.cbMachineNo.DisplayMember = "Serial";
             this.cbMachineNo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbMachineNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMachineNo.Font = new System.Drawing.Font("Arial", 11F);
             this.cbMachineNo.FormattingEnabled = true;
             this.cbMachineNo.Location = new System.Drawing.Point(143, 10);
             this.cbMachineNo.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.cbMachineNo.Name = "cbMachineNo";
             this.cbMachineNo.Size = new System.Drawing.Size(203, 25);
-            this.cbMachineNo.TabIndex = 3;
+            this.cbMachineNo.TabIndex = 0;
             // 
             // cbUser
             // 
+            this.cbUser.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbUser.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbUser.DisplayMember = "Serial";
             this.cbUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUser.Font = new System.Drawing.Font("Arial", 11F);
             this.cbUser.FormattingEnabled = true;
             this.cbUser.Location = new System.Drawing.Point(143, 53);
             this.cbUser.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.cbUser.Name = "cbUser";
             this.cbUser.Size = new System.Drawing.Size(203, 25);
-            this.cbUser.TabIndex = 4;
+            this.cbUser.TabIndex = 1;
             // 
             // tbPW
             // 
@@ -182,7 +186,7 @@
             this.tbPW.Name = "tbPW";
             this.tbPW.PasswordChar = '*';
             this.tbPW.Size = new System.Drawing.Size(203, 24);
-            this.tbPW.TabIndex = 5;
+            this.tbPW.TabIndex = 2;
             this.tbPW.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbPW_KeyPress);
             // 
             // btnLogin
@@ -193,7 +197,7 @@
             this.btnLogin.Location = new System.Drawing.Point(271, 132);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 38);
-            this.btnLogin.TabIndex = 6;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "登入";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLogin_MouseUp);
@@ -223,7 +227,7 @@
             this.tlpSupport.ColumnCount = 4;
             this.tlpSupport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpSupport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpSupport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tlpSupport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpSupport.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpSupport.Controls.Add(this.lblSupport, 0, 0);
             this.tlpSupport.Controls.Add(this.pbLogoMYP, 3, 0);
@@ -245,7 +249,7 @@
             this.lblSupport.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblSupport.Location = new System.Drawing.Point(3, 0);
             this.lblSupport.Name = "lblSupport";
-            this.lblSupport.Size = new System.Drawing.Size(263, 30);
+            this.lblSupport.Size = new System.Drawing.Size(258, 30);
             this.lblSupport.TabIndex = 2;
             this.lblSupport.Text = "協力廠商 :";
             this.lblSupport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -270,7 +274,7 @@
             this.pbLogoHarmony.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbLogoHarmony.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbLogoHarmony.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbLogoHarmony.Location = new System.Drawing.Point(269, 0);
+            this.pbLogoHarmony.Location = new System.Drawing.Point(264, 0);
             this.pbLogoHarmony.Margin = new System.Windows.Forms.Padding(0);
             this.pbLogoHarmony.Name = "pbLogoHarmony";
             this.pbLogoHarmony.Size = new System.Drawing.Size(41, 30);

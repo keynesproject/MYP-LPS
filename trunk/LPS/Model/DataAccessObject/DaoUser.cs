@@ -5,8 +5,11 @@ using System.Text;
 
 namespace LPS.Model.DataAccessObject
 {
+    /// <summary>
+    /// 作業員
+    /// </summary>
     public class DaoUser
-    {
+    {        
         public string 代碼 { get; set; }
 
         public string 作業員姓名 { get; set; }

@@ -55,6 +55,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,9 +69,13 @@
     <Compile Include="Model\DataAccessObject\DaoConfigFile.cs" />
     <Compile Include="Model\DataAccessObject\DaoDbCommon.cs" />
     <Compile Include="Model\DataAccessObject\DaoMachine.cs" />
+    <Compile Include="Model\DataAccessObject\DaoPartNumber.cs" />
     <Compile Include="Model\DataAccessObject\DaoSQL.cs" />
     <Compile Include="Model\DataAccessObject\DaoUser.cs" />
-    <Compile Include="Model\DataAccessObject\DaoUserInfo.cs" />
+    <Compile Include="Model\Device\CH340.cs" />
+    <Compile Include="Model\Device\DevCtrl.cs" />
+    <Compile Include="Model\Device\TscTtp247.cs" />
+    <Compile Include="Model\Device\UsbDetect.cs" />
     <Compile Include="Model\Extension\AssemblyInfoExtension.cs" />
     <Compile Include="Model\Extension\DataTableExtension.cs" />
     <Compile Include="Model\Extension\DateTimeExtension.cs" />
@@ -100,6 +105,12 @@
     <Compile Include="View\Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Forms\FormSearchPN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FormSearchPN.Designer.cs">
+      <DependentUpon>FormSearchPN.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\PageTest.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -125,9 +136,13 @@
     <EmbeddedResource Include="View\Forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FormSearchPN.resx">
+      <DependentUpon>FormSearchPN.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Pages\PageTest.resx">
       <DependentUpon>PageTest.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -163,7 +178,12 @@
   <ItemGroup>
     <None Include="Resources\LogoMYP.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Testing.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestStop.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>@echo off

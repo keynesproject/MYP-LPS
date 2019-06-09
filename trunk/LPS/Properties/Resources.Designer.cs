@@ -123,6 +123,16 @@ namespace LPS.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap Testing {
+            get {
+                object obj = ResourceManager.GetObject("Testing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap TestNG {
             get {
                 object obj = ResourceManager.GetObject("TestNG", resourceCulture);
@@ -136,6 +146,16 @@ namespace LPS.Properties {
         internal static System.Drawing.Bitmap TestOK {
             get {
                 object obj = ResourceManager.GetObject("TestOK", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap TestStop {
+            get {
+                object obj = ResourceManager.GetObject("TestStop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

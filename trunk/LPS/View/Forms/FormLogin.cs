@@ -14,17 +14,35 @@ namespace LPS.View.Forms
 {
     public partial class FormLogin : Form
     {
+        /// <summary>
+        /// User登入通知
+        /// </summary>
+        public delegate void UserLoginDelegate(DaoMachine Machine, DaoUser User);
+
+        /// <summary>
+        /// 使用者登入事件
+        /// </summary>
+        public event UserLoginDelegate UserLogin;
+
         public FormLogin()
         {
             InitializeComponent();
-
+            
             cbMachineNo.DataSource = DaoSQL.Instance.GetMachineNo();
 
-            cbUser.DataSource = DaoSQL.Instance.GetUser();            
+            cbUser.DataSource = DaoSQL.Instance.GetUser();               
         }
 
         private bool Login()
         {
+            //檢查有無輸入操作者代碼;//
+            if(string.IsNullOrEmpty(cbUser.Text))
+            {
+                MessageBoxEx.Show(this, "請輸入操作者代號!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbUser.Focus();
+                return false;
+            }
+
             //檢查有無輸入密碼;//
             if (string.IsNullOrEmpty(tbPW.Text))
             {
@@ -44,6 +62,9 @@ namespace LPS.View.Forms
             MessageBoxEx.Show(this, "登入成功!", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //表示登入成功，要關閉視窗;//
             DialogResult = DialogResult.OK;
+
+            DaoMachine Machine = (DaoMachine)cbMachineNo.SelectedItem;
+            UserLogin?.Invoke(Machine, User);
             return true;
         }
 
@@ -95,5 +116,6 @@ namespace LPS.View.Forms
                 //表示沒有預設的開啟網址的應用程式，不予動作;//
             }
         }
+
     }
 }

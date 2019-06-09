@@ -21,6 +21,17 @@ namespace LPS
         private static extern bool SetForegroundWindow(IntPtr hWnd);
         private const int WS_SHOWNORMAL = 1;
 
+
+        /// <summary>
+        /// 紀錄當前登入的使用者
+        /// </summary>
+        private static DaoUser m_LoginUser = new DaoUser();
+
+        /// <summary>
+        /// 紀錄當前登入的機台
+        /// </summary>
+        private static DaoMachine m_Machine = new DaoMachine();
+
         /// <summary>
         /// 應用程式的主要進入點。
         /// </summary>
@@ -45,17 +56,17 @@ namespace LPS
                     DialogResult Ret = DialogResult.Cancel;
 
                     //Login畫面;//
-                    //Ret = ShowLoginForm();
-                    //if (Ret != DialogResult.OK)
-                    //{
-                    //    Logger.Info("LPS application is closed from login form.");
-                    //    break;
-                    //}
+                    Ret = ShowLoginForm();
+                    if (Ret != DialogResult.OK)
+                    {
+                        Logger.Info("LPS application is closed from login form.");
+                        break;
+                    }
 
                     Logger.Info("LPS login success.");
 
                     //登入成功，顯示主畫面;//
-                    FormMain LpsMain = new FormMain();
+                    FormMain LpsMain = new FormMain(m_Machine, m_LoginUser);
                     LpsMain.BringToFront();
                     Application.Run(LpsMain);
 
@@ -95,13 +106,21 @@ namespace LPS
         private static DialogResult ShowLoginForm()
         {
             FormLogin LpsLogin = new FormLogin();
+            LpsLogin.UserLogin += UserLogin;
             LpsLogin.BringToFront();
 
             DialogResult Ret = LpsLogin.ShowDialog();
+            LpsLogin.UserLogin -= UserLogin;
             LpsLogin.Close();
             LpsLogin.Dispose();
 
             return Ret;
+        }
+
+        private static void UserLogin(DaoMachine Machine, DaoUser User)
+        {
+            m_Machine = Machine;
+            m_LoginUser = User;
         }
 
         public static Process RunningInstance()

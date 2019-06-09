@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
             this.lblsplit3 = new System.Windows.Forms.Label();
             this.tlpLeft = new System.Windows.Forms.TableLayoutPanel();
@@ -38,7 +39,6 @@
             this.lblTitleUserName = new System.Windows.Forms.Label();
             this.lblTitlePN = new System.Windows.Forms.Label();
             this.lblTitleCarName = new System.Windows.Forms.Label();
-            this.lblTitleSerial = new System.Windows.Forms.Label();
             this.lblUserID = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblTitleTime = new System.Windows.Forms.Label();
@@ -47,8 +47,11 @@
             this.tlpPN = new System.Windows.Forms.TableLayoutPanel();
             this.tbPN = new System.Windows.Forms.TextBox();
             this.btnPN = new System.Windows.Forms.Button();
-            this.lblCarName = new System.Windows.Forms.Label();
-            this.lblSerial = new System.Windows.Forms.Label();
+            this.tbCarName = new System.Windows.Forms.TextBox();
+            this.lblTitleSerial = new System.Windows.Forms.Label();
+            this.tbSerial = new System.Windows.Forms.TextBox();
+            this.lblTitleCode = new System.Windows.Forms.Label();
+            this.tbCode = new System.Windows.Forms.TextBox();
             this.tlpRight = new System.Windows.Forms.TableLayoutPanel();
             this.lblsplit4 = new System.Windows.Forms.Label();
             this.lblTitleResult = new System.Windows.Forms.Label();
@@ -58,6 +61,7 @@
             this.btnLU = new System.Windows.Forms.Button();
             this.btnRU = new System.Windows.Forms.Button();
             this.btnRD = new System.Windows.Forms.Button();
+            this.timerNow = new System.Windows.Forms.Timer(this.components);
             this.tlpBase.SuspendLayout();
             this.tlpLeft.SuspendLayout();
             this.tlpPN.SuspendLayout();
@@ -81,7 +85,7 @@
             this.tlpBase.Name = "tlpBase";
             this.tlpBase.RowCount = 1;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBase.Size = new System.Drawing.Size(627, 346);
+            this.tlpBase.Size = new System.Drawing.Size(688, 329);
             this.tlpBase.TabIndex = 2;
             // 
             // lblsplit3
@@ -89,10 +93,10 @@
             this.lblsplit3.AutoSize = true;
             this.lblsplit3.BackColor = System.Drawing.Color.DarkGray;
             this.lblsplit3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblsplit3.Location = new System.Drawing.Point(436, 0);
+            this.lblsplit3.Location = new System.Drawing.Point(479, 0);
             this.lblsplit3.Margin = new System.Windows.Forms.Padding(0);
             this.lblsplit3.Name = "lblsplit3";
-            this.lblsplit3.Size = new System.Drawing.Size(3, 346);
+            this.lblsplit3.Size = new System.Drawing.Size(3, 329);
             this.lblsplit3.TabIndex = 20;
             // 
             // tlpLeft
@@ -107,21 +111,23 @@
             this.tlpLeft.Controls.Add(this.lblTitleUserName, 0, 3);
             this.tlpLeft.Controls.Add(this.lblTitlePN, 0, 5);
             this.tlpLeft.Controls.Add(this.lblTitleCarName, 0, 6);
-            this.tlpLeft.Controls.Add(this.lblTitleSerial, 0, 7);
             this.tlpLeft.Controls.Add(this.lblUserID, 1, 2);
             this.tlpLeft.Controls.Add(this.lblUserName, 1, 3);
             this.tlpLeft.Controls.Add(this.lblTitleTime, 0, 0);
             this.tlpLeft.Controls.Add(this.lblTime, 1, 0);
             this.tlpLeft.Controls.Add(this.lblsplit2, 1, 4);
             this.tlpLeft.Controls.Add(this.tlpPN, 1, 5);
-            this.tlpLeft.Controls.Add(this.lblCarName, 1, 6);
-            this.tlpLeft.Controls.Add(this.lblSerial, 1, 7);
+            this.tlpLeft.Controls.Add(this.tbCarName, 1, 6);
+            this.tlpLeft.Controls.Add(this.lblTitleSerial, 0, 8);
+            this.tlpLeft.Controls.Add(this.tbSerial, 1, 8);
+            this.tlpLeft.Controls.Add(this.lblTitleCode, 0, 7);
+            this.tlpLeft.Controls.Add(this.tbCode, 1, 7);
             this.tlpLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
             this.tlpLeft.Location = new System.Drawing.Point(3, 4);
             this.tlpLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tlpLeft.Name = "tlpLeft";
-            this.tlpLeft.RowCount = 9;
+            this.tlpLeft.RowCount = 10;
             this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
@@ -130,8 +136,9 @@
             this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tlpLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpLeft.Size = new System.Drawing.Size(430, 338);
+            this.tlpLeft.Size = new System.Drawing.Size(473, 321);
             this.tlpLeft.TabIndex = 0;
             // 
             // lblsplit1
@@ -152,7 +159,7 @@
             this.lblMachineNo.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.lblMachineNo.Location = new System.Drawing.Point(106, 38);
             this.lblMachineNo.Name = "lblMachineNo";
-            this.lblMachineNo.Size = new System.Drawing.Size(321, 38);
+            this.lblMachineNo.Size = new System.Drawing.Size(364, 38);
             this.lblMachineNo.TabIndex = 7;
             this.lblMachineNo.Text = "C";
             this.lblMachineNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -224,20 +231,6 @@
             this.lblTitleCarName.Text = "車型名稱:";
             this.lblTitleCarName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblTitleSerial
-            // 
-            this.lblTitleSerial.AutoSize = true;
-            this.lblTitleSerial.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitleSerial.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.lblTitleSerial.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblTitleSerial.Location = new System.Drawing.Point(3, 236);
-            this.lblTitleSerial.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lblTitleSerial.Name = "lblTitleSerial";
-            this.lblTitleSerial.Size = new System.Drawing.Size(97, 30);
-            this.lblTitleSerial.TabIndex = 5;
-            this.lblTitleSerial.Text = "流水編號:";
-            this.lblTitleSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // lblUserID
             // 
             this.lblUserID.AutoSize = true;
@@ -246,7 +239,7 @@
             this.lblUserID.Location = new System.Drawing.Point(106, 80);
             this.lblUserID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblUserID.Name = "lblUserID";
-            this.lblUserID.Size = new System.Drawing.Size(321, 30);
+            this.lblUserID.Size = new System.Drawing.Size(364, 30);
             this.lblUserID.TabIndex = 8;
             this.lblUserID.Text = "999";
             this.lblUserID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,10 +249,11 @@
             this.lblUserName.AutoSize = true;
             this.lblUserName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblUserName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.lblUserName.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblUserName.Location = new System.Drawing.Point(106, 118);
             this.lblUserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(321, 30);
+            this.lblUserName.Size = new System.Drawing.Size(364, 30);
             this.lblUserName.TabIndex = 9;
             this.lblUserName.Text = "測試員";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -287,7 +281,7 @@
             this.lblTime.Location = new System.Drawing.Point(108, 0);
             this.lblTime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(317, 38);
+            this.lblTime.Size = new System.Drawing.Size(360, 38);
             this.lblTime.TabIndex = 17;
             this.lblTime.Text = "2019/05/27 下午 04:07:01";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -300,7 +294,7 @@
             this.lblsplit2.Location = new System.Drawing.Point(103, 152);
             this.lblsplit2.Margin = new System.Windows.Forms.Padding(0);
             this.lblsplit2.Name = "lblsplit2";
-            this.lblsplit2.Size = new System.Drawing.Size(327, 4);
+            this.lblsplit2.Size = new System.Drawing.Size(370, 4);
             this.lblsplit2.TabIndex = 19;
             // 
             // tlpPN
@@ -316,59 +310,104 @@
             this.tlpPN.Name = "tlpPN";
             this.tlpPN.RowCount = 1;
             this.tlpPN.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpPN.Size = new System.Drawing.Size(327, 38);
+            this.tlpPN.Size = new System.Drawing.Size(370, 38);
             this.tlpPN.TabIndex = 21;
             // 
             // tbPN
             // 
             this.tbPN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbPN.Enabled = false;
             this.tbPN.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.tbPN.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tbPN.ForeColor = System.Drawing.Color.DarkGray;
             this.tbPN.Location = new System.Drawing.Point(3, 6);
             this.tbPN.Margin = new System.Windows.Forms.Padding(3, 6, 3, 4);
+            this.tbPN.MaxLength = 64;
             this.tbPN.Name = "tbPN";
-            this.tbPN.Size = new System.Drawing.Size(281, 24);
+            this.tbPN.Size = new System.Drawing.Size(324, 24);
             this.tbPN.TabIndex = 10;
-            this.tbPN.Text = "U00140-02000";
+            this.tbPN.Text = "請輸入或搜尋件號";
+            this.tbPN.TextChanged += new System.EventHandler(this.TbPN_TextChanged);
+            this.tbPN.Enter += new System.EventHandler(this.TbPN_Enter);
+            this.tbPN.Leave += new System.EventHandler(this.TbPN_Leave);
             // 
             // btnPN
             // 
             this.btnPN.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnPN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPN.Location = new System.Drawing.Point(290, 4);
+            this.btnPN.Location = new System.Drawing.Point(333, 4);
             this.btnPN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnPN.Name = "btnPN";
             this.btnPN.Size = new System.Drawing.Size(34, 30);
             this.btnPN.TabIndex = 11;
             this.btnPN.Text = "...";
             this.btnPN.UseVisualStyleBackColor = true;
+            this.btnPN.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnPN_MouseUp);
             // 
-            // lblCarName
+            // tbCarName
             // 
-            this.lblCarName.AutoSize = true;
-            this.lblCarName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCarName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.lblCarName.Location = new System.Drawing.Point(106, 198);
-            this.lblCarName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lblCarName.Name = "lblCarName";
-            this.lblCarName.Size = new System.Drawing.Size(321, 30);
-            this.lblCarName.TabIndex = 24;
-            this.lblCarName.Text = "102SD";
-            this.lblCarName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbCarName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbCarName.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.tbCarName.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tbCarName.Location = new System.Drawing.Point(106, 200);
+            this.tbCarName.Margin = new System.Windows.Forms.Padding(3, 6, 3, 4);
+            this.tbCarName.MaxLength = 64;
+            this.tbCarName.Name = "tbCarName";
+            this.tbCarName.ReadOnly = true;
+            this.tbCarName.Size = new System.Drawing.Size(364, 24);
+            this.tbCarName.TabIndex = 26;
             // 
-            // lblSerial
+            // lblTitleSerial
             // 
-            this.lblSerial.AutoSize = true;
-            this.lblSerial.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSerial.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.lblSerial.Location = new System.Drawing.Point(106, 236);
-            this.lblSerial.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lblSerial.Name = "lblSerial";
-            this.lblSerial.Size = new System.Drawing.Size(321, 30);
-            this.lblSerial.TabIndex = 25;
-            this.lblSerial.Text = "CAA050000001";
-            this.lblSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitleSerial.AutoSize = true;
+            this.lblTitleSerial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitleSerial.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.lblTitleSerial.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblTitleSerial.Location = new System.Drawing.Point(3, 274);
+            this.lblTitleSerial.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblTitleSerial.Name = "lblTitleSerial";
+            this.lblTitleSerial.Size = new System.Drawing.Size(97, 30);
+            this.lblTitleSerial.TabIndex = 5;
+            this.lblTitleSerial.Text = "流水編號:";
+            this.lblTitleSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbSerial
+            // 
+            this.tbSerial.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbSerial.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.tbSerial.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tbSerial.Location = new System.Drawing.Point(106, 276);
+            this.tbSerial.Margin = new System.Windows.Forms.Padding(3, 6, 3, 4);
+            this.tbSerial.MaxLength = 64;
+            this.tbSerial.Name = "tbSerial";
+            this.tbSerial.ReadOnly = true;
+            this.tbSerial.Size = new System.Drawing.Size(364, 24);
+            this.tbSerial.TabIndex = 27;
+            // 
+            // lblTitleCode
+            // 
+            this.lblTitleCode.AutoSize = true;
+            this.lblTitleCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitleCode.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.lblTitleCode.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblTitleCode.Location = new System.Drawing.Point(3, 236);
+            this.lblTitleCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblTitleCode.Name = "lblTitleCode";
+            this.lblTitleCode.Size = new System.Drawing.Size(97, 30);
+            this.lblTitleCode.TabIndex = 28;
+            this.lblTitleCode.Text = "簡碼:";
+            this.lblTitleCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbCode
+            // 
+            this.tbCode.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbCode.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.tbCode.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tbCode.Location = new System.Drawing.Point(106, 238);
+            this.tbCode.Margin = new System.Windows.Forms.Padding(3, 6, 3, 4);
+            this.tbCode.MaxLength = 64;
+            this.tbCode.Name = "tbCode";
+            this.tbCode.ReadOnly = true;
+            this.tbCode.Size = new System.Drawing.Size(364, 24);
+            this.tbCode.TabIndex = 29;
             // 
             // tlpRight
             // 
@@ -379,7 +418,7 @@
             this.tlpRight.Controls.Add(this.pbResult, 0, 1);
             this.tlpRight.Controls.Add(this.tlpBtn, 0, 3);
             this.tlpRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpRight.Location = new System.Drawing.Point(442, 4);
+            this.tlpRight.Location = new System.Drawing.Point(485, 4);
             this.tlpRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tlpRight.Name = "tlpRight";
             this.tlpRight.RowCount = 4;
@@ -387,7 +426,7 @@
             this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
             this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpRight.Size = new System.Drawing.Size(182, 338);
+            this.tlpRight.Size = new System.Drawing.Size(200, 321);
             this.tlpRight.TabIndex = 21;
             // 
             // lblsplit4
@@ -398,7 +437,7 @@
             this.lblsplit4.Location = new System.Drawing.Point(0, 142);
             this.lblsplit4.Margin = new System.Windows.Forms.Padding(0);
             this.lblsplit4.Name = "lblsplit4";
-            this.lblsplit4.Size = new System.Drawing.Size(182, 4);
+            this.lblsplit4.Size = new System.Drawing.Size(200, 4);
             this.lblsplit4.TabIndex = 27;
             // 
             // lblTitleResult
@@ -415,7 +454,7 @@
             // 
             // pbResult
             // 
-            this.pbResult.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbResult.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbResult.Location = new System.Drawing.Point(3, 30);
             this.pbResult.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbResult.Name = "pbResult";
@@ -440,7 +479,7 @@
             this.tlpBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpBtn.Size = new System.Drawing.Size(176, 184);
+            this.tlpBtn.Size = new System.Drawing.Size(194, 167);
             this.tlpBtn.TabIndex = 26;
             // 
             // btnLD
@@ -448,25 +487,26 @@
             this.btnLD.BackColor = System.Drawing.Color.Gold;
             this.btnLD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLD.Enabled = false;
-            this.btnLD.Location = new System.Drawing.Point(7, 100);
+            this.btnLD.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnLD.Location = new System.Drawing.Point(7, 91);
             this.btnLD.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.btnLD.Name = "btnLD";
-            this.btnLD.Size = new System.Drawing.Size(74, 76);
+            this.btnLD.Size = new System.Drawing.Size(83, 68);
             this.btnLD.TabIndex = 3;
             this.btnLD.Text = "開始測試";
             this.btnLD.UseVisualStyleBackColor = true;
+            this.btnLD.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLD_MouseUp);
             // 
             // btnLU
             // 
             this.btnLU.BackColor = System.Drawing.Color.Gold;
             this.btnLU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLU.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLU.Enabled = false;
+            this.btnLU.Font = new System.Drawing.Font("Arial", 11F);
             this.btnLU.Location = new System.Drawing.Point(7, 8);
             this.btnLU.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.btnLU.Name = "btnLU";
-            this.btnLU.Size = new System.Drawing.Size(74, 76);
+            this.btnLU.Size = new System.Drawing.Size(83, 67);
             this.btnLU.TabIndex = 0;
             this.btnLU.Text = "列印OK";
             this.btnLU.UseVisualStyleBackColor = true;
@@ -476,11 +516,11 @@
             this.btnRU.BackColor = System.Drawing.Color.Gold;
             this.btnRU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRU.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRU.Enabled = false;
-            this.btnRU.Location = new System.Drawing.Point(95, 8);
+            this.btnRU.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnRU.Location = new System.Drawing.Point(104, 8);
             this.btnRU.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.btnRU.Name = "btnRU";
-            this.btnRU.Size = new System.Drawing.Size(74, 76);
+            this.btnRU.Size = new System.Drawing.Size(83, 67);
             this.btnRU.TabIndex = 4;
             this.btnRU.Text = "列印NG";
             this.btnRU.UseVisualStyleBackColor = true;
@@ -490,14 +530,21 @@
             this.btnRD.BackColor = System.Drawing.Color.Gold;
             this.btnRD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRD.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnRD.Enabled = false;
-            this.btnRD.Location = new System.Drawing.Point(95, 100);
+            this.btnRD.Font = new System.Drawing.Font("Arial", 11F);
+            this.btnRD.Location = new System.Drawing.Point(104, 91);
             this.btnRD.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.btnRD.Name = "btnRD";
-            this.btnRD.Size = new System.Drawing.Size(74, 76);
+            this.btnRD.Size = new System.Drawing.Size(83, 68);
             this.btnRD.TabIndex = 5;
-            this.btnRD.Text = "開始測試";
+            this.btnRD.Text = "停止測試";
             this.btnRD.UseVisualStyleBackColor = true;
+            this.btnRD.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRD_MouseUp);
+            // 
+            // timerNow
+            // 
+            this.timerNow.Enabled = true;
+            this.timerNow.Interval = 1000;
+            this.timerNow.Tick += new System.EventHandler(this.TimerNow_Tick);
             // 
             // PageTest
             // 
@@ -507,7 +554,7 @@
             this.Controls.Add(this.tlpBase);
             this.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "PageTest";
-            this.Size = new System.Drawing.Size(627, 346);
+            this.Size = new System.Drawing.Size(688, 329);
             this.tlpBase.ResumeLayout(false);
             this.tlpBase.PerformLayout();
             this.tlpLeft.ResumeLayout(false);
@@ -543,8 +590,6 @@
         private System.Windows.Forms.TableLayoutPanel tlpPN;
         private System.Windows.Forms.TextBox tbPN;
         private System.Windows.Forms.Button btnPN;
-        private System.Windows.Forms.Label lblCarName;
-        private System.Windows.Forms.Label lblSerial;
         private System.Windows.Forms.TableLayoutPanel tlpRight;
         private System.Windows.Forms.Label lblsplit4;
         private System.Windows.Forms.Label lblTitleResult;
@@ -554,5 +599,10 @@
         private System.Windows.Forms.Button btnLU;
         private System.Windows.Forms.Button btnRU;
         private System.Windows.Forms.Button btnRD;
+        private System.Windows.Forms.TextBox tbCarName;
+        private System.Windows.Forms.TextBox tbSerial;
+        private System.Windows.Forms.Timer timerNow;
+        private System.Windows.Forms.Label lblTitleCode;
+        private System.Windows.Forms.TextBox tbCode;
     }
 }
