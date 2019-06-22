@@ -17,9 +17,38 @@ namespace LPS.Model.Device
 
         #endregion
 
+        private string m_LabelPrintName = "TSC TTP-247";
+
+        public void PrintOK(string Serial, DaoMachine Machine, DaoPartNumber PN, DateTime TestTime)
+        {
+            if (TSCLIB_DLL.openport(m_LabelPrintName) == 0)
+                return;
+
+            string ResultSerial = string.Format("{0}{1}{2}", Machine.Serial, PN.簡碼, Serial);
+
+            TSCLIB_DLL.setup("18", "12", "2", "12", "1", "3", "0");
+            TSCLIB_DLL.clearbuffer();
+            TSCLIB_DLL.sendcommand(string.Format("QRCODE 12,8,L,2,A,0,M2,S7,\"UCC,{0},{1}\"", ResultSerial, TestTime.ToString("yyyy/MM/dd")));
+            TSCLIB_DLL.windowsfont(76, 11, 30, 0, 2, 0, "新細明體", "OK");
+            TSCLIB_DLL.windowsfont(66, 40, 20, 0, 0, 0, "新細明體", TestTime.ToString("yy/MM/dd"));
+            TSCLIB_DLL.windowsfont(5, 62, 20, 0, 0, 0, "新細明體", PN.車型);
+            TSCLIB_DLL.printlabel("1", "1");
+
+            TSCLIB_DLL.closeport();
+        }
+
+        public void PrintNG(DateTime TestTime)
+        {
+            if (TSCLIB_DLL.openport(m_LabelPrintName) == 0)
+                return;
+
+
+        }
+
         public void PrintLabel(string Serial, DaoMachine Machine, DaoPartNumber PN, string Result, DateTime TestTime)
         {
-            TSCLIB_DLL.openport("TSC TTP-247");
+            if (TSCLIB_DLL.openport(m_LabelPrintName) == 0)
+                return;
 
             string ResultSerial = string.Format("{0}{1}{2}", Machine.Serial, PN.簡碼, Serial);
 
@@ -39,7 +68,7 @@ namespace LPS.Model.Device
             //byte[] result = System.Text.Encoding.GetEncoding("utf-16").GetBytes("unicode test");
 
             //TSCLIB_DLL.about();
-            //TSCLIB_DLL.openport("TSC TTP-247");
+            //TSCLIB_DLL.openport(m_LabelPrintName);
             //TSCLIB_DLL.sendcommand("SIZE 100 mm, 80 mm");
             //TSCLIB_DLL.sendcommand("SPEED 4");
             //TSCLIB_DLL.sendcommand("DENSITY 12");

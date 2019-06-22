@@ -32,6 +32,14 @@ namespace LPS.View.Forms
 
             cbUser.DataSource = DaoSQL.Instance.GetUser();               
         }
+        
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            int ExpDay = DaoSnControl.Instance.GetTrialExp();
+
+            if (ExpDay >= 0 && ExpDay <= 999)
+                this.Text = string.Format("{0} - 試用剩餘 {1} 天", this.Text, ExpDay);
+        }
 
         private bool Login()
         {

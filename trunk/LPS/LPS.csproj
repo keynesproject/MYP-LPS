@@ -49,6 +49,12 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MYP.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
@@ -68,8 +74,10 @@
   <ItemGroup>
     <Compile Include="Model\DataAccessObject\DaoConfigFile.cs" />
     <Compile Include="Model\DataAccessObject\DaoDbCommon.cs" />
+    <Compile Include="Model\DataAccessObject\DaoLastTestResult.cs" />
     <Compile Include="Model\DataAccessObject\DaoMachine.cs" />
     <Compile Include="Model\DataAccessObject\DaoPartNumber.cs" />
+    <Compile Include="Model\DataAccessObject\DaoSnControl.cs" />
     <Compile Include="Model\DataAccessObject\DaoSQL.cs" />
     <Compile Include="Model\DataAccessObject\DaoUser.cs" />
     <Compile Include="Model\Device\CH340.cs" />
@@ -93,6 +101,12 @@
       <DependentUpon>PageDataGridView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\EventHandlers\KeyEventHandlers.cs" />
+    <Compile Include="View\Forms\FormActivate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FormActivate.Designer.cs">
+      <DependentUpon>FormActivate.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Forms\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +124,13 @@
     </Compile>
     <Compile Include="View\Forms\FormSearchPN.Designer.cs">
       <DependentUpon>FormSearchPN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\FormSnVerify.cs" />
+    <Compile Include="View\Pages\PageHelp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Pages\PageHelp.Designer.cs">
+      <DependentUpon>PageHelp.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Pages\PageTest.cs">
       <SubType>UserControl</SubType>
@@ -130,6 +151,9 @@
     <EmbeddedResource Include="View\Component\PageDataGridView.resx">
       <DependentUpon>PageDataGridView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FormActivate.resx">
+      <DependentUpon>FormActivate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,10 +163,14 @@
     <EmbeddedResource Include="View\Forms\FormSearchPN.resx">
       <DependentUpon>FormSearchPN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Pages\PageHelp.resx">
+      <DependentUpon>PageHelp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Pages\PageTest.resx">
       <DependentUpon>PageTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -182,7 +210,16 @@
     <None Include="Resources\Testing.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\TestStop.png" />
+    <ProjectReference Include="..\MypKey\MypKey.csproj">
+      <Project>{0f2c14cb-0f3f-4ebf-ba6a-0f5c20d5caad}</Project>
+      <Name>MypKey</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MYP.ico" />
+    <None Include="Resources\Cross.png" />
+    <None Include="Resources\Check.png" />
+    <None Include="Resources\LogoUniCalsonic2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

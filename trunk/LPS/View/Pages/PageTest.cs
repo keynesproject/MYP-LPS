@@ -10,6 +10,7 @@ using LPS.Model.DataAccessObject;
 using LPS.Model.Extension;
 using LPS.View.Forms;
 using LPS.Model.Device;
+using LPS.View.Component;
 
 namespace LPS.View.Pages
 {
@@ -19,19 +20,44 @@ namespace LPS.View.Pages
 
         private DaoUser m_User = new DaoUser();
 
-        private eTestType m_Type = eTestType.eTT_MAIN;
-
         private DaoPartNumber m_PN = new DaoPartNumber();
 
-        private bool m_isDeviceConnect = false;
+        private DaoLastTestResult m_LastTest = null;
 
         private string m_InputPnInfo = "請輸入或搜尋件號";
 
-        private bool m_isTesting = false;
+        /// <summary>
+        /// 紀錄測試設備是否連接
+        /// </summary>
+        private bool m_isDeviceConnect = false;
+
+        /// <summary>
+        /// 紀錄是否輸入正確件號
+        /// </summary>
+        private bool m_isInputPn = false;
+
+        /// <summary>
+        /// 測試結果事件通知
+        /// </summary>
+        internal delegate void LastTestResultDelegate(DaoLastTestResult Ret);
+
+        /// <summary>
+        /// 測試結果事件
+        /// </summary>
+        internal event LastTestResultDelegate LastTestResultEvent;
+
         public enum eTestType
         {
             eTT_MAIN = 0,
             eTT_PRINT,
+        }
+
+        private enum eTestIconState
+        {
+            eTEST_NULL,
+            eTEST_WAITING,
+            eTEST_OK,
+            eTEST_NG,
         }
         public PageTest()
         {
@@ -47,19 +73,15 @@ namespace LPS.View.Pages
             lblUserID.Text = User.代碼;
             lblUserName.Text = User.作業員姓名;
 
-            m_Type = Type;
             switch (Type)
             {
                 case eTestType.eTT_MAIN:
-                    btnLU.Visible = false;
-                    btnRU.Visible = false;
-                    btnLD.Enabled = false;
-                    btnRD.Visible = false;
                     break;
                 case eTestType.eTT_PRINT:
-                    btnLD.Text = "補印OK";
-                    btnRD.Text = "補印NG";
                     tbSerial.Enabled = true;
+                    btnLU.Visible = true;
+                    btnRU.Visible = true;
+                    btnLD.Visible = true;
                     break;
                 default:
                     break;
@@ -78,41 +100,132 @@ namespace LPS.View.Pages
         {
             m_isDeviceConnect = isConnect;
 
-            Invoke((MethodInvoker)delegate
+            if (m_isDeviceConnect == true && m_isInputPn == true)
             {
-                //觸發一次PN輸入事件;//
-                this.TbPN_TextChanged(this, new EventArgs());
-            });
+                //顯示測試中圖示;//
+                SetTestIcon(eTestIconState.eTEST_WAITING);
+            }
+            else
+            {
+                SetTestIcon(eTestIconState.eTEST_NULL);
+            }
         }
-        
+
         /// <summary>
         /// 測試結果設定
         /// </summary>
         /// <param name="isSuccess"></param>
-        internal void TestResult(bool isSuccess)
+        /// <param name="ByOp"></param>
+        internal void TestResult(bool isSuccess, bool ByOp = false)
         {
-            if (m_isTesting == false)
+            if (m_isDeviceConnect == false)
+            {
+                Invoke((MethodInvoker)delegate
+                {
+                    MessageBoxEx.Show(this, "請先連接測試設備!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                });
                 return;
+            }
+
+            if (m_isInputPn == false)
+            {
+                //Invoke((MethodInvoker)delegate
+                //{
+                //    MessageBoxEx.Show(this, "請輸入有效友永件號!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //});
+                return;
+            }
 
             Invoke((MethodInvoker)delegate
             {
-                pbResult.Image = null; 
-            
-                pbResult.BackgroundImage = isSuccess == true ? Properties.Resources.TestOK : Properties.Resources.TestNG;
+                SetTestIcon(isSuccess == true ? eTestIconState.eTEST_OK : eTestIconState.eTEST_NG);
 
-                tbPN.ReadOnly = false;
-                btnPN.Enabled = true;
-                btnLD.Enabled = true;
-                btnRD.Text = "重新輸入";
+                //填上流水編號;//
+                DateTime LastTestTime = Properties.Settings.Default.LastTestTime;
+                TimeSpan ts = DateTime.Now - LastTestTime;
+                if (ts.Days > 0)
+                    Properties.Settings.Default.TestSerial = 1;
+                else
+                    Properties.Settings.Default.TestSerial++;
+
+                if (ByOp == false)
+                    tbSerial.Text = String.Format("{0:0000000}", Properties.Settings.Default.TestSerial.ToInt());
+                else
+                    tbSerial.Text = String.Format("H{0:000000}", Properties.Settings.Default.TestSerial.ToInt());
+
+                //紀錄測試時間;//
+                Properties.Settings.Default.LastTestTime = DateTime.Now;
+
+                //儲存資訊;//
+                Properties.Settings.Default.Save();
             });
 
             //紀錄結果資訊;//
             DaoSQL.Instance.SaveTestResult(tbSerial.Text, m_Machine, m_User, m_PN, isSuccess == true ? "OK" : "NG", Properties.Settings.Default.LastTestTime);
-            
-            //列印結果標籤;//
-            TscTtp247.Instance.PrintLabel(tbSerial.Text, m_Machine, m_PN, isSuccess == true ? "OK" : "NG", Properties.Settings.Default.LastTestTime);
 
-            m_isTesting = false;
+            if (ByOp == false)
+            {
+                if (m_LastTest == null)
+                    m_LastTest = new DaoLastTestResult();
+                m_LastTest.isSuccess = isSuccess;
+                m_LastTest.PN = m_PN;
+                m_LastTest.Serial = tbSerial.Text;
+                m_LastTest.TestTime = Properties.Settings.Default.LastTestTime;
+            }
+
+            //列印結果標籤;//            
+            //TscTtp247.Instance.PrintLabel(tbSerial.Text, m_Machine, m_PN, isSuccess == true ? "OK" : "NG", Properties.Settings.Default.LastTestTime);
+            if (isSuccess == true)
+                TscTtp247.Instance.PrintOK(tbSerial.Text, m_Machine, m_PN, Properties.Settings.Default.LastTestTime);            
+            else
+                TscTtp247.Instance.PrintNG(Properties.Settings.Default.LastTestTime);
+
+            if (m_LastTest != null)
+                LastTestResultEvent?.Invoke(m_LastTest);
+        }
+
+        internal void SetTestResult(DaoLastTestResult Ret)
+        {
+            if (m_LastTest == null)
+                m_LastTest = new DaoLastTestResult();
+            m_LastTest = Ret;
+
+            Invoke((MethodInvoker)delegate
+            {
+                tbPN.Text = m_LastTest.PN.件號;
+                tbSerial.Text = m_LastTest.Serial;
+            });
+        }
+
+        /// <summary>
+        /// 設定測試圖示
+        /// </summary>
+        /// <param name="State"></param>
+        private void SetTestIcon(eTestIconState State)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                switch (State)
+                {
+                    case eTestIconState.eTEST_NULL:
+                        pbResult.Image = null;
+                        pbResult.BackgroundImage = null;
+                        break;
+                    case eTestIconState.eTEST_WAITING:
+                        //顯示測試中圖示;//
+                        pbResult.Image = Properties.Resources.Testing;
+                        pbResult.BackgroundImage = null;
+                        break;
+                    case eTestIconState.eTEST_OK:
+                        pbResult.Image = null;
+                        pbResult.BackgroundImage = Properties.Resources.TestOK;
+                        break;
+                    case eTestIconState.eTEST_NG:
+                        pbResult.Image = null;
+                        pbResult.BackgroundImage = Properties.Resources.TestNG;
+                        break;
+                }
+            });
         }
 
         /// <summary>
@@ -132,14 +245,14 @@ namespace LPS.View.Pages
         /// <param name="e"></param>
         private void TbPN_TextChanged(object sender, EventArgs e)
         {
-            if (tbPN.Text.Length <= 0
+            SetTestIcon(eTestIconState.eTEST_NULL);
+
+            if (   tbPN.Text.Length <= 0
                 || tbPN.Text == m_InputPnInfo)
             {
                 tbCarName.Text = "";
                 tbCode.Text = "";
                 tbSerial.Text = "";
-                if(m_Type == eTestType.eTT_MAIN)
-                    btnLD.Enabled = false;
                 return;
             }
 
@@ -147,9 +260,14 @@ namespace LPS.View.Pages
             m_PN = DaoSQL.Instance.GetPartNumber(tbPN.Text);
             if (m_PN != null)
             {
+                tbPN.ForeColor = Color.Black;
                 tbCarName.ForeColor = Color.Black;
                 tbCarName.Text = m_PN.車型;
                 tbCode.Text = m_PN.簡碼;
+                m_isInputPn = true;
+
+                //顯示測試中圖示;//
+                SetTestIcon(eTestIconState.eTEST_WAITING);
             }
             else
             {
@@ -158,21 +276,6 @@ namespace LPS.View.Pages
                 tbCode.Text = "";
                 tbSerial.Text = "";
             }
-
-            switch (m_Type)
-            {
-                case eTestType.eTT_MAIN:
-                    if (m_PN != null && m_isDeviceConnect == true)
-                        btnLD.Enabled = true;
-                    else
-                        btnLD.Enabled = false;
-                    tlpRight.Refresh();
-                    break;
-
-                case eTestType.eTT_PRINT:                    
-
-                    break;
-            }            
         }
 
         private void TbPN_Enter(object sender, EventArgs e)
@@ -193,67 +296,6 @@ namespace LPS.View.Pages
             }
         }
 
-        private void BtnLD_MouseUp(object sender, MouseEventArgs e)
-        {
-            switch (m_Type)
-            {
-                case eTestType.eTT_MAIN:
-                    if (m_isDeviceConnect == true)
-                        StartTest();
-                    break;
-                case eTestType.eTT_PRINT:
-                    break;
-            }
-        }
-
-        private void StartTest()
-        {            
-            //填上流水編號;//
-            TimeSpan ts = DateTime.Now - Properties.Settings.Default.LastTestTime;
-            if (ts.Days > 0)
-                Properties.Settings.Default.TestSerial = 1;
-            else
-                Properties.Settings.Default.TestSerial++;
-            tbSerial.Text = String.Format("{0:0000000}", Properties.Settings.Default.TestSerial.ToInt());
-
-            //紀錄測試時間;//
-            Properties.Settings.Default.LastTestTime = DateTime.Now;
-
-            //儲存資訊;//
-            Properties.Settings.Default.Save();
-
-            //顯示測試中圖示;//
-            pbResult.Image = Properties.Resources.Testing;
-            pbResult.BackgroundImage = null;
-
-            tbPN.ReadOnly = true;
-            btnPN.Enabled = false;
-            btnLD.Enabled = false;
-            btnRD.Text = "停止測試";
-            btnRD.Visible = true;
-
-            //設定開始測試旗標;//
-            m_isTesting = true;
-        }
-
-        private void StopTest()
-        {
-            if (m_isTesting == false)
-                return;
-
-            m_isTesting = false;
-
-            tbPN.ReadOnly = false;
-            btnPN.Enabled = true;
-            btnLD.Enabled = true;
-            btnRD.Visible = false;
-            pbResult.Image = null;
-            pbResult.BackgroundImage = Properties.Resources.TestStop;
-
-            //紀錄停止測試資訊;//
-            DaoSQL.Instance.SaveTestResult(tbSerial.Text, m_Machine, m_User, m_PN, "Stop", Properties.Settings.Default.LastTestTime);
-        }
-
         private void BtnPN_MouseUp(object sender, MouseEventArgs e)
         {
             FormSearchPN FormPN = new FormSearchPN();
@@ -267,26 +309,40 @@ namespace LPS.View.Pages
 
         private void BtnRD_MouseUp(object sender, MouseEventArgs e)
         {
-            switch (m_Type)
-            {
-                case eTestType.eTT_MAIN:
-                    if (m_isTesting == true)
-                    {
-                        //表示正在測試中按下此按鈕，要停止測試;//
-                        StopTest();
-                    }
-                    else
-                    {
-                        //表示非在測試中按下此按鈕，要清除件號設定;//
-                        tbPN.Text = "";
-                        btnRD.Visible = false;
-                        pbResult.BackgroundImage = null;
-                    }
-                    break;
+            //清空件號資訊;//
+            tbPN.Text = "";
 
-                case eTestType.eTT_PRINT:
-                    break;
+            TbPN_Leave(sender, new EventArgs());
+        }
+
+        private void BtnLU_MouseUp(object sender, MouseEventArgs e)
+        {
+            //列印OK標籤;//
+            TestResult(true, true);
+        }
+
+        private void BtnRU_MouseUp(object sender, MouseEventArgs e)
+        {
+            //列印NG標籤;//
+            TestResult(false, true);
+        }
+        
+        private void BtnLD_MouseUp(object sender, MouseEventArgs e)
+        {
+            //補印標籤;//
+            if (m_LastTest == null)
+            {
+                MessageBoxEx.Show(this, "無最後一次測試紀錄資訊!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            tbPN.Text = m_LastTest.PN.件號;
+            tbSerial.Text = m_LastTest.Serial;
+
+            if (m_LastTest.isSuccess == true)
+                TscTtp247.Instance.PrintOK(m_LastTest.Serial, m_Machine, m_LastTest.PN, m_LastTest.TestTime);
+            else
+                TscTtp247.Instance.PrintNG(m_LastTest.TestTime);
         }
     }
 }

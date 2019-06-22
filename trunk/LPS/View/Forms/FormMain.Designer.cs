@@ -1,4 +1,5 @@
-﻿using LPS.Model.Device;
+﻿using LPS.Model.DataAccessObject;
+using LPS.Model.Device;
 
 namespace LPS.View.Forms
 {
@@ -15,8 +16,12 @@ namespace LPS.View.Forms
         /// <param name="disposing">如果應該處置受控資源則為 true，否則為 false。</param>
         protected override void Dispose(bool disposing)
         {
+            ptMain.LastTestResultEvent -= this.LastTestResult;
+
             DevCtrl.Instance.CH340ConnectChange -= this.TestDeviceConnectState;
             DevCtrl.Instance.TestResult -= this.TestResult;
+
+            DaoSnControl.Instance.UpdateSnEvent -= this.SnUpdate;
 
             if (disposing && (components != null))
             {
@@ -49,7 +54,7 @@ namespace LPS.View.Forms
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.pnlSettingSplit = new System.Windows.Forms.Panel();
             this.tabHelp = new System.Windows.Forms.TabPage();
-            this.label30 = new System.Windows.Forms.Label();
+            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabLogout = new System.Windows.Forms.TabPage();
             this.ssButtom = new System.Windows.Forms.StatusStrip();
             this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -100,6 +105,7 @@ namespace LPS.View.Forms
             // ptMain
             // 
             this.ptMain.AutoSize = true;
+            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
             this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ptMain.Location = new System.Drawing.Point(0, 0);
@@ -275,7 +281,7 @@ namespace LPS.View.Forms
             // tabHelp
             // 
             this.tabHelp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabHelp.Controls.Add(this.label30);
+            this.tabHelp.Controls.Add(this.pageHelp1);
             this.tabHelp.Location = new System.Drawing.Point(4, 44);
             this.tabHelp.Margin = new System.Windows.Forms.Padding(0);
             this.tabHelp.Name = "tabHelp";
@@ -284,17 +290,15 @@ namespace LPS.View.Forms
             this.tabHelp.Text = "幫助";
             this.tabHelp.UseVisualStyleBackColor = true;
             // 
-            // label30
+            // pageHelp1
             // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("新細明體", 16F);
-            this.label30.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label30.Location = new System.Drawing.Point(100, 127);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(527, 88);
-            this.label30.TabIndex = 5;
-            this.label30.Text = "預計設計功能如下:\r\n1.顯示MYP聯絡資訊\r\n2.顯示LPS軟體版本資訊，若為試用版會顯示剩餘天數.\r\n3.顯示/輸入LPS軟體序號資訊";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pageHelp1.AutoSize = true;
+            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
+            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
+            this.pageHelp1.Name = "pageHelp1";
+            this.pageHelp1.Size = new System.Drawing.Size(718, 330);
+            this.pageHelp1.TabIndex = 0;
             // 
             // tabLogout
             // 
@@ -336,7 +340,7 @@ namespace LPS.View.Forms
             this.tlpBase.Name = "tlpBase";
             this.tlpBase.RowCount = 1;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 388F));
+            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 468F));
             this.tlpBase.Size = new System.Drawing.Size(734, 388);
             this.tlpBase.TabIndex = 2;
             // 
@@ -352,7 +356,7 @@ namespace LPS.View.Forms
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MinimumSize = new System.Drawing.Size(750, 450);
             this.Name = "FormMain";
-            this.Text = "作業平台";
+            this.Text = "標籤作業平台";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabMain.ResumeLayout(false);
             this.tabTest.ResumeLayout(false);
@@ -390,11 +394,11 @@ namespace LPS.View.Forms
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.StatusStrip ssButtom;
         private System.Windows.Forms.ToolStripStatusLabel tsStatus;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Panel pnlSettingSplit;
         private System.Windows.Forms.TableLayoutPanel tlpBase;
         private Pages.PageTest ptMain;
         private Pages.PageTest ptPrint;
         private System.Windows.Forms.TabPage tabLogout;
+        private Pages.PageHelp pageHelp1;
     }
 }

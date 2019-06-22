@@ -295,7 +295,8 @@
             this.MinimizeBox = false;
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "作業平台-系統登入";
+            this.Text = "標籤作業平台-系統登入";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.tlpBase.ResumeLayout(false);
             this.tlpBase.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogoUniCalsonic)).EndInit();

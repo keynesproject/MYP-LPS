@@ -493,8 +493,9 @@
             this.btnLD.Name = "btnLD";
             this.btnLD.Size = new System.Drawing.Size(83, 68);
             this.btnLD.TabIndex = 3;
-            this.btnLD.Text = "開始測試";
+            this.btnLD.Text = "補印標籤";
             this.btnLD.UseVisualStyleBackColor = true;
+            this.btnLD.Visible = false;
             this.btnLD.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLD_MouseUp);
             // 
             // btnLU
@@ -510,6 +511,8 @@
             this.btnLU.TabIndex = 0;
             this.btnLU.Text = "列印OK";
             this.btnLU.UseVisualStyleBackColor = true;
+            this.btnLU.Visible = false;
+            this.btnLU.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnLU_MouseUp);
             // 
             // btnRU
             // 
@@ -524,6 +527,8 @@
             this.btnRU.TabIndex = 4;
             this.btnRU.Text = "列印NG";
             this.btnRU.UseVisualStyleBackColor = true;
+            this.btnRU.Visible = false;
+            this.btnRU.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRU_MouseUp);
             // 
             // btnRD
             // 
@@ -536,7 +541,7 @@
             this.btnRD.Name = "btnRD";
             this.btnRD.Size = new System.Drawing.Size(83, 68);
             this.btnRD.TabIndex = 5;
-            this.btnRD.Text = "停止測試";
+            this.btnRD.Text = "清除件號";
             this.btnRD.UseVisualStyleBackColor = true;
             this.btnRD.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnRD_MouseUp);
             // 

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 組件的一般資訊是由下列的屬性集控制。
 // 變更這些屬性的值即可修改組件的相關
 // 資訊。
-[assembly: AssemblyTitle("Uni-Calsonic Label Print System")]
+[assembly: AssemblyTitle("Myp Serial Number Generator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MYP Co.,Ltd.")]
-[assembly: AssemblyProduct("Uni-Calsonic Label Print System")]
-[assembly: AssemblyCopyright("Copyright © 木研科技有限公司(MYP) 2019 All rights reserved.Design by Keynes Lu")]
+[assembly: AssemblyCompany("MYP Co., Ltd")]
+[assembly: AssemblyProduct("Myp Serial Number Generator")]
+[assembly: AssemblyCopyright("Copyright © 2019 MYP Co., Ltd. All rights reserved")]
 [assembly: AssemblyTrademark("MYP")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 下列 GUID 為專案公開 (Expose) 至 COM 時所要使用的 typelib ID
-[assembly: Guid("3c48c22c-63f3-4f2d-85d5-06de8b6b17f0")]
+[assembly: Guid("51ce4b9f-1805-4b05-bc6f-808ee023e7ca")]
 
 // 組件的版本資訊由下列四個值所組成: 
 //

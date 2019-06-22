@@ -35,14 +35,37 @@ namespace LPS.View.Forms
 
             m_User = User;
             ptMain.Setup(Pages.PageTest.eTestType.eTT_MAIN, Machine, User);
+            ptMain.LastTestResultEvent += this.LastTestResult;
             ptPrint.Setup(Pages.PageTest.eTestType.eTT_PRINT, Machine, User);
             DevCtrl.Instance.CH340ConnectChange += this.TestDeviceConnectState;
             DevCtrl.Instance.TestResult += this.TestResult;
+
+            DaoSnControl.Instance.UpdateSnEvent += this.SnUpdate;
+        }
+
+        private void SnUpdate(string SN, int ExpDay)
+        {
+            CheckSN();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             DevCtrl.Instance.DeviceChange();
+
+            CheckSN();
+        }
+
+        private void CheckSN()
+        {
+            int ExpDay = DaoSnControl.Instance.GetTrialExp();
+
+            Invoke((MethodInvoker)delegate
+            {
+                if (ExpDay >= 0 && ExpDay <= 999)
+                    this.Text = string.Format("{0} - 試用剩餘 {1} 天", Properties.Resources.AP_NAME, ExpDay);
+                else
+                    this.Text = Properties.Resources.AP_NAME;
+            });
         }
 
         /// <summary>
@@ -66,6 +89,7 @@ namespace LPS.View.Forms
             m_DevConnect = isConnect;
 
             ptMain.DeviceConnectState(isConnect);
+            ptPrint.DeviceConnectState(isConnect);
         }
 
         private void TestResult(bool isSuccess)
@@ -73,5 +97,9 @@ namespace LPS.View.Forms
             ptMain.TestResult(isSuccess);
         }
 
+        private void LastTestResult(DaoLastTestResult Ret)
+        {
+            ptPrint.SetTestResult(Ret);
+        }
     }
 }

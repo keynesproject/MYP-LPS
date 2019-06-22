@@ -61,6 +61,35 @@ namespace LPS.Properties {
         }
         
         /// <summary>
+        ///   查詢類似 標籤作業平台 的當地語系化字串。
+        /// </summary>
+        internal static string AP_NAME {
+            get {
+                return ResourceManager.GetString("AP_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Check {
+            get {
+                object obj = ResourceManager.GetObject("Check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Cross {
+            get {
+                object obj = ResourceManager.GetObject("Cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
         internal static System.Drawing.Bitmap IconDisableDevice {
@@ -123,6 +152,16 @@ namespace LPS.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap LogoUniCalsonic2 {
+            get {
+                object obj = ResourceManager.GetObject("LogoUniCalsonic2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Testing {
             get {
                 object obj = ResourceManager.GetObject("Testing", resourceCulture);
@@ -146,16 +185,6 @@ namespace LPS.Properties {
         internal static System.Drawing.Bitmap TestOK {
             get {
                 object obj = ResourceManager.GetObject("TestOK", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
-        /// </summary>
-        internal static System.Drawing.Bitmap TestStop {
-            get {
-                object obj = ResourceManager.GetObject("TestStop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
