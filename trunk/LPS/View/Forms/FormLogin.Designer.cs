@@ -150,7 +150,7 @@
             // 
             // cbMachineNo
             // 
-            this.cbMachineNo.DisplayMember = "Serial";
+            this.cbMachineNo.DisplayMember = "機台代碼";
             this.cbMachineNo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbMachineNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMachineNo.Font = new System.Drawing.Font("Arial", 11F);
@@ -160,6 +160,7 @@
             this.cbMachineNo.Name = "cbMachineNo";
             this.cbMachineNo.Size = new System.Drawing.Size(203, 25);
             this.cbMachineNo.TabIndex = 0;
+            this.cbMachineNo.BindingContextChanged += new System.EventHandler(this.CbMachineNo_BindingContextChanged);
             // 
             // cbUser
             // 

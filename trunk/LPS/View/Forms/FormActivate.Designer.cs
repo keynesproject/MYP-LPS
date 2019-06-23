@@ -113,7 +113,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 56);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "離開";
+            this.btnCancel.Text = "離 開";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCancel_MouseUp);
             // 
@@ -128,7 +128,7 @@
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(112, 56);
             this.btnActivate.TabIndex = 0;
-            this.btnActivate.Text = "啟用";
+            this.btnActivate.Text = "啟 用";
             this.btnActivate.UseVisualStyleBackColor = true;
             this.btnActivate.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnActivate_MouseUp);
             // 

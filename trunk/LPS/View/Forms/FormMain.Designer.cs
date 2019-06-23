@@ -41,30 +41,30 @@ namespace LPS.View.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabTest = new System.Windows.Forms.TabPage();
-            this.ptMain = new LPS.View.Pages.PageTest();
             this.tabPrinter = new System.Windows.Forms.TabPage();
-            this.ptPrint = new LPS.View.Pages.PageTest();
             this.tabSetting = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.tlpSettingBase = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpSettingBtn = new System.Windows.Forms.TableLayoutPanel();
+            this.rbtnReport = new System.Windows.Forms.RadioButton();
+            this.rbtnBackup = new System.Windows.Forms.RadioButton();
+            this.rbtnUser = new System.Windows.Forms.RadioButton();
+            this.rbtnCar = new System.Windows.Forms.RadioButton();
+            this.rbtnMachine = new System.Windows.Forms.RadioButton();
             this.pnlSettingSplit = new System.Windows.Forms.Panel();
             this.tabHelp = new System.Windows.Forms.TabPage();
-            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabLogout = new System.Windows.Forms.TabPage();
             this.ssButtom = new System.Windows.Forms.StatusStrip();
             this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
+            this.ptMain = new LPS.View.Pages.PageTest();
+            this.ptPrint = new LPS.View.Pages.PageTest();
+            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabMain.SuspendLayout();
             this.tabTest.SuspendLayout();
             this.tabPrinter.SuspendLayout();
             this.tabSetting.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tlpSettingBase.SuspendLayout();
+            this.tlpSettingBtn.SuspendLayout();
             this.tabHelp.SuspendLayout();
             this.ssButtom.SuspendLayout();
             this.tlpBase.SuspendLayout();
@@ -89,6 +89,8 @@ namespace LPS.View.Forms
             this.tabMain.Size = new System.Drawing.Size(728, 380);
             this.tabMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabMain.TabIndex = 0;
+            this.tabMain.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabMain_Selecting);
+            this.tabMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabMain_Selected);
             // 
             // tabTest
             // 
@@ -102,17 +104,6 @@ namespace LPS.View.Forms
             this.tabTest.TabIndex = 0;
             this.tabTest.Text = "作業平台";
             // 
-            // ptMain
-            // 
-            this.ptMain.AutoSize = true;
-            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
-            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptMain.Location = new System.Drawing.Point(0, 0);
-            this.ptMain.Name = "ptMain";
-            this.ptMain.Size = new System.Drawing.Size(718, 330);
-            this.ptMain.TabIndex = 0;
-            // 
             // tabPrinter
             // 
             this.tabPrinter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -125,20 +116,10 @@ namespace LPS.View.Forms
             this.tabPrinter.Text = "補印標籤";
             this.tabPrinter.UseVisualStyleBackColor = true;
             // 
-            // ptPrint
-            // 
-            this.ptPrint.AutoSize = true;
-            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptPrint.Location = new System.Drawing.Point(0, 0);
-            this.ptPrint.Name = "ptPrint";
-            this.ptPrint.Size = new System.Drawing.Size(718, 330);
-            this.ptPrint.TabIndex = 0;
-            // 
             // tabSetting
             // 
             this.tabSetting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabSetting.Controls.Add(this.tableLayoutPanel1);
+            this.tabSetting.Controls.Add(this.tlpSettingBase);
             this.tabSetting.Location = new System.Drawing.Point(4, 44);
             this.tabSetting.Margin = new System.Windows.Forms.Padding(0);
             this.tabSetting.Name = "tabSetting";
@@ -147,125 +128,131 @@ namespace LPS.View.Forms
             this.tabSetting.Text = "設定";
             this.tabSetting.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // tlpSettingBase
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pnlSettingSplit, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(718, 330);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tlpSettingBase.AutoSize = true;
+            this.tlpSettingBase.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tlpSettingBase.ColumnCount = 3;
+            this.tlpSettingBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpSettingBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpSettingBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpSettingBase.Controls.Add(this.tlpSettingBtn, 0, 0);
+            this.tlpSettingBase.Controls.Add(this.pnlSettingSplit, 1, 0);
+            this.tlpSettingBase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpSettingBase.Location = new System.Drawing.Point(0, 0);
+            this.tlpSettingBase.Margin = new System.Windows.Forms.Padding(0);
+            this.tlpSettingBase.Name = "tlpSettingBase";
+            this.tlpSettingBase.RowCount = 1;
+            this.tlpSettingBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpSettingBase.Size = new System.Drawing.Size(718, 330);
+            this.tlpSettingBase.TabIndex = 0;
             // 
-            // tableLayoutPanel2
+            // tlpSettingBtn
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.radioButton6, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.radioButton5, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.radioButton4, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.radioButton3, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.radioButton2, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 4);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(152, 322);
-            this.tableLayoutPanel2.TabIndex = 2;
+            this.tlpSettingBtn.ColumnCount = 1;
+            this.tlpSettingBtn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpSettingBtn.Controls.Add(this.rbtnReport, 0, 4);
+            this.tlpSettingBtn.Controls.Add(this.rbtnBackup, 0, 3);
+            this.tlpSettingBtn.Controls.Add(this.rbtnUser, 0, 2);
+            this.tlpSettingBtn.Controls.Add(this.rbtnCar, 0, 1);
+            this.tlpSettingBtn.Controls.Add(this.rbtnMachine, 0, 0);
+            this.tlpSettingBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpSettingBtn.Location = new System.Drawing.Point(3, 4);
+            this.tlpSettingBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tlpSettingBtn.Name = "tlpSettingBtn";
+            this.tlpSettingBtn.RowCount = 5;
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpSettingBtn.Size = new System.Drawing.Size(152, 322);
+            this.tlpSettingBtn.TabIndex = 2;
             // 
-            // radioButton6
+            // rbtnReport
             // 
-            this.radioButton6.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.BackColor = System.Drawing.Color.Orange;
-            this.radioButton6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton6.Location = new System.Drawing.Point(3, 260);
-            this.radioButton6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(146, 58);
-            this.radioButton6.TabIndex = 8;
-            this.radioButton6.Text = "測試結果報表";
-            this.radioButton6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton6.UseVisualStyleBackColor = false;
+            this.rbtnReport.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnReport.AutoSize = true;
+            this.rbtnReport.BackColor = System.Drawing.Color.Orange;
+            this.rbtnReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnReport.Location = new System.Drawing.Point(3, 260);
+            this.rbtnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtnReport.Name = "rbtnReport";
+            this.rbtnReport.Size = new System.Drawing.Size(146, 58);
+            this.rbtnReport.TabIndex = 8;
+            this.rbtnReport.Text = "測試結果報表";
+            this.rbtnReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnReport.UseVisualStyleBackColor = false;
+            this.rbtnReport.CheckedChanged += new System.EventHandler(this.Setting_CheckedChanged);
             // 
-            // radioButton5
+            // rbtnBackup
             // 
-            this.radioButton5.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.BackColor = System.Drawing.Color.Orange;
-            this.radioButton5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton5.Location = new System.Drawing.Point(3, 196);
-            this.radioButton5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(146, 56);
-            this.radioButton5.TabIndex = 7;
-            this.radioButton5.Text = "資訊備份位置";
-            this.radioButton5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton5.UseVisualStyleBackColor = false;
+            this.rbtnBackup.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnBackup.AutoSize = true;
+            this.rbtnBackup.BackColor = System.Drawing.Color.Orange;
+            this.rbtnBackup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnBackup.Location = new System.Drawing.Point(3, 196);
+            this.rbtnBackup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtnBackup.Name = "rbtnBackup";
+            this.rbtnBackup.Size = new System.Drawing.Size(146, 56);
+            this.rbtnBackup.TabIndex = 7;
+            this.rbtnBackup.Text = "資訊備份位置";
+            this.rbtnBackup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnBackup.UseVisualStyleBackColor = false;
+            this.rbtnBackup.CheckedChanged += new System.EventHandler(this.Setting_CheckedChanged);
             // 
-            // radioButton4
+            // rbtnUser
             // 
-            this.radioButton4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.BackColor = System.Drawing.Color.Orange;
-            this.radioButton4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton4.Location = new System.Drawing.Point(3, 132);
-            this.radioButton4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(146, 56);
-            this.radioButton4.TabIndex = 6;
-            this.radioButton4.Text = "操作者代號";
-            this.radioButton4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton4.UseVisualStyleBackColor = false;
+            this.rbtnUser.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnUser.AutoSize = true;
+            this.rbtnUser.BackColor = System.Drawing.Color.Orange;
+            this.rbtnUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnUser.Location = new System.Drawing.Point(3, 132);
+            this.rbtnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtnUser.Name = "rbtnUser";
+            this.rbtnUser.Size = new System.Drawing.Size(146, 56);
+            this.rbtnUser.TabIndex = 6;
+            this.rbtnUser.Text = "操作者代號";
+            this.rbtnUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnUser.UseVisualStyleBackColor = false;
+            this.rbtnUser.CheckedChanged += new System.EventHandler(this.Setting_CheckedChanged);
             // 
-            // radioButton3
+            // rbtnCar
             // 
-            this.radioButton3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.BackColor = System.Drawing.Color.Orange;
-            this.radioButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton3.Location = new System.Drawing.Point(3, 68);
-            this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(146, 56);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.Text = "車型代號";
-            this.radioButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton3.UseVisualStyleBackColor = false;
+            this.rbtnCar.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnCar.AutoSize = true;
+            this.rbtnCar.BackColor = System.Drawing.Color.Orange;
+            this.rbtnCar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtnCar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnCar.Location = new System.Drawing.Point(3, 68);
+            this.rbtnCar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtnCar.Name = "rbtnCar";
+            this.rbtnCar.Size = new System.Drawing.Size(146, 56);
+            this.rbtnCar.TabIndex = 5;
+            this.rbtnCar.Text = "車型代號";
+            this.rbtnCar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnCar.UseVisualStyleBackColor = false;
+            this.rbtnCar.CheckedChanged += new System.EventHandler(this.Setting_CheckedChanged);
             // 
-            // radioButton2
+            // rbtnMachine
             // 
-            this.radioButton2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.BackColor = System.Drawing.Color.Orange;
-            this.radioButton2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radioButton2.Location = new System.Drawing.Point(3, 4);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(146, 56);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.Text = "機台資訊";
-            this.radioButton2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton2.UseVisualStyleBackColor = false;
+            this.rbtnMachine.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnMachine.AutoSize = true;
+            this.rbtnMachine.BackColor = System.Drawing.Color.Orange;
+            this.rbtnMachine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtnMachine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnMachine.Location = new System.Drawing.Point(3, 4);
+            this.rbtnMachine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtnMachine.Name = "rbtnMachine";
+            this.rbtnMachine.Size = new System.Drawing.Size(146, 56);
+            this.rbtnMachine.TabIndex = 4;
+            this.rbtnMachine.Text = "機台資訊";
+            this.rbtnMachine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnMachine.UseVisualStyleBackColor = false;
+            this.rbtnMachine.CheckedChanged += new System.EventHandler(this.Setting_CheckedChanged);
             // 
             // pnlSettingSplit
             // 
@@ -289,16 +276,6 @@ namespace LPS.View.Forms
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "幫助";
             this.tabHelp.UseVisualStyleBackColor = true;
-            // 
-            // pageHelp1
-            // 
-            this.pageHelp1.AutoSize = true;
-            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
-            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
-            this.pageHelp1.Name = "pageHelp1";
-            this.pageHelp1.Size = new System.Drawing.Size(718, 330);
-            this.pageHelp1.TabIndex = 0;
             // 
             // tabLogout
             // 
@@ -340,9 +317,40 @@ namespace LPS.View.Forms
             this.tlpBase.Name = "tlpBase";
             this.tlpBase.RowCount = 1;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 468F));
+            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 388F));
             this.tlpBase.Size = new System.Drawing.Size(734, 388);
             this.tlpBase.TabIndex = 2;
+            // 
+            // ptMain
+            // 
+            this.ptMain.AutoSize = true;
+            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
+            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptMain.Location = new System.Drawing.Point(0, 0);
+            this.ptMain.Name = "ptMain";
+            this.ptMain.Size = new System.Drawing.Size(718, 330);
+            this.ptMain.TabIndex = 0;
+            // 
+            // ptPrint
+            // 
+            this.ptPrint.AutoSize = true;
+            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptPrint.Location = new System.Drawing.Point(0, 0);
+            this.ptPrint.Name = "ptPrint";
+            this.ptPrint.Size = new System.Drawing.Size(718, 330);
+            this.ptPrint.TabIndex = 0;
+            // 
+            // pageHelp1
+            // 
+            this.pageHelp1.AutoSize = true;
+            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
+            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
+            this.pageHelp1.Name = "pageHelp1";
+            this.pageHelp1.Size = new System.Drawing.Size(718, 330);
+            this.pageHelp1.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -365,9 +373,9 @@ namespace LPS.View.Forms
             this.tabPrinter.PerformLayout();
             this.tabSetting.ResumeLayout(false);
             this.tabSetting.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tlpSettingBase.ResumeLayout(false);
+            this.tlpSettingBtn.ResumeLayout(false);
+            this.tlpSettingBtn.PerformLayout();
             this.tabHelp.ResumeLayout(false);
             this.tabHelp.PerformLayout();
             this.ssButtom.ResumeLayout(false);
@@ -384,14 +392,14 @@ namespace LPS.View.Forms
         private System.Windows.Forms.TabPage tabTest;
         private System.Windows.Forms.TabPage tabPrinter;
         private System.Windows.Forms.TabPage tabSetting;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tlpSettingBase;
+        private System.Windows.Forms.TableLayoutPanel tlpSettingBtn;
         private System.Windows.Forms.TabPage tabHelp;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbtnReport;
+        private System.Windows.Forms.RadioButton rbtnBackup;
+        private System.Windows.Forms.RadioButton rbtnUser;
+        private System.Windows.Forms.RadioButton rbtnCar;
+        private System.Windows.Forms.RadioButton rbtnMachine;
         private System.Windows.Forms.StatusStrip ssButtom;
         private System.Windows.Forms.ToolStripStatusLabel tsStatus;
         private System.Windows.Forms.Panel pnlSettingSplit;

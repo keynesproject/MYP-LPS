@@ -1,5 +1,7 @@
 ﻿using LPS.Model.DataAccessObject;
 using LPS.Model.Device;
+using LPS.Model.Log;
+using LPS.View.Pages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,15 +25,23 @@ namespace LPS.View.Forms
         /// </summary>
         private bool m_DevConnect = false;
         
+        /// <summary>
+        /// 紀錄最後一次選擇的頁面
+        /// </summary>
+        private int m_LastSelectIndex;
+
+        /// <summary>
+        /// 紀錄是否為管理者登錄
+        /// </summary>
+        private bool m_bPermissionLogin = false;
+
+        private UserControl m_LastSettingPage = null;
+
         public FormMain(DaoMachine Machine, DaoUser User)
         {
             InitializeComponent();
 
-            if(User.Permission == false)
-            {
-                tabMain.TabPages["tabPrinter"].Parent = null;
-                tabMain.TabPages["tabSetting"].Parent = null;
-            }
+            m_LastSelectIndex = tabMain.SelectedIndex;
 
             m_User = User;
             ptMain.Setup(Pages.PageTest.eTestType.eTT_MAIN, Machine, User);
@@ -41,6 +51,8 @@ namespace LPS.View.Forms
             DevCtrl.Instance.TestResult += this.TestResult;
 
             DaoSnControl.Instance.UpdateSnEvent += this.SnUpdate;
+
+            rbtnMachine.Checked = true;
         }
 
         private void SnUpdate(string SN, int ExpDay)
@@ -100,6 +112,107 @@ namespace LPS.View.Forms
         private void LastTestResult(DaoLastTestResult Ret)
         {
             ptPrint.SetTestResult(Ret);
+        }
+
+        private void TabMain_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (tabMain.SelectedTab == tabMain.TabPages["tabLogout"])
+            {
+                DialogResult Ret = MessageBox.Show("是否真的要登出標籤作業平台?", "登出", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Ret == DialogResult.Yes)
+                {
+                    Logger.Info(string.Format("User : {0} logout.", m_User.代碼));
+
+                    //將視窗標示為 Retry 表示要回Login畫面;//
+                    this.DialogResult = DialogResult.Retry;
+
+                    this.Close();
+
+                    return;
+                }
+                else
+                {
+                    //返回最後選取的頁面;//
+                    tabMain.SelectedIndex = m_LastSelectIndex;
+                }
+            }
+            else if(tabMain.SelectedTab == tabMain.TabPages["tabPrinter"] || tabMain.SelectedTab == tabMain.TabPages["tabSetting"])
+            {
+                if (m_User.Permission == false && m_bPermissionLogin == false)
+                {
+                    FormPermision Permision = new FormPermision();
+                    DialogResult ret = Permision.ShowDialog();
+                    if (ret == DialogResult.Cancel)
+                    {
+                        //返回最後選取的頁面;//
+                        tabMain.SelectedIndex = m_LastSelectIndex;
+                        m_bPermissionLogin = false;
+                    }
+                    else
+                    {
+                        m_bPermissionLogin = true;
+                    }
+                    Permision.Close();
+                    Permision.Dispose();
+                }
+            }
+
+            //紀錄最後選取的葉面;//
+            m_LastSelectIndex = tabMain.SelectedIndex;
+        }
+
+        private void TabMain_Selected(object sender, TabControlEventArgs e)
+        {
+            if (!(tabMain.SelectedTab == tabMain.TabPages["tabPrinter"] || tabMain.SelectedTab == tabMain.TabPages["tabSetting"]))
+                m_bPermissionLogin = false;
+        }
+
+        private void Setting_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rbtn = sender as RadioButton;
+            if (rbtn.Checked == true)
+            {
+                if (m_LastSettingPage != null)
+                {
+                    this.tlpSettingBase.Controls.RemoveAt(2);
+                    m_LastSettingPage.Dispose();
+                    m_LastSettingPage = null;
+                }
+
+                switch (rbtn.Name)
+                {
+                    case string rbtnName when rbtnMachine.Name == rbtnName:
+                        PageMachine pMachine = new PageMachine();
+                        pMachine.Setup();
+                        m_LastSettingPage = pMachine;
+                        break;
+
+                    case string rbtnName when rbtnCar.Name == rbtnName:
+                        PageCars pCars = new PageCars();
+                        pCars.Setup();
+                        m_LastSettingPage = pCars;
+                        break;
+
+                    case string rbtnName when rbtnUser.Name == rbtnName:
+                        PageUser pUser = new PageUser();
+                        pUser.Setup();
+                        m_LastSettingPage = pUser;
+                        break;
+
+                    case string rbtnName when rbtnBackup.Name == rbtnName:
+                        this.Text = "4";
+                        break;
+
+                    case string rbtnName when rbtnReport.Name == rbtnName:
+                        PageReport pReport = new PageReport();
+                        pReport.Setup();
+                        m_LastSettingPage = pReport;
+                        break;
+                }
+
+                tlpSettingBase.Controls.Add(m_LastSettingPage, 2, 0);
+                m_LastSettingPage.Dock = DockStyle.Fill;
+            }
         }
     }
 }

@@ -75,11 +75,9 @@ namespace LPS
                     //登入成功，顯示主畫面;//
                     FormMain LpsMain = new FormMain(m_Machine, m_LoginUser);
                     LpsMain.BringToFront();
-                    Application.Run(LpsMain);
-
-                    //記錄Main視窗關閉結果;//
-                    Ret = LpsMain.DialogResult;
-
+                    Ret = LpsMain.ShowDialog();
+                    //Application.Run(LpsMain);
+                    
                     //釋放主畫面資源;//
                     LpsMain.Close();
                     LpsMain.Dispose();

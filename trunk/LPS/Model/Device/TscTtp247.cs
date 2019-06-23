@@ -24,7 +24,7 @@ namespace LPS.Model.Device
             if (TSCLIB_DLL.openport(m_LabelPrintName) == 0)
                 return;
 
-            string ResultSerial = string.Format("{0}{1}{2}", Machine.Serial, PN.簡碼, Serial);
+            string ResultSerial = string.Format("{0}{1}{2}", Machine.機台代碼, PN.簡碼, Serial);
 
             TSCLIB_DLL.setup("18", "12", "2", "12", "1", "3", "0");
             TSCLIB_DLL.clearbuffer();
@@ -42,7 +42,13 @@ namespace LPS.Model.Device
             if (TSCLIB_DLL.openport(m_LabelPrintName) == 0)
                 return;
 
+            TSCLIB_DLL.setup("18", "12", "2", "12", "1", "3", "0");
+            TSCLIB_DLL.clearbuffer();
+            TSCLIB_DLL.windowsfont(40, 3, 40, 0, 2, 0, "新細明體", "NG");
+            TSCLIB_DLL.windowsfont(15, 40, 30, 0, 0, 0, "新細明體", TestTime.ToString("yy/MM/dd"));
+            TSCLIB_DLL.printlabel("1", "1");
 
+            TSCLIB_DLL.closeport();
         }
 
         public void PrintLabel(string Serial, DaoMachine Machine, DaoPartNumber PN, string Result, DateTime TestTime)
@@ -50,7 +56,7 @@ namespace LPS.Model.Device
             if (TSCLIB_DLL.openport(m_LabelPrintName) == 0)
                 return;
 
-            string ResultSerial = string.Format("{0}{1}{2}", Machine.Serial, PN.簡碼, Serial);
+            string ResultSerial = string.Format("{0}{1}{2}", Machine.機台代碼, PN.簡碼, Serial);
 
             TSCLIB_DLL.setup("18", "12", "2", "12", "1", "3", "0");
             TSCLIB_DLL.clearbuffer();

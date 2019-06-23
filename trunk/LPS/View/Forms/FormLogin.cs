@@ -125,5 +125,19 @@ namespace LPS.View.Forms
             }
         }
 
+        private void CbMachineNo_BindingContextChanged(object sender, EventArgs e)
+        {
+            for(int i=0; i< cbMachineNo.Items.Count; i++)
+            {
+                DaoMachine Machine = (DaoMachine)cbMachineNo.Items[i];
+                if(Machine.預設機台.Equals("Y"))
+                {
+                    cbMachineNo.SelectedIndex = i;
+                    cbMachineNo.Enabled = false;
+                    break;
+                }
+            }
+            
+        }
     }
 }

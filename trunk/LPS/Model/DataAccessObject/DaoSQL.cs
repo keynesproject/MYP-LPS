@@ -35,14 +35,15 @@ namespace LPS.Model.DataAccessObject
         /// 資料庫連線狀態更新事件
         /// </summary>
         public event DatabaseConnectedChangeDelegate DatabaseConnectedChange;
-        
+
+
         #endregion event
 
         /// <summary>
         /// 資料庫讀取物件
         /// </summary>
         private DaoDbCommon m_SQL = null;
-
+        
         /// <summary>
         /// 連接使用的資料庫
         /// </summary>
@@ -89,6 +90,7 @@ namespace LPS.Model.DataAccessObject
             DatabaseConnectedChange?.Invoke(false);
         }
         
+
         /// <summary>
         /// 連接Access資料庫
         /// </summary>
@@ -123,7 +125,7 @@ namespace LPS.Model.DataAccessObject
 
             return Err;
         }
-
+        
         /// <summary>
         /// 照SQL語法取得Table資料
         /// </summary>
@@ -139,44 +141,65 @@ namespace LPS.Model.DataAccessObject
 
             return Dt;
         }
+        
+        internal bool CheckFileld(string TableName, string FieldName)
+        {
+            string strSchema = "select * from " + TableName;
+
+            DataTable Dt = GetDataTable(strSchema);
+
+            if (Dt == null)
+                return false;
+
+            return Dt.Columns.Contains(FieldName);
+        }
 
         /// <summary>
         /// 檢查資料庫是否有必要的資料表，沒有的話就建立
         /// </summary>
         private DaoErrMsg CheckDatabase()
         {
-            //string strSchema = @"IF OBJECT_ID('EMPLOYEES_V2','U') is null 
-            //                        CREATE TABLE [EMPLOYEES_V2] (
-            //                         [SERIAL] int NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED, 
-            //                         [USERID] nvarchar(15), 
-            //                         [ENAME] nvarchar(50), 
-            //                         [CARDNUM] nvarchar(15), 
-            //                         [RECORDTIME] datetime, 
-            //                         [USERID2] nvarchar(15) );
+            StringBuilder sbSchema = new StringBuilder();
 
-            //                    IF OBJECT_ID('RECORDS_V2','U') is null 
-            //                        CREATE TABLE [RECORDS_V2] (
-            //                        [SERIAL] nchar(10),
-            //                     [USERID] nvarchar(50),  
-            //                     [RECORDTIME] datetime,                                  
-            //                     [ENAME] nvarchar(50), 
-            //                     [CARDNUM] nvarchar(50),
-            //                     [LOC] nvarchar(50),
-            //                        [USERID2] nvarchar(15));
+            DaoErrMsg err = new DaoErrMsg();
 
-            //                    IF OBJECT_ID('tbMACHINE','U') is null 
-            //                        CREATE TABLE [tbMACHINE] (
-            //                     [ID] int NOT NULL IDENTITY(1,1) PRIMARY KEY CLUSTERED, 
-            //                     [Name] nvarchar(50) NOT NULL, 
-            //                     [MachineNo] int NOT NULL, 
-            //                     [IP] nvarchar(50) NOT NULL DEFAULT (N'192.168.10.250'), 
-            //                     [Port] int NOT NULL DEFAULT ((4370)), 
-            //                     [Enable] bit NOT NULL DEFAULT ((0)),
-            //                        [ReadedIndex] int NOT NULL DEFAULT ((0))
-            //                        ) ON [PRIMARY];";
+            if (CheckFileld("機台資訊", "預設機台") == false)
+            {
+                sbSchema.Append(@"ALTER TABLE 機台資訊 ADD COLUMN 預設機台 VARCHAR(1) DEFAULT 'N'; ");
+                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                if (err.isError == true)
+                    return err;
 
-            //return m_SQL.ExecuteNonQuery(strSchema);
-            return new DaoErrMsg();
+                sbSchema.Init();
+                sbSchema.Append(@"UPDATE 機台資訊 SET 預設機台='N';");
+                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                if (err.isError == true)
+                    return err;
+            }
+
+            return err;
+        }
+        
+        internal bool Login(string Account, string Password)
+        {
+            string strSchema = "select 代碼 from 作業員 where 代碼=@P0 and 密碼=@P1 and 權限='Y'";
+
+            string UserID;
+            DaoErrMsg Err = m_SQL.ExecuteScalar(strSchema, out UserID, Account, Password);
+
+            if (Err.isError)
+                return false;
+
+            if (Err.isError)
+                return false;
+
+            if (UserID.Length <= 0)
+                return false;
+
+            if (int.Parse(UserID) <= 0)
+                return false;
+
+            return true;
         }
 
         /// <summary>
@@ -185,11 +208,11 @@ namespace LPS.Model.DataAccessObject
         /// <returns>[機台代碼]</returns>
         internal List<DaoMachine> GetMachineNo()
         {
-            string strSchema = @"SELECT * FROM 機台資訊;";
+            string strSchema = @"SELECT * FROM 機台資訊 order by 機台代碼;";
 
             DataTable dt = GetDataTable(strSchema);
 
-            dt.Columns.Add("Serial", typeof(string));
+            dt.Columns.Add("Default", typeof(string));
 
             return dt.ToList<DaoMachine>().ToList();
         }
@@ -215,11 +238,13 @@ namespace LPS.Model.DataAccessObject
         /// </summary>
         /// <param name="PN"></param>
         /// <returns>[件號,車型,簡碼]</returns>
-        internal DataTable GetPartNumber()
+        internal List<DaoPartNumber> GetPartNumber()
         {
-            string strSchema = "SELECT * FROM 車型資料";
+            string strSchema = "SELECT * FROM 車型資料 order by 件號";
 
-            return GetDataTable(strSchema);
+            DataTable dt = GetDataTable(strSchema);
+
+            return dt.ToList<DaoPartNumber>().ToList();
         }
 
         /// <summary>
@@ -253,7 +278,7 @@ namespace LPS.Model.DataAccessObject
 
         internal DaoErrMsg SaveTestResult(string Serial, DaoMachine Machine, DaoUser User, DaoPartNumber PN, string Result, DateTime TestTime)
         {
-            string ResultSerial = string.Format("{0}{1}{2}", Machine.Serial, PN.簡碼, Serial);
+            string ResultSerial = string.Format("{0}{1}{2}", Machine.機台代碼, PN.簡碼, Serial);
 
             string strSchema = string.Format(@"INSERT INTO 測試結果(流水號, 件號, 車型名稱, 生產日期, 生產時間, 測試結果, 作業員代碼)
                                                             VALUES('{0}','{1}','{2}','{3}','{3}','{4}','{5}');",
@@ -267,179 +292,185 @@ namespace LPS.Model.DataAccessObject
             return m_SQL.ExecuteNonQuery(strSchema);
         }
 
-        #region FDA Database
-
         /// <summary>
-        /// 新增指紋機連接資訊
+        /// 判斷此機台代碼是否存在
         /// </summary>
-        /// <param name="Name"></param>
-        /// <param name="No"></param>
-        /// <param name="IP"></param>
-        /// <param name="Port"></param>
+        /// <param name="MachineCode"></param>
         /// <returns></returns>
-        internal DaoErrMsg AddNewMachine(string Name, int No, string IP, int Port, bool isEnable)
+        internal bool IsExistMachine(string MachineCode)
         {
-            string strSchema = string.Format(@"IF NOT EXISTS (SELECT * FROM tbMACHINE 
-                                                              WHERE IP=@P0 and port={0}  )
-                                               INSERT INTO tbMACHINE(Name, MachineNo, IP, Port, Enable)
-                                                              values(@P1, {1}, @P2, {0}, {2});",
-                                               Port, No, isEnable == true ? 1 : 0);
-            
-            return m_SQL.ExecuteNonQuery(strSchema, IP, Name, IP);
+            string strSchema = string.Format("SELECT * FROM 機台資訊 WHERE 機台代碼='{0}'", MachineCode);
+
+            DataTable Dt = GetDataTable(strSchema);
+
+            return Dt.Rows.Count > 0 ? true : false;
         }
-
+        
         /// <summary>
-        /// 刪除指定的指紋機
+        /// 更新機台資訊
         /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
-        internal DaoErrMsg DeleteMachine(int ID)
+        /// <param name="MacineCode"></param>
+        /// <param name="isDefault"></param>
+        /// <param name="Description"></param>
+        internal void UpdateMachine(string MacineCode, bool isDefault, string Description)
         {
-            string strSchema = string.Format("DELETE FROM tbMACHINE WHERE ID = {0}", ID);
+            if(isDefault == true)
+            {
+                //先將所有機台的預設值更新為N;//
+                m_SQL.ExecuteNonQuery("UPDATE 機台資訊 SET 預設機台='N'");
+            }
+
+            string strSchema = string.Format("UPDATE 機台資訊 SET 預設機台='{0}', 描述='{1}' WHERE 機台代碼='{2}'",
+                                              isDefault == true ? "Y" : "N",
+                                              Description,
+                                              MacineCode);
+
+            m_SQL.ExecuteNonQuery(strSchema);
+        }
+        
+        /// <summary>
+        /// 加入一筆新機台資訊
+        /// </summary>
+        /// <param name="MacineCode"></param>
+        /// <param name="isDefault"></param>
+        /// <param name="Description"></param>
+        internal void AddMachine(string MacineCode, bool isDefault, string Description)
+        {
+            if (isDefault == true)
+            {
+                //先將所有機台的預設值更新為N;//
+                m_SQL.ExecuteNonQuery("UPDATE 機台資訊 SET 預設機台='N'");
+            }
+
+            string strSchema = string.Format("INSERT INTO 機台資訊( [機台代碼], [預設機台], [描述]) VALUES('{0}','{1}','{2}')",
+                                              MacineCode,
+                                              isDefault == true ? "Y" : "N",
+                                              Description );
+
+            m_SQL.ExecuteNonQuery(strSchema);
+        }
+        
+        /// <summary>
+        /// 刪除指定機台
+        /// </summary>
+        /// <param name="Machine"></param>
+        /// <returns></returns>
+        internal DaoErrMsg DeleteMachine(DaoMachine Machine)
+        {
+            string strSchema = string.Format("DELETE FROM 機台資訊 WHERE 機台代碼 = '{0}' ", Machine.機台代碼);
 
             return m_SQL.ExecuteNonQuery(strSchema);
         }
 
         /// <summary>
-        /// 啟用或關閉設備
+        /// 判斷此PN是否存在
         /// </summary>
-        /// <param name="ID"></param>
-        /// <param name="isEnable"></param>
+        /// <param name="PN"></param>
         /// <returns></returns>
-        internal DaoErrMsg OnOffMachine(int ID, bool isEnable)
+        internal bool IsExistPN(string PN)
         {
-            string strSchema = string.Format(@"UPDATE tbMACHINE
-                                               SET Enable={1}
-                                               WHERE ID = {0} ",
-                                               ID, isEnable == true ? 1 : 0);
+            string strSchema = string.Format("SELECT * FROM 車型資料 WHERE 件號='{0}'", PN);
 
-            return m_SQL.ExecuteNonQuery(strSchema);
-        }
+            DataTable Dt = GetDataTable(strSchema);
 
-        /// <summary>
-        /// 取得總員工數
-        /// </summary>
-        /// <returns></returns>
-        internal int GetEmployeesNum()
-        {
-            string strSchema = "SELECT COUNT(SERIAL) FROM EMPLOYEES_V2";
-
-            string Count = string.Empty;
-            m_SQL.ExecuteScalar(strSchema, out Count);
-
-            return Count.ToInt();
-        }
-
-        /// <summary>
-        /// 取得員工資訊
-        /// </summary>
-        /// <returns></returns>
-        internal DataTable GetEmployees(int FromNo = -1, int EndNo = -1)
-        {
-            string strSchema = "";
-
-            if (FromNo >= 0 && EndNo >= 0)
-            {
-                strSchema = string.Format(@"SELECT [SERIAL] as '序號',
-                                                   [USERID] as '員工編號',
-                                                   [ENAME] as '姓名',
-                                                   [CARDNUM] as '卡號',
-                                                   [RECORDTIME] as '建立時間' 
-                                            FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY SERIAL DESC) as 'ROWNUM' FROM [EMPLOYEES_V2] ) a
-                                            where ROWNUM >= {0} and ROWNUM <= {1};",
-                                            FromNo, EndNo);
-            }
-            else
-            {
-                strSchema = @"SELECT [SERIAL] as '序號',
-                                     [USERID] as '員工編號',
-                                     [ENAME] as '姓名',
-                                     [CARDNUM] as '卡號',
-                                     [RECORDTIME] as '建立時間'
-                              FROM EMPLOYEES_V2
-                              ORDER BY SERIAL DESC;";
-            }
-
-            return GetDataTable(strSchema);
+            return Dt.Rows.Count > 0 ? true : false;
         }
         
         /// <summary>
-        /// 取得目前已讀取的考勤數量
+        /// 更新指定件號
         /// </summary>
-        /// <param name="DeviceID"></param>
-        /// <returns></returns>
-        internal int GetReadAttendanceNum(int DeviceID)
+        /// <param name="PN"></param>
+        /// <param name="Car"></param>
+        /// <param name="Code"></param>
+        internal void UpdatePN(string PN, string Car, string Code)
         {
-            string strSchema = string.Format("SELECT ReadedIndex FROM tbMACHINE where ID = {0}", DeviceID);
+            string strSchema = string.Format("UPDATE 車型資料 SET 車型='{0}', 簡碼='{1}' WHERE 件號='{2}'",
+                                              Car,
+                                              Code,
+                                              PN);
 
-            string Count = string.Empty;
-            m_SQL.ExecuteScalar(strSchema, out Count);
-
-            return Count.ToInt();
-        }
-        
-        /// <summary>
-        /// 初始化已讀取的考勤數量
-        /// </summary>
-        /// <param name="DeviceID"></param>
-        internal void ResetReadAttendanceNum(int DeviceID)
-        {
-            string strSchema = string.Format(@"UPDATE tbMACHINE SET[ReadedIndex]=0 WHERE[ID] = '{0}';", DeviceID);
-
-            string Count = string.Empty;
             m_SQL.ExecuteNonQuery(strSchema);
         }
 
         /// <summary>
-        /// 取的總考勤資料總數
+        /// 加入一筆新件號
         /// </summary>
-        /// <returns></returns>
-        internal int GetAttNum()
+        /// <param name="PN"></param>
+        /// <param name="Car"></param>
+        /// <param name="Code"></param>
+        internal void AddPN(string PN, string Car, string Code)
         {
-            string strSchema = "SELECT COUNT(SERIAL) FROM RECORDS_V2";
+            string strSchema = string.Format("INSERT INTO 車型資料( [件號], [車型], [簡碼]) VALUES('{0}','{1}','{2}')",
+                                              PN,
+                                              Car,
+                                              Code);
 
-            string Count = string.Empty;
-            m_SQL.ExecuteScalar(strSchema, out Count);
+            m_SQL.ExecuteNonQuery(strSchema);
+        }
 
-            return Count.ToInt();
+        internal DaoErrMsg DeletePN(DaoPartNumber CarPN)
+        {
+            string strSchema = string.Format("DELETE FROM 車型資料 WHERE 件號 = '{0}' ", CarPN.件號);
+
+            return m_SQL.ExecuteNonQuery(strSchema);
         }
 
         /// <summary>
-        /// 取得考勤資料
+        /// 判斷此使用者代碼是否存在
         /// </summary>
-        /// <param name="fromNo"></param>
-        /// <param name="endNo"></param>
+        /// <param name="Serial"></param>
         /// <returns></returns>
-        internal DataTable GetAtt(int FromNo, int EndNo)
+        internal bool IsExistUser(string Serial)
         {
-            string strSchema = "";
+            string strSchema = string.Format("SELECT * FROM 作業員 WHERE 代碼='{0}'", Serial);
 
-            if (FromNo >= 0 && EndNo >= 0)
-            {
-                strSchema = string.Format(@"SELECT [SERIAL] as '序號',
-                                                   [USERID] as '員工編號',
-                                                   [ENAME] as '姓名',
-                                                   [CARDNUM] as '卡號',	  
-                                                   [LOC] as '地點',
-                                                   [RECORDTIME] as '打卡時間'
-                                            FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY RECORDTIME DESC) as 'ROWNUM' FROM [RECORDS_V2] ) a
-                                            where ROWNUM >= {0} and ROWNUM <= {1};",
-                                            FromNo, EndNo);
-            }
-            else
-            {
-                strSchema = @"SELECT [SERIAL] as '序號',
-                                     [USERID] as '員工編號',
-                                     [ENAME] as '姓名',
-                                     [CARDNUM] as '卡號',
-                                     [LOC] as '地點',
-                                     [RECORDTIME] as '打卡時間'                                     
-                                 FROM RECORDS_V2
-                                 ORDER BY RECORDTIME DESC;";
-            }
-            DataTable dt = GetDataTable(strSchema);
-            return dt;
+            DataTable Dt = GetDataTable(strSchema);
+
+            return Dt.Rows.Count > 0 ? true : false;
         }
-        #endregion FDA Database
+
+        /// <summary>
+        /// 更新指定使用者
+        /// </summary>
+        /// <param name="Serial"></param>
+        /// <param name="Name"></param>
+        /// <param name="PW"></param>
+        /// <param name="Admin"></param>
+        internal void UpdateUser(string Serial, string Name, string PW, string Admin)
+        {
+            string strSchema = string.Format("UPDATE 作業員 SET 作業員姓名='{0}', 密碼='{1}', 權限='{2}' WHERE 代碼='{3}'",
+                                              Name,
+                                              PW,
+                                              Admin,
+                                              Serial);
+
+            m_SQL.ExecuteNonQuery(strSchema);
+        }
+
+        /// <summary>
+        /// 加入一筆使用者
+        /// </summary>
+        /// <param name="Serial"></param>
+        /// <param name="Name"></param>
+        /// <param name="PW"></param>
+        /// <param name="Admin"></param>
+        internal void AddUser(string Serial, string Name, string PW, string Admin)
+        {
+            string strSchema = string.Format("INSERT INTO 作業員( [代碼], [作業員姓名], [密碼], [權限]) VALUES('{0}', '{1}', '{2}', '{3}')",
+                                              Serial,
+                                              Name,
+                                              PW,
+                                              Admin);
+
+            m_SQL.ExecuteNonQuery(strSchema);
+        }
+
+        internal DaoErrMsg DeleteUser(DaoUser User)
+        {
+            string strSchema = string.Format("DELETE FROM 作業員 WHERE 代碼 = '{0}' ", User.代碼);
+
+            return m_SQL.ExecuteNonQuery(strSchema);
+        }
+
     }
 }

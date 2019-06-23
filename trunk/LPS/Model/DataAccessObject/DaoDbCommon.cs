@@ -42,7 +42,7 @@ namespace LPS.Model.DataAccessObject
         {
             this.m_DbConnection = DbConnection;
                         
-            m_DbConnection.ConnectionString = DbPath;
+            m_DbConnection.ConnectionString = DbPath;            
         }
 
         /// <summary>

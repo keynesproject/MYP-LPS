@@ -162,6 +162,26 @@ namespace LPS.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap ModifyIconCross {
+            get {
+                object obj = ResourceManager.GetObject("ModifyIconCross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ModifyIconCross_ {
+            get {
+                object obj = ResourceManager.GetObject("ModifyIconCross_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Testing {
             get {
                 object obj = ResourceManager.GetObject("Testing", resourceCulture);

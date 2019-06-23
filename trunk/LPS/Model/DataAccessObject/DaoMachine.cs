@@ -13,11 +13,13 @@ namespace LPS.Model.DataAccessObject
         public string 機台代碼 { get; set; }
 
         public string 描述 { get; set; }
-                
-        public string Serial
+        
+        public string 預設機台 { get; set; }
+
+        public string Default
         {
             set { }
-            get { return 機台代碼; }
+            get { return 預設機台.Equals("Y") ? "是" : "否"; }
         }
     }
 }

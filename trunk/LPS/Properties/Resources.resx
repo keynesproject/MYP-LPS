@@ -157,4 +157,10 @@
   <data name="AP_NAME" xml:space="preserve">
     <value>標籤作業平台</value>
   </data>
+  <data name="ModifyIconCross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ModifyIconCross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ModifyIconCross_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ModifyIconCross_.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
