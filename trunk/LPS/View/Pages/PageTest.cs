@@ -11,6 +11,7 @@ using LPS.Model.Extension;
 using LPS.View.Forms;
 using LPS.Model.Device;
 using LPS.View.Component;
+using LPS.Model.Network;
 
 namespace LPS.View.Pages
 {

@@ -17,13 +17,14 @@ namespace LPS.View.Pages
         public PageHelp()
         {
             InitializeComponent();
+            
+            lblProduct.Text = lblProduct.Text + "- v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             DaoSnControl.Instance.UpdateSnEvent += this.SnUpdate;
         }
         
         private void PageHelp_Load(object sender, EventArgs e)
         {
-
             string SN = DaoSnControl.Instance.GetSN();
             int ExpDay = DaoSnControl.Instance.GetTrialExp();
             SnUpdate(SN, ExpDay);

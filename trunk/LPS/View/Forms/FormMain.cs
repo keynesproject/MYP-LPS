@@ -19,7 +19,9 @@ namespace LPS.View.Forms
         /// 登入人員資訊
         /// </summary>
         private DaoUser m_User = new DaoUser();
-        
+
+        private DaoMachine m_Machine = new DaoMachine();
+
         /// <summary>
         /// 設備連線狀態
         /// </summary>
@@ -44,6 +46,7 @@ namespace LPS.View.Forms
             m_LastSelectIndex = tabMain.SelectedIndex;
 
             m_User = User;
+            m_Machine = Machine;
             ptMain.Setup(Pages.PageTest.eTestType.eTT_MAIN, Machine, User);
             ptMain.LastTestResultEvent += this.LastTestResult;
             ptPrint.Setup(Pages.PageTest.eTestType.eTT_PRINT, Machine, User);
@@ -151,6 +154,20 @@ namespace LPS.View.Forms
                     else
                     {
                         m_bPermissionLogin = true;
+                        string LoginUser = Permision.GetLoginUserCode();
+                        DaoUser AdminUser = new DaoUser();
+                        if (LoginUser == "myp")
+                        {
+                            AdminUser.代碼 = "MYP";
+                            AdminUser.作業員姓名 = "木研科技";
+                            AdminUser.密碼 = "53750804";
+                            AdminUser.權限 = "Y";
+                        }
+                        else
+                        {
+                            AdminUser = DaoSQL.Instance.GetUser(LoginUser);
+                        }
+                        ptPrint.Setup(Pages.PageTest.eTestType.eTT_PRINT, m_Machine, AdminUser);
                     }
                     Permision.Close();
                     Permision.Dispose();
@@ -200,11 +217,13 @@ namespace LPS.View.Forms
                         break;
 
                     case string rbtnName when rbtnBackup.Name == rbtnName:
-                        this.Text = "4";
+                        PageBackup pBackup = new PageBackup();
+                        pBackup.Setup();
+                        m_LastSettingPage = pBackup;
                         break;
 
                     case string rbtnName when rbtnReport.Name == rbtnName:
-                        PageReport pReport = new PageReport();
+                        PageReport pReport = new PageReport(m_Machine);
                         pReport.Setup();
                         m_LastSettingPage = pReport;
                         break;

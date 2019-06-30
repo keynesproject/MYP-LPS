@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpPageCheange = new System.Windows.Forms.TableLayoutPanel();
-            this.tbCurrentPage = new System.Windows.Forms.TextBox();
-            this.lblTotalPage = new System.Windows.Forms.Label();
-            this.btnArrowFirst = new System.Windows.Forms.Button();
-            this.btnArrowLeft = new System.Windows.Forms.Button();
-            this.btnArrowRight = new System.Windows.Forms.Button();
-            this.btnArrowLast = new System.Windows.Forms.Button();
             this.tlpSearchDateBase = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.tlpDateSearch = new System.Windows.Forms.TableLayoutPanel();
             this.pbDateToClear = new System.Windows.Forms.PictureBox();
             this.pbDateFromClear = new System.Windows.Forms.PictureBox();
@@ -49,145 +41,31 @@
             this.llbSearchStart = new System.Windows.Forms.LinkLabel();
             this.tbSearchDateFrom = new System.Windows.Forms.TextBox();
             this.tbSearchDateTo = new System.Windows.Forms.TextBox();
-            this.dgvPagingHistory = new System.Windows.Forms.DataGridView();
-            this.ColumnSerial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnOP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pdgvHistory = new LPS.View.Components.PageDataGridView();
             this.Calendar = new MonthCalendar.Calendar();
             this.tlpBase.SuspendLayout();
-            this.tlpPageCheange.SuspendLayout();
             this.tlpSearchDateBase.SuspendLayout();
             this.tlpDateSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDateToClear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDateFromClear)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPagingHistory)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpBase
             // 
             this.tlpBase.ColumnCount = 1;
             this.tlpBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBase.Controls.Add(this.tlpPageCheange, 0, 2);
             this.tlpBase.Controls.Add(this.tlpSearchDateBase, 0, 0);
-            this.tlpBase.Controls.Add(this.dgvPagingHistory, 0, 1);
+            this.tlpBase.Controls.Add(this.pdgvHistory, 0, 1);
             this.tlpBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpBase.Location = new System.Drawing.Point(0, 0);
             this.tlpBase.Margin = new System.Windows.Forms.Padding(0);
             this.tlpBase.Name = "tlpBase";
-            this.tlpBase.RowCount = 3;
+            this.tlpBase.RowCount = 2;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpBase.Size = new System.Drawing.Size(765, 391);
             this.tlpBase.TabIndex = 5;
-            // 
-            // tlpPageCheange
-            // 
-            this.tlpPageCheange.ColumnCount = 8;
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpPageCheange.Controls.Add(this.tbCurrentPage, 3, 0);
-            this.tlpPageCheange.Controls.Add(this.lblTotalPage, 4, 0);
-            this.tlpPageCheange.Controls.Add(this.btnArrowFirst, 1, 0);
-            this.tlpPageCheange.Controls.Add(this.btnArrowLeft, 2, 0);
-            this.tlpPageCheange.Controls.Add(this.btnArrowRight, 5, 0);
-            this.tlpPageCheange.Controls.Add(this.btnArrowLast, 6, 0);
-            this.tlpPageCheange.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpPageCheange.Location = new System.Drawing.Point(3, 364);
-            this.tlpPageCheange.Name = "tlpPageCheange";
-            this.tlpPageCheange.RowCount = 1;
-            this.tlpPageCheange.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpPageCheange.Size = new System.Drawing.Size(759, 24);
-            this.tlpPageCheange.TabIndex = 4;
-            // 
-            // tbCurrentPage
-            // 
-            this.tbCurrentPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbCurrentPage.Font = new System.Drawing.Font("Arial", 12F);
-            this.tbCurrentPage.Location = new System.Drawing.Point(319, 0);
-            this.tbCurrentPage.Margin = new System.Windows.Forms.Padding(0);
-            this.tbCurrentPage.MaxLength = 3;
-            this.tbCurrentPage.Name = "tbCurrentPage";
-            this.tbCurrentPage.ShortcutsEnabled = false;
-            this.tbCurrentPage.Size = new System.Drawing.Size(50, 26);
-            this.tbCurrentPage.TabIndex = 2;
-            this.tbCurrentPage.Text = "1";
-            this.tbCurrentPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbCurrentPage.WordWrap = false;
-            // 
-            // lblTotalPage
-            // 
-            this.lblTotalPage.AutoSize = true;
-            this.lblTotalPage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalPage.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTotalPage.Location = new System.Drawing.Point(372, 0);
-            this.lblTotalPage.Name = "lblTotalPage";
-            this.lblTotalPage.Size = new System.Drawing.Size(64, 24);
-            this.lblTotalPage.TabIndex = 5;
-            this.lblTotalPage.Text = "of  1";
-            this.lblTotalPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnArrowFirst
-            // 
-            this.btnArrowFirst.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnArrowFirst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnArrowFirst.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowFirst.Location = new System.Drawing.Point(249, 0);
-            this.btnArrowFirst.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.btnArrowFirst.Name = "btnArrowFirst";
-            this.btnArrowFirst.Size = new System.Drawing.Size(30, 24);
-            this.btnArrowFirst.TabIndex = 0;
-            this.btnArrowFirst.Text = "|<";
-            this.btnArrowFirst.UseVisualStyleBackColor = true;
-            // 
-            // btnArrowLeft
-            // 
-            this.btnArrowLeft.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnArrowLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnArrowLeft.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowLeft.Location = new System.Drawing.Point(284, 0);
-            this.btnArrowLeft.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.btnArrowLeft.Name = "btnArrowLeft";
-            this.btnArrowLeft.Size = new System.Drawing.Size(30, 24);
-            this.btnArrowLeft.TabIndex = 1;
-            this.btnArrowLeft.Text = "<";
-            this.btnArrowLeft.UseVisualStyleBackColor = true;
-            // 
-            // btnArrowRight
-            // 
-            this.btnArrowRight.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnArrowRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnArrowRight.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowRight.Location = new System.Drawing.Point(444, 0);
-            this.btnArrowRight.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnArrowRight.Name = "btnArrowRight";
-            this.btnArrowRight.Size = new System.Drawing.Size(30, 24);
-            this.btnArrowRight.TabIndex = 3;
-            this.btnArrowRight.Text = ">";
-            this.btnArrowRight.UseVisualStyleBackColor = true;
-            // 
-            // btnArrowLast
-            // 
-            this.btnArrowLast.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnArrowLast.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnArrowLast.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowLast.Location = new System.Drawing.Point(479, 0);
-            this.btnArrowLast.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.btnArrowLast.Name = "btnArrowLast";
-            this.btnArrowLast.Size = new System.Drawing.Size(30, 24);
-            this.btnArrowLast.TabIndex = 4;
-            this.btnArrowLast.Text = ">|";
-            this.btnArrowLast.UseVisualStyleBackColor = true;
             // 
             // tlpSearchDateBase
             // 
@@ -196,8 +74,8 @@
             this.tlpSearchDateBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpSearchDateBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpSearchDateBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSearchDateBase.Controls.Add(this.button1, 0, 0);
-            this.tlpSearchDateBase.Controls.Add(this.btnAdd, 0, 0);
+            this.tlpSearchDateBase.Controls.Add(this.btnExport, 0, 0);
+            this.tlpSearchDateBase.Controls.Add(this.btnSearch, 0, 0);
             this.tlpSearchDateBase.Controls.Add(this.tlpDateSearch, 0, 0);
             this.tlpSearchDateBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpSearchDateBase.Location = new System.Drawing.Point(0, 0);
@@ -208,33 +86,35 @@
             this.tlpSearchDateBase.Size = new System.Drawing.Size(765, 80);
             this.tlpSearchDateBase.TabIndex = 6;
             // 
-            // button1
+            // btnExport
             // 
-            this.button1.AutoSize = true;
-            this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Arial", 12F);
-            this.button1.Location = new System.Drawing.Point(569, 4);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 72);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "匯出報表";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnExport.AutoSize = true;
+            this.btnExport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnExport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnExport.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnExport.Location = new System.Drawing.Point(569, 4);
+            this.btnExport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(82, 72);
+            this.btnExport.TabIndex = 2;
+            this.btnExport.Text = "匯出報表";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
             // 
-            // btnAdd
+            // btnSearch
             // 
-            this.btnAdd.AutoSize = true;
-            this.btnAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAdd.Font = new System.Drawing.Font("Arial", 12F);
-            this.btnAdd.Location = new System.Drawing.Point(479, 4);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(82, 72);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "  搜    尋  ";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnSearch.AutoSize = true;
+            this.btnSearch.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearch.Font = new System.Drawing.Font("Arial", 12F);
+            this.btnSearch.Location = new System.Drawing.Point(479, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(82, 72);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "  搜    尋  ";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // tlpDateSearch
             // 
@@ -388,93 +268,15 @@
             this.tbSearchDateTo.TabStop = false;
             this.tbSearchDateTo.Click += new System.EventHandler(this.TbSearchDateTo_Click);
             // 
-            // dgvPagingHistory
+            // pdgvHistory
             // 
-            this.dgvPagingHistory.AllowUserToAddRows = false;
-            this.dgvPagingHistory.AllowUserToDeleteRows = false;
-            this.dgvPagingHistory.AllowUserToResizeRows = false;
-            this.dgvPagingHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPagingHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvPagingHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPagingHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnSerial,
-            this.ColumnDate,
-            this.ColumnTime,
-            this.ColumnCar,
-            this.ColumnOP,
-            this.ColumnResult});
-            this.dgvPagingHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvPagingHistory.Location = new System.Drawing.Point(3, 83);
-            this.dgvPagingHistory.MultiSelect = false;
-            this.dgvPagingHistory.Name = "dgvPagingHistory";
-            this.dgvPagingHistory.ReadOnly = true;
-            this.dgvPagingHistory.RowHeadersVisible = false;
-            this.dgvPagingHistory.RowTemplate.Height = 24;
-            this.dgvPagingHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPagingHistory.Size = new System.Drawing.Size(759, 275);
-            this.dgvPagingHistory.TabIndex = 7;
-            this.dgvPagingHistory.TabStop = false;
-            // 
-            // ColumnSerial
-            // 
-            this.ColumnSerial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnSerial.HeaderText = "流水號";
-            this.ColumnSerial.MaxInputLength = 32;
-            this.ColumnSerial.MinimumWidth = 100;
-            this.ColumnSerial.Name = "ColumnSerial";
-            this.ColumnSerial.ReadOnly = true;
-            // 
-            // ColumnDate
-            // 
-            this.ColumnDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnDate.HeaderText = "日期";
-            this.ColumnDate.MaxInputLength = 32;
-            this.ColumnDate.MinimumWidth = 100;
-            this.ColumnDate.Name = "ColumnDate";
-            this.ColumnDate.ReadOnly = true;
-            // 
-            // ColumnTime
-            // 
-            this.ColumnTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTime.HeaderText = "時間";
-            this.ColumnTime.MaxInputLength = 32;
-            this.ColumnTime.MinimumWidth = 100;
-            this.ColumnTime.Name = "ColumnTime";
-            this.ColumnTime.ReadOnly = true;
-            // 
-            // ColumnCar
-            // 
-            this.ColumnCar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnCar.HeaderText = "車型";
-            this.ColumnCar.MaxInputLength = 32;
-            this.ColumnCar.MinimumWidth = 100;
-            this.ColumnCar.Name = "ColumnCar";
-            this.ColumnCar.ReadOnly = true;
-            // 
-            // ColumnOP
-            // 
-            this.ColumnOP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnOP.HeaderText = "操作者代號";
-            this.ColumnOP.MaxInputLength = 32;
-            this.ColumnOP.MinimumWidth = 100;
-            this.ColumnOP.Name = "ColumnOP";
-            this.ColumnOP.ReadOnly = true;
-            // 
-            // ColumnResult
-            // 
-            this.ColumnResult.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnResult.HeaderText = "判定";
-            this.ColumnResult.MaxInputLength = 32;
-            this.ColumnResult.MinimumWidth = 100;
-            this.ColumnResult.Name = "ColumnResult";
-            this.ColumnResult.ReadOnly = true;
+            this.pdgvHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pdgvHistory.Location = new System.Drawing.Point(0, 80);
+            this.pdgvHistory.Margin = new System.Windows.Forms.Padding(0);
+            this.pdgvHistory.Name = "pdgvHistory";
+            this.pdgvHistory.Size = new System.Drawing.Size(765, 311);
+            this.pdgvHistory.TabIndex = 7;
+            this.pdgvHistory.ChangePage += new LPS.View.Components.PageDataGridView.ChangePageDelegate(this.PdgvHistory_ChangePage);
             // 
             // Calendar
             // 
@@ -544,7 +346,7 @@
             this.Calendar.Keyboard.ZoomOut = System.Windows.Forms.Keys.Add;
             this.Calendar.Location = new System.Drawing.Point(188, 36);
             this.Calendar.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.Calendar.MinDate = new System.DateTime(2018, 3, 1, 0, 0, 0, 0);
+            this.Calendar.MinDate = new System.DateTime(2008, 1, 1, 0, 0, 0, 0);
             this.Calendar.MonthDays.Align = System.Drawing.ContentAlignment.MiddleCenter;
             this.Calendar.MonthDays.Background.EndColor = System.Drawing.Color.Black;
             this.Calendar.MonthDays.Background.Gradient = MonthCalendar.GradientStyle.Vertical;
@@ -675,15 +477,12 @@
             this.Name = "PageReport";
             this.Size = new System.Drawing.Size(765, 391);
             this.tlpBase.ResumeLayout(false);
-            this.tlpPageCheange.ResumeLayout(false);
-            this.tlpPageCheange.PerformLayout();
             this.tlpSearchDateBase.ResumeLayout(false);
             this.tlpSearchDateBase.PerformLayout();
             this.tlpDateSearch.ResumeLayout(false);
             this.tlpDateSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbDateToClear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDateFromClear)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPagingHistory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -691,13 +490,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tlpBase;
-        private System.Windows.Forms.TableLayoutPanel tlpPageCheange;
-        private System.Windows.Forms.TextBox tbCurrentPage;
-        private System.Windows.Forms.Label lblTotalPage;
-        private System.Windows.Forms.Button btnArrowFirst;
-        private System.Windows.Forms.Button btnArrowLeft;
-        private System.Windows.Forms.Button btnArrowRight;
-        private System.Windows.Forms.Button btnArrowLast;
         private System.Windows.Forms.TableLayoutPanel tlpSearchDateBase;
         private System.Windows.Forms.TableLayoutPanel tlpDateSearch;
         private System.Windows.Forms.PictureBox pbDateToClear;
@@ -708,15 +500,9 @@
         private System.Windows.Forms.LinkLabel llbSearchStart;
         private System.Windows.Forms.TextBox tbSearchDateFrom;
         private System.Windows.Forms.TextBox tbSearchDateTo;
-        private System.Windows.Forms.DataGridView dgvPagingHistory;
         private MonthCalendar.Calendar Calendar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSerial;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnResult;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnSearch;
+        private Components.PageDataGridView pdgvHistory;
     }
 }

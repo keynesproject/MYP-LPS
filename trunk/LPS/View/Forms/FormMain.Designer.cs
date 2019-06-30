@@ -41,7 +41,9 @@ namespace LPS.View.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabTest = new System.Windows.Forms.TabPage();
+            this.ptMain = new LPS.View.Pages.PageTest();
             this.tabPrinter = new System.Windows.Forms.TabPage();
+            this.ptPrint = new LPS.View.Pages.PageTest();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.tlpSettingBase = new System.Windows.Forms.TableLayoutPanel();
             this.tlpSettingBtn = new System.Windows.Forms.TableLayoutPanel();
@@ -52,13 +54,11 @@ namespace LPS.View.Forms
             this.rbtnMachine = new System.Windows.Forms.RadioButton();
             this.pnlSettingSplit = new System.Windows.Forms.Panel();
             this.tabHelp = new System.Windows.Forms.TabPage();
+            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabLogout = new System.Windows.Forms.TabPage();
             this.ssButtom = new System.Windows.Forms.StatusStrip();
             this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
-            this.ptMain = new LPS.View.Pages.PageTest();
-            this.ptPrint = new LPS.View.Pages.PageTest();
-            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabMain.SuspendLayout();
             this.tabTest.SuspendLayout();
             this.tabPrinter.SuspendLayout();
@@ -86,7 +86,7 @@ namespace LPS.View.Forms
             this.tabMain.Multiline = true;
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(728, 380);
+            this.tabMain.Size = new System.Drawing.Size(978, 530);
             this.tabMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabMain.TabIndex = 0;
             this.tabMain.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabMain_Selecting);
@@ -100,9 +100,20 @@ namespace LPS.View.Forms
             this.tabTest.Location = new System.Drawing.Point(4, 44);
             this.tabTest.Margin = new System.Windows.Forms.Padding(0);
             this.tabTest.Name = "tabTest";
-            this.tabTest.Size = new System.Drawing.Size(720, 332);
+            this.tabTest.Size = new System.Drawing.Size(970, 482);
             this.tabTest.TabIndex = 0;
             this.tabTest.Text = "作業平台";
+            // 
+            // ptMain
+            // 
+            this.ptMain.AutoSize = true;
+            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
+            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptMain.Location = new System.Drawing.Point(0, 0);
+            this.ptMain.Name = "ptMain";
+            this.ptMain.Size = new System.Drawing.Size(968, 480);
+            this.ptMain.TabIndex = 0;
             // 
             // tabPrinter
             // 
@@ -111,10 +122,20 @@ namespace LPS.View.Forms
             this.tabPrinter.Location = new System.Drawing.Point(4, 44);
             this.tabPrinter.Margin = new System.Windows.Forms.Padding(0);
             this.tabPrinter.Name = "tabPrinter";
-            this.tabPrinter.Size = new System.Drawing.Size(720, 332);
+            this.tabPrinter.Size = new System.Drawing.Size(970, 482);
             this.tabPrinter.TabIndex = 1;
             this.tabPrinter.Text = "補印標籤";
             this.tabPrinter.UseVisualStyleBackColor = true;
+            // 
+            // ptPrint
+            // 
+            this.ptPrint.AutoSize = true;
+            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptPrint.Location = new System.Drawing.Point(0, 0);
+            this.ptPrint.Name = "ptPrint";
+            this.ptPrint.Size = new System.Drawing.Size(968, 480);
+            this.ptPrint.TabIndex = 0;
             // 
             // tabSetting
             // 
@@ -123,7 +144,7 @@ namespace LPS.View.Forms
             this.tabSetting.Location = new System.Drawing.Point(4, 44);
             this.tabSetting.Margin = new System.Windows.Forms.Padding(0);
             this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(720, 332);
+            this.tabSetting.Size = new System.Drawing.Size(970, 482);
             this.tabSetting.TabIndex = 2;
             this.tabSetting.Text = "設定";
             this.tabSetting.UseVisualStyleBackColor = true;
@@ -144,7 +165,7 @@ namespace LPS.View.Forms
             this.tlpSettingBase.Name = "tlpSettingBase";
             this.tlpSettingBase.RowCount = 1;
             this.tlpSettingBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSettingBase.Size = new System.Drawing.Size(718, 330);
+            this.tlpSettingBase.Size = new System.Drawing.Size(968, 480);
             this.tlpSettingBase.TabIndex = 0;
             // 
             // tlpSettingBtn
@@ -166,7 +187,7 @@ namespace LPS.View.Forms
             this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpSettingBtn.Size = new System.Drawing.Size(152, 322);
+            this.tlpSettingBtn.Size = new System.Drawing.Size(152, 472);
             this.tlpSettingBtn.TabIndex = 2;
             // 
             // rbtnReport
@@ -176,10 +197,10 @@ namespace LPS.View.Forms
             this.rbtnReport.BackColor = System.Drawing.Color.Orange;
             this.rbtnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnReport.Location = new System.Drawing.Point(3, 260);
+            this.rbtnReport.Location = new System.Drawing.Point(3, 380);
             this.rbtnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnReport.Name = "rbtnReport";
-            this.rbtnReport.Size = new System.Drawing.Size(146, 58);
+            this.rbtnReport.Size = new System.Drawing.Size(146, 88);
             this.rbtnReport.TabIndex = 8;
             this.rbtnReport.Text = "測試結果報表";
             this.rbtnReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -193,10 +214,10 @@ namespace LPS.View.Forms
             this.rbtnBackup.BackColor = System.Drawing.Color.Orange;
             this.rbtnBackup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnBackup.Location = new System.Drawing.Point(3, 196);
+            this.rbtnBackup.Location = new System.Drawing.Point(3, 286);
             this.rbtnBackup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnBackup.Name = "rbtnBackup";
-            this.rbtnBackup.Size = new System.Drawing.Size(146, 56);
+            this.rbtnBackup.Size = new System.Drawing.Size(146, 86);
             this.rbtnBackup.TabIndex = 7;
             this.rbtnBackup.Text = "資訊備份位置";
             this.rbtnBackup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -210,10 +231,10 @@ namespace LPS.View.Forms
             this.rbtnUser.BackColor = System.Drawing.Color.Orange;
             this.rbtnUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnUser.Location = new System.Drawing.Point(3, 132);
+            this.rbtnUser.Location = new System.Drawing.Point(3, 192);
             this.rbtnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnUser.Name = "rbtnUser";
-            this.rbtnUser.Size = new System.Drawing.Size(146, 56);
+            this.rbtnUser.Size = new System.Drawing.Size(146, 86);
             this.rbtnUser.TabIndex = 6;
             this.rbtnUser.Text = "操作者代號";
             this.rbtnUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -227,10 +248,10 @@ namespace LPS.View.Forms
             this.rbtnCar.BackColor = System.Drawing.Color.Orange;
             this.rbtnCar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnCar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnCar.Location = new System.Drawing.Point(3, 68);
+            this.rbtnCar.Location = new System.Drawing.Point(3, 98);
             this.rbtnCar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnCar.Name = "rbtnCar";
-            this.rbtnCar.Size = new System.Drawing.Size(146, 56);
+            this.rbtnCar.Size = new System.Drawing.Size(146, 86);
             this.rbtnCar.TabIndex = 5;
             this.rbtnCar.Text = "車型代號";
             this.rbtnCar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -247,7 +268,7 @@ namespace LPS.View.Forms
             this.rbtnMachine.Location = new System.Drawing.Point(3, 4);
             this.rbtnMachine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnMachine.Name = "rbtnMachine";
-            this.rbtnMachine.Size = new System.Drawing.Size(146, 56);
+            this.rbtnMachine.Size = new System.Drawing.Size(146, 86);
             this.rbtnMachine.TabIndex = 4;
             this.rbtnMachine.Text = "機台資訊";
             this.rbtnMachine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -262,7 +283,7 @@ namespace LPS.View.Forms
             this.pnlSettingSplit.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSettingSplit.Name = "pnlSettingSplit";
             this.pnlSettingSplit.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.pnlSettingSplit.Size = new System.Drawing.Size(2, 330);
+            this.pnlSettingSplit.Size = new System.Drawing.Size(2, 480);
             this.pnlSettingSplit.TabIndex = 3;
             // 
             // tabHelp
@@ -272,10 +293,20 @@ namespace LPS.View.Forms
             this.tabHelp.Location = new System.Drawing.Point(4, 44);
             this.tabHelp.Margin = new System.Windows.Forms.Padding(0);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(720, 332);
+            this.tabHelp.Size = new System.Drawing.Size(970, 482);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "幫助";
             this.tabHelp.UseVisualStyleBackColor = true;
+            // 
+            // pageHelp1
+            // 
+            this.pageHelp1.AutoSize = true;
+            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
+            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
+            this.pageHelp1.Name = "pageHelp1";
+            this.pageHelp1.Size = new System.Drawing.Size(968, 480);
+            this.pageHelp1.TabIndex = 0;
             // 
             // tabLogout
             // 
@@ -292,10 +323,10 @@ namespace LPS.View.Forms
             // 
             this.ssButtom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsStatus});
-            this.ssButtom.Location = new System.Drawing.Point(0, 388);
+            this.ssButtom.Location = new System.Drawing.Point(0, 538);
             this.ssButtom.Name = "ssButtom";
             this.ssButtom.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.ssButtom.Size = new System.Drawing.Size(734, 24);
+            this.ssButtom.Size = new System.Drawing.Size(984, 24);
             this.ssButtom.TabIndex = 1;
             this.ssButtom.Text = "statusStrip1";
             // 
@@ -318,45 +349,14 @@ namespace LPS.View.Forms
             this.tlpBase.RowCount = 1;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 388F));
-            this.tlpBase.Size = new System.Drawing.Size(734, 388);
+            this.tlpBase.Size = new System.Drawing.Size(984, 538);
             this.tlpBase.TabIndex = 2;
-            // 
-            // ptMain
-            // 
-            this.ptMain.AutoSize = true;
-            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
-            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptMain.Location = new System.Drawing.Point(0, 0);
-            this.ptMain.Name = "ptMain";
-            this.ptMain.Size = new System.Drawing.Size(718, 330);
-            this.ptMain.TabIndex = 0;
-            // 
-            // ptPrint
-            // 
-            this.ptPrint.AutoSize = true;
-            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptPrint.Location = new System.Drawing.Point(0, 0);
-            this.ptPrint.Name = "ptPrint";
-            this.ptPrint.Size = new System.Drawing.Size(718, 330);
-            this.ptPrint.TabIndex = 0;
-            // 
-            // pageHelp1
-            // 
-            this.pageHelp1.AutoSize = true;
-            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
-            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
-            this.pageHelp1.Name = "pageHelp1";
-            this.pageHelp1.Size = new System.Drawing.Size(718, 330);
-            this.pageHelp1.TabIndex = 0;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 412);
+            this.ClientSize = new System.Drawing.Size(984, 562);
             this.Controls.Add(this.tlpBase);
             this.Controls.Add(this.ssButtom);
             this.Font = new System.Drawing.Font("Arial", 9F);

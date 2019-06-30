@@ -91,8 +91,10 @@ namespace MonthCalendar
             this.SetStyle(ControlStyles.Selectable, true);
             this.UpdateStyles();
 
-            m_Culture = CultureInfo.CurrentCulture;
-            m_DateTimeFormatInfo = DateTimeFormatInfo.CurrentInfo;
+            //m_Culture = CultureInfo.CurrentCulture;           
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("zh-TW");
+            m_Culture = new System.Globalization.CultureInfo("zh-TW");
+            m_DateTimeFormatInfo = DateTimeFormatInfo.CurrentInfo;            
 
             m_Dates = new DatesCollection(this);
             m_SelectedDates = new SelectedItemsCollection(this);
@@ -161,35 +163,37 @@ namespace MonthCalendar
             m_MonthImages = new MonthImageData(this);            
 
             m_PreviousButton = new Button();
-            m_PreviousButton.Image = UniCom.Properties.Resources.previous;
+            m_PreviousButton.Image = MypCom.Properties.Resources.previous;
             m_PreviousButton.Visible = false;
             m_PreviousButton.Click += new EventHandler(PrevClick);
 
             m_OKButton = new Button();
-            m_OKButton.Text = "OK";
+            m_OKButton.Text = "½T©w";
             m_OKButton.Visible = true;
+            m_OKButton.AutoSize = true;
             m_OKButton.Click += new EventHandler(OKClick);
 
             m_TodayButton = new Button();
-            m_TodayButton.Text = "Today";
+            m_TodayButton.Text = "¤µ¤Ñ";
             m_TodayButton.TextAlign = ContentAlignment.TopCenter;
             m_TodayButton.Margin = new Padding(0);
             m_TodayButton.Font = new Font("Arial", 6.5f);
             m_TodayButton.Visible = true;
             m_TodayButton.Click += new EventHandler(TodayClick);
+            m_TodayButton.AutoSize = true;
 
             m_NextButton = new Button();
-            m_NextButton.Image = UniCom.Properties.Resources.next;
+            m_NextButton.Image = MypCom.Properties.Resources.next;
             m_NextButton.Visible = false;
             m_NextButton.Click += new EventHandler(NextClick);
 
             m_PreviousYearButton = new Button();
-            m_PreviousYearButton.Image = UniCom.Properties.Resources.PrevYear;
+            m_PreviousYearButton.Image = MypCom.Properties.Resources.PrevYear;
             m_PreviousYearButton.Visible = false;
             m_PreviousYearButton.Click += new EventHandler(PrevYearClick);
 
             m_NextYearButton = new Button();
-            m_NextYearButton.Image = UniCom.Properties.Resources.nextYear;
+            m_NextYearButton.Image = MypCom.Properties.Resources.nextYear;
             m_NextYearButton.Visible = false;
             m_NextYearButton.Click += new EventHandler(NextYearClick);
 
@@ -487,6 +491,7 @@ namespace MonthCalendar
                 //refresh calendar with new regional settings
                 Thread.CurrentThread.CurrentCulture = value;
                 m_DateTimeFormatInfo = DateTimeFormatInfo.CurrentInfo;
+
                 CreateWeekDaysArray();
                 if (CultureChanged != null) CultureChanged(this, EventArgs.Empty);
                 this.Invalidate();
@@ -1290,7 +1295,7 @@ namespace MonthCalendar
             }
 
             //Point BtnPoint = m_PreviousButton.Location;
-            m_TodayButton.SetBounds( 50, m_PreviousButton.Location.Y, 48, m_PreviousButton.Height + 1);
+            m_TodayButton.SetBounds( 50, m_PreviousButton.Location.Y, 48, m_PreviousButton.Height + 1);            
         }
 
         private void DrawHeader(PaintEventArgs e)
@@ -1319,7 +1324,8 @@ namespace MonthCalendar
                 }
 
                 m_PreviousButton.SetBounds(iLeftPosPrevButton, m_NextTopPos + ((int)(myRectangle.Height - 18) / 2), 18, 18);
-                if (m_PreviousButton.Visible != m_HeaderStyle.ShowNav) m_PreviousButton.Visible = m_HeaderStyle.ShowNav;
+                if (m_PreviousButton.Visible != m_HeaderStyle.ShowNav)
+                    m_PreviousButton.Visible = m_HeaderStyle.ShowNav;
 
                 int iLeftPosNextButton = 0;
                 m_NextYearButton.SetBounds(this.Width - m_NextYearButton.Width -
@@ -1341,6 +1347,7 @@ namespace MonthCalendar
                 {
                     case ViewMode.vmMonth:
                         sTitleText = m_SelectedDate.ToString("MMMM yyyy"); ;
+                        sTitleText = m_SelectedDate.ToString("Y", m_Culture); 
                         break;
                     case ViewMode.vmYear:
                         sTitleText = m_SelectedDate.ToString("yyyy");
@@ -1456,10 +1463,14 @@ namespace MonthCalendar
             else
             {
                 //titlebar is hidden
-                if (m_PreviousButton.Visible != false) m_PreviousButton.Visible = false;
-                if (m_PreviousYearButton.Visible != false) m_PreviousYearButton.Visible = false;
-                if (m_NextButton.Visible != false) m_NextButton.Visible = false;
-                if (m_NextYearButton.Visible != false) m_NextYearButton.Visible = false;
+                if (m_PreviousButton.Visible != false)
+                    m_PreviousButton.Visible = false;
+                if (m_PreviousYearButton.Visible != false)
+                    m_PreviousYearButton.Visible = false;
+                if (m_NextButton.Visible != false)
+                    m_NextButton.Visible = false;
+                if (m_NextYearButton.Visible != false)
+                    m_NextYearButton.Visible = false;
                 m_TitlebarHeight = 0;
             }
         }

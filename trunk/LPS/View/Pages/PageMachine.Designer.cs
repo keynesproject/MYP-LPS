@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
             this.dgvMachine = new System.Windows.Forms.DataGridView();
+            this.columnSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.columnDefault = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpOption = new System.Windows.Forms.TableLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.pnlLine1 = new System.Windows.Forms.Panel();
-            this.columnSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnDefault = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMachine)).BeginInit();
             this.tlpOption.SuspendLayout();
@@ -70,14 +70,14 @@
             this.dgvMachine.AllowUserToDeleteRows = false;
             this.dgvMachine.AllowUserToResizeRows = false;
             this.dgvMachine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 9F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMachine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMachine.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvMachine.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMachine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnSN,
@@ -88,14 +88,14 @@
             this.dgvMachine.MultiSelect = false;
             this.dgvMachine.Name = "dgvMachine";
             this.dgvMachine.ReadOnly = true;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 9F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMachine.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMachine.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMachine.RowHeadersVisible = false;
             this.dgvMachine.RowTemplate.Height = 24;
             this.dgvMachine.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -103,6 +103,38 @@
             this.dgvMachine.TabIndex = 8;
             this.dgvMachine.TabStop = false;
             this.dgvMachine.BindingContextChanged += new System.EventHandler(this.DgvMachine_BindingContextChanged);
+            // 
+            // columnSN
+            // 
+            this.columnSN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnSN.DataPropertyName = "機台代碼";
+            this.columnSN.FillWeight = 50F;
+            this.columnSN.HeaderText = "機台代碼";
+            this.columnSN.MaxInputLength = 128;
+            this.columnSN.MinimumWidth = 100;
+            this.columnSN.Name = "columnSN";
+            this.columnSN.ReadOnly = true;
+            // 
+            // columnDescription
+            // 
+            this.columnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnDescription.DataPropertyName = "描述";
+            this.columnDescription.HeaderText = "描述";
+            this.columnDescription.MaxInputLength = 1024;
+            this.columnDescription.MinimumWidth = 100;
+            this.columnDescription.Name = "columnDescription";
+            this.columnDescription.ReadOnly = true;
+            // 
+            // columnDefault
+            // 
+            this.columnDefault.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnDefault.DataPropertyName = "Default";
+            this.columnDefault.FillWeight = 50F;
+            this.columnDefault.HeaderText = "預設機台";
+            this.columnDefault.MaxInputLength = 64;
+            this.columnDefault.MinimumWidth = 100;
+            this.columnDefault.Name = "columnDefault";
+            this.columnDefault.ReadOnly = true;
             // 
             // tlpOption
             // 
@@ -175,38 +207,6 @@
             this.pnlLine1.Name = "pnlLine1";
             this.pnlLine1.Size = new System.Drawing.Size(759, 1);
             this.pnlLine1.TabIndex = 7;
-            // 
-            // columnSN
-            // 
-            this.columnSN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnSN.DataPropertyName = "機台代碼";
-            this.columnSN.FillWeight = 50F;
-            this.columnSN.HeaderText = "機台代碼";
-            this.columnSN.MaxInputLength = 128;
-            this.columnSN.MinimumWidth = 100;
-            this.columnSN.Name = "columnSN";
-            this.columnSN.ReadOnly = true;
-            // 
-            // columnDescription
-            // 
-            this.columnDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnDescription.DataPropertyName = "描述";
-            this.columnDescription.HeaderText = "描述";
-            this.columnDescription.MaxInputLength = 1024;
-            this.columnDescription.MinimumWidth = 100;
-            this.columnDescription.Name = "columnDescription";
-            this.columnDescription.ReadOnly = true;
-            // 
-            // columnDefault
-            // 
-            this.columnDefault.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnDefault.DataPropertyName = "Default";
-            this.columnDefault.FillWeight = 50F;
-            this.columnDefault.HeaderText = "預設機台";
-            this.columnDefault.MaxInputLength = 64;
-            this.columnDefault.MinimumWidth = 100;
-            this.columnDefault.Name = "columnDefault";
-            this.columnDefault.ReadOnly = true;
             // 
             // PageMachine
             // 

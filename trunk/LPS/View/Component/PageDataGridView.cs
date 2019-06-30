@@ -42,7 +42,7 @@ namespace LPS.View.Components
         /// <summary>
         /// 每頁所要顯示的資料數量
         /// </summary>
-        private int m_DisplayDataNumPerPage = 100;
+        private int m_DisplayDataNumPerPage = 500;
 
         /// <summary>
         /// 取得每頁顯示的數量
@@ -83,11 +83,18 @@ namespace LPS.View.Components
         public void SetTotalPage(int TotalPage)
         {
             if (TotalPage <= 0)
+            {
+                tbCurrentPage.Enabled = false;
                 TotalPage = 1;
+            }
+            else
+            {
+                tbCurrentPage.Enabled = true;
+            }
 
             m_TotalPage = TotalPage;
             
-            lblTotalPage.Text = "of  " + TotalPage;
+            lblTotalPage.Text = "/  " + TotalPage;
 
             if (m_TotalPage == 1)
             {
@@ -112,11 +119,13 @@ namespace LPS.View.Components
         /// <param name="CurrentPage"></param>
         private void SetCurrentPage(int CurrentPage, bool isNotify = true)
         {
+            //tlpPageCheange.SuspendLayout();
+
             //先隱藏按鍵，等設定完狀態後在顯示，為了防止畫面閃爍用的;//
-            btnArrowFirst.Visible = false;
-            btnArrowLeft.Visible = false;
-            btnArrowRight.Visible = false;
-            btnArrowLast.Visible = false;
+            //btnArrowFirst.Visible = false;
+            //btnArrowLeft.Visible = false;
+            //btnArrowRight.Visible = false;
+            //btnArrowLast.Visible = false;
 
             if (m_TotalPage == 1)
             {
@@ -170,10 +179,12 @@ namespace LPS.View.Components
             tbCurrentPage.Text = m_CurrentPage.ToString();
 
             //按鍵設定完狀態後顯示，為了防止畫面閃爍用的;//
-            btnArrowFirst.Visible = true;
-            btnArrowLeft.Visible = true;
-            btnArrowRight.Visible = true;
-            btnArrowLast.Visible = true;
+            //btnArrowFirst.Visible = true;
+            //btnArrowLeft.Visible = true;
+            //btnArrowRight.Visible = true;
+            //btnArrowLast.Visible = true;
+
+            //tlpPageCheange.ResumeLayout();
         }
 
         /// <summary>
@@ -182,12 +193,21 @@ namespace LPS.View.Components
         /// <param name="Dt"></param>
         public void BindingData(DataTable Dt, int Page)
         {
+            if (Page <= 1)
+                Page = 1;
+            else if (Page >= m_TotalPage)
+                Page = m_TotalPage;
+
             if (Dt.Rows.Count >= m_DisplayDataNumPerPage)
             {
                 DataTable DisplayData = Dt.Clone();
+                int StartIndex = (Page - 1) * m_DisplayDataNumPerPage;
                 for (int i = 0; i < m_DisplayDataNumPerPage; i++)
                 {
-                    DisplayData.ImportRow(Dt.Rows[i]);
+                    if (StartIndex + i >= Dt.Rows.Count)
+                        break;
+
+                    DisplayData.ImportRow(Dt.Rows[StartIndex + i]);
                 }
 
                 this.dgvData.DataSource = DisplayData;
@@ -196,6 +216,11 @@ namespace LPS.View.Components
             {
                 //將資料榜定到Data Grid顯示;//
                 this.dgvData.DataSource = Dt;
+            }
+
+            for(int i=0; i<dgvData.ColumnCount; i++)
+            {
+                dgvData.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
             this.SetCurrentPage(Page, false);

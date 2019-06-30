@@ -17,7 +17,7 @@ namespace LPS.Model.DataAccessObject
         private static readonly DaoSQL m_instance = new DaoSQL();
 
         internal static DaoSQL Instance { get { return m_instance; } }
-
+                
         private DaoSQL()
         {
         }
@@ -35,15 +35,14 @@ namespace LPS.Model.DataAccessObject
         /// 資料庫連線狀態更新事件
         /// </summary>
         public event DatabaseConnectedChangeDelegate DatabaseConnectedChange;
-
-
+        
         #endregion event
 
         /// <summary>
         /// 資料庫讀取物件
         /// </summary>
         private DaoDbCommon m_SQL = null;
-        
+
         /// <summary>
         /// 連接使用的資料庫
         /// </summary>
@@ -89,7 +88,6 @@ namespace LPS.Model.DataAccessObject
 
             DatabaseConnectedChange?.Invoke(false);
         }
-        
 
         /// <summary>
         /// 連接Access資料庫
@@ -125,7 +123,7 @@ namespace LPS.Model.DataAccessObject
 
             return Err;
         }
-        
+
         /// <summary>
         /// 照SQL語法取得Table資料
         /// </summary>
@@ -142,6 +140,12 @@ namespace LPS.Model.DataAccessObject
             return Dt;
         }
         
+        /// <summary>
+        /// 檢查指定的資料表裡有沒有指定的欄位
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <param name="FieldName"></param>
+        /// <returns></returns>
         internal bool CheckFileld(string TableName, string FieldName)
         {
             string strSchema = "select * from " + TableName;
@@ -152,7 +156,7 @@ namespace LPS.Model.DataAccessObject
                 return false;
 
             return Dt.Columns.Contains(FieldName);
-        }
+        }              
 
         /// <summary>
         /// 檢查資料庫是否有必要的資料表，沒有的話就建立
@@ -177,9 +181,54 @@ namespace LPS.Model.DataAccessObject
                     return err;
             }
 
+            if (CheckFileld("備份路徑", "Type") == false)
+            {
+                sbSchema.Init();
+                sbSchema.Append("DROP TABLE 備份路徑;");
+                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                if (err.isError == true)
+                    return err;
+                
+                sbSchema.Init();
+                sbSchema.Append(@"CREATE TABLE `備份路徑` (
+                                        `Type` VarChar(15) DEFAULT '',
+	                                    `ADDR` VarChar(50) WITH COMP );");
+                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                if (err.isError == true)
+                    return err;
+
+                sbSchema.Init();
+                string strTable = "備份路徑";
+                string strField = "[Type], [ADDR]";
+                err = InsertData(strTable, strField, "'Local', ''");
+                err = InsertData(strTable, strField, "'Server', ''");
+                err = InsertData(strTable, strField, "'ServerAccount', ''");
+                err = InsertData(strTable, strField, "'ServerPW', ''");
+                err = InsertData(strTable, strField, "'Report', ''");
+                err = InsertData(strTable, strField, "'Database', ''");
+                if (err.isError == true)
+                    return err;
+            }
+
             return err;
         }
-        
+
+        /// <summary>
+        /// 插入資料到指定的資料表
+        /// </summary>
+        /// <param name="Table"></param>
+        /// <param name="Field"></param>
+        /// <param name="Value"></param>
+        /// <returns></returns>
+        private DaoErrMsg InsertData(string Table, string Field, string Value)
+        {
+            DaoErrMsg err = new DaoErrMsg();
+
+            string strSchema = string.Format(@"INSERT INTO {0} ({1}) VALUES ({2});", Table, Field, Value);
+
+            return m_SQL.ExecuteNonQuery(strSchema.ToString()); ;            
+        }
+
         internal bool Login(string Account, string Password)
         {
             string strSchema = "select 代碼 from 作業員 where 代碼=@P0 and 密碼=@P1 and 權限='Y'";
@@ -216,7 +265,7 @@ namespace LPS.Model.DataAccessObject
 
             return dt.ToList<DaoMachine>().ToList();
         }
-        
+
         /// <summary>
         /// 取得作業員姓名
         /// </summary>
@@ -231,6 +280,25 @@ namespace LPS.Model.DataAccessObject
             dt.Columns.Add("Permission", typeof(bool));
 
             return dt.ToList<DaoUser>().ToList();
+        }
+
+        /// <summary>
+        /// 取得作業員姓名
+        /// </summary>
+        /// <returns></returns>
+        internal DaoUser GetUser(string Code)
+        {
+            string strSchema = string.Format("SELECT * FROM 作業員 WHERE 代碼='{0}';", Code);
+
+            DataTable dt = GetDataTable(strSchema);
+
+            if (dt.Rows.Count == 0)
+                return null;
+
+            dt.Columns.Add("Serial", typeof(string));
+            dt.Columns.Add("Permission", typeof(bool));
+
+            return dt.ToList<DaoUser>().ToList()[0];
         }
 
         /// <summary>
@@ -263,7 +331,7 @@ namespace LPS.Model.DataAccessObject
 
             return null;
         }
-        
+
         /// <summary>
         /// 搜尋件號資訊
         /// </summary>
@@ -276,6 +344,16 @@ namespace LPS.Model.DataAccessObject
             return GetDataTable(strSchema);
         }
 
+        /// <summary>
+        /// 儲存測試結果資訊
+        /// </summary>
+        /// <param name="Serial"></param>
+        /// <param name="Machine"></param>
+        /// <param name="User"></param>
+        /// <param name="PN"></param>
+        /// <param name="Result"></param>
+        /// <param name="TestTime"></param>
+        /// <returns></returns>
         internal DaoErrMsg SaveTestResult(string Serial, DaoMachine Machine, DaoUser User, DaoPartNumber PN, string Result, DateTime TestTime)
         {
             string ResultSerial = string.Format("{0}{1}{2}", Machine.機台代碼, PN.簡碼, Serial);
@@ -305,7 +383,7 @@ namespace LPS.Model.DataAccessObject
 
             return Dt.Rows.Count > 0 ? true : false;
         }
-        
+
         /// <summary>
         /// 更新機台資訊
         /// </summary>
@@ -327,7 +405,7 @@ namespace LPS.Model.DataAccessObject
 
             m_SQL.ExecuteNonQuery(strSchema);
         }
-        
+
         /// <summary>
         /// 加入一筆新機台資訊
         /// </summary>
@@ -349,7 +427,7 @@ namespace LPS.Model.DataAccessObject
 
             m_SQL.ExecuteNonQuery(strSchema);
         }
-        
+
         /// <summary>
         /// 刪除指定機台
         /// </summary>
@@ -375,7 +453,7 @@ namespace LPS.Model.DataAccessObject
 
             return Dt.Rows.Count > 0 ? true : false;
         }
-        
+
         /// <summary>
         /// 更新指定件號
         /// </summary>
@@ -465,6 +543,11 @@ namespace LPS.Model.DataAccessObject
             m_SQL.ExecuteNonQuery(strSchema);
         }
 
+        /// <summary>
+        /// 刪除使用者
+        /// </summary>
+        /// <param name="User"></param>
+        /// <returns></returns>
         internal DaoErrMsg DeleteUser(DaoUser User)
         {
             string strSchema = string.Format("DELETE FROM 作業員 WHERE 代碼 = '{0}' ", User.代碼);
@@ -472,5 +555,135 @@ namespace LPS.Model.DataAccessObject
             return m_SQL.ExecuteNonQuery(strSchema);
         }
 
+        /// <summary>
+        /// 取得測試時間區間的總數量
+        /// </summary>
+        /// <param name="DateSearchFrom"></param>
+        /// <param name="DateSearchTo"></param>
+        /// <returns></returns>
+        internal int GetTestHistoryTotalNum(string DateSearchFrom, string DateSearchTo)
+        {
+            string strSchema = "select count(*) as TestTime from 測試結果 ";
+
+            if (DateSearchFrom.Length > 0 || DateSearchTo.Length > 0)
+            {
+                strSchema += "WHERE ";
+            }
+
+            if (DateSearchFrom.Length > 0
+                && DateSearchTo.Length > 0)
+            {
+                //搜尋日期區間;//
+                //DateSearchFrom = Convert.ToDateTime(DateSearchFrom).ToStrTimeStamp();
+                //DateSearchTo = Convert.ToDateTime(DateSearchTo).ToStrTimeStamp();
+                strSchema += string.Format(@"生產日期 BETWEEN #{0}# and #{1}# ", DateSearchFrom, DateSearchTo);
+            }
+            else if (DateSearchFrom.Length > 0
+                     && DateSearchTo.Length <= 0)
+            {
+                //搜尋大於起始日期;//
+                //DateSearchFrom = Convert.ToDateTime(DateSearchFrom).ToStrTimeStamp();
+                strSchema += string.Format(@"生產日期 >= #{0}# ", DateSearchFrom);
+            }
+            else if (   DateSearchFrom.Length <= 0
+                     && DateSearchTo.Length > 0)
+            {
+                //搜尋小於結束日期;//
+                //DateSearchTo = Convert.ToDateTime(DateSearchTo).ToStrTimeStamp();
+                strSchema += string.Format(@"生產日期 <= #{0}# ", DateSearchTo);
+            }
+
+            string HistoryNum = "";
+            m_SQL.ExecuteScalar(strSchema, out HistoryNum);
+
+            //表示沒有歷史資訊;//
+            if (HistoryNum.Length <= 0)
+                return -1;
+
+            return HistoryNum.ToInt();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m_DateSearchFrom"></param>
+        /// <param name="m_DateSearchTo"></param>
+        /// <returns></returns>
+        internal DataTable GetTestHistory(string DateSearchFrom, string DateSearchTo)
+        {
+            //string strSchema = @"select RIGHT(流水號,7) as 序號, 
+            //                            trim(format(生產日期,'yyyy/mm/dd')) as 日期, 
+            //                            trim(format(生產時間,'hh:mm:ss')) as 時間, 
+            //                            車型名稱 as 車型, 
+            //                            作業員代碼 as 操作者代號, 
+            //                            測試結果 as 判定 
+            //                     from 測試結果 ";
+            string strSchema = @"select 流水號 as 序號, 
+                                        件號,
+                                        trim(format(生產日期,'yyyy/mm/dd')) as 日期, 
+                                        trim(format(生產時間,'hh:mm:ss')) as 時間, 
+                                        車型名稱 as 車型, 
+                                        作業員代碼 as 操作者代號, 
+                                        測試結果 as 判定 
+                                 from 測試結果 ";
+
+            if (DateSearchFrom.Length > 0 || DateSearchTo.Length > 0)
+            {
+                strSchema += "WHERE ";
+            }
+
+            if (DateSearchFrom.Length > 0
+                && DateSearchTo.Length > 0)
+            {
+                //搜尋日期區間;//
+                //DateSearchFrom = Convert.ToDateTime(DateSearchFrom).ToStrTimeStamp();
+                //DateSearchTo = Convert.ToDateTime(DateSearchTo).ToStrTimeStamp();
+                strSchema += string.Format(@"生產日期 BETWEEN #{0}# AND #{1}# ", DateSearchFrom, DateSearchTo);
+            }
+            else if (DateSearchFrom.Length > 0
+                     && DateSearchTo.Length <= 0)
+            {
+                //搜尋大於起始日期;//
+                //DateSearchFrom = Convert.ToDateTime(DateSearchFrom).ToStrTimeStamp();
+                strSchema += string.Format(@"生產日期 >= #{0}# ", DateSearchFrom);
+            }
+            else if (DateSearchFrom.Length <= 0
+                     && DateSearchTo.Length > 0)
+            {
+                //搜尋小於結束日期;//
+                //DateSearchTo = Convert.ToDateTime(DateSearchTo).ToStrTimeStamp();
+                strSchema += string.Format(@"生產日期 <= #{0}# ", DateSearchTo);
+            }
+
+            strSchema += "ORDER BY 生產日期 DESC, 生產時間 DESC";
+
+            return GetDataTable(strSchema);
+        }
+
+        /// <summary>
+        /// 備分相關資料
+        /// </summary>
+        /// <returns></returns>
+        internal DataTable GetBackupInfo()
+        {
+            string strSchema = "select * from 備份路徑";
+
+            return GetDataTable(strSchema);
+        }
+
+        /// <summary>
+        /// 更新備分路徑資訊
+        /// </summary>
+        /// <param name="dt"></param>
+        internal void UpdateBackupInfo(DataTable dt)
+        {
+            for(int i=0; i<dt.Rows.Count; i++)
+            {
+                string strSchema = string.Format("UPDATE 備份路徑 SET ADDR='{0}' WHERE Type='{1}';", dt.Rows[i]["ADDR"].ToString(), dt.Rows[i]["Type"].ToString());
+                DaoErrMsg err = m_SQL.ExecuteNonQuery(strSchema.ToString());
+                if (err.isError == true)
+                    return;
+            }
+        }
     }
 }

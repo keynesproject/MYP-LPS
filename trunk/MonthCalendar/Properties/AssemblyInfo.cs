@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MonthCalendar")]
-[assembly: AssemblyCopyright("Copyright © 2018 by Unication")]
+[assembly: AssemblyCopyright("Copyright © 2019 by MYP")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

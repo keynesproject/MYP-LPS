@@ -105,7 +105,7 @@
             this.tlpCustomSN.AutoSize = true;
             this.tlpCustomSN.ColumnCount = 2;
             this.tlpCustomSN.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpCustomSN.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpCustomSN.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpCustomSN.Controls.Add(this.btnCustomSN, 1, 0);
             this.tlpCustomSN.Controls.Add(this.tbCustomSerialNo, 0, 0);
             this.tlpCustomSN.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -120,11 +120,11 @@
             // 
             this.btnCustomSN.AutoSize = true;
             this.btnCustomSN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCustomSN.Location = new System.Drawing.Point(655, 3);
+            this.btnCustomSN.Location = new System.Drawing.Point(650, 3);
             this.btnCustomSN.Name = "btnCustomSN";
-            this.btnCustomSN.Size = new System.Drawing.Size(34, 27);
+            this.btnCustomSN.Size = new System.Drawing.Size(39, 27);
             this.btnCustomSN.TabIndex = 3;
-            this.btnCustomSN.Text = "Gen";
+            this.btnCustomSN.Text = "產生";
             this.btnCustomSN.UseVisualStyleBackColor = true;
             this.btnCustomSN.Visible = false;
             this.btnCustomSN.Click += new System.EventHandler(this.btnCustomSN_Click);
@@ -139,7 +139,7 @@
             this.tbCustomSerialNo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.tbCustomSerialNo.MaxLength = 128;
             this.tbCustomSerialNo.Name = "tbCustomSerialNo";
-            this.tbCustomSerialNo.Size = new System.Drawing.Size(646, 27);
+            this.tbCustomSerialNo.Size = new System.Drawing.Size(641, 27);
             this.tbCustomSerialNo.TabIndex = 0;
             this.tbCustomSerialNo.TextChanged += new System.EventHandler(this.tbCustomSerialNo_TextChanged);
             this.tbCustomSerialNo.Enter += new System.EventHandler(this.tbCustomSerialNo_Enter);
@@ -408,7 +408,7 @@
             this.tlpVerifyGenCode.AutoSize = true;
             this.tlpVerifyGenCode.ColumnCount = 2;
             this.tlpVerifyGenCode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpVerifyGenCode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tlpVerifyGenCode.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpVerifyGenCode.Controls.Add(this.tbVerificationCode, 0, 0);
             this.tlpVerifyGenCode.Controls.Add(this.btnGenerate, 1, 0);
             this.tlpVerifyGenCode.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -430,18 +430,18 @@
             this.tbVerificationCode.MaxLength = 128;
             this.tbVerificationCode.Name = "tbVerificationCode";
             this.tbVerificationCode.ReadOnly = true;
-            this.tbVerificationCode.Size = new System.Drawing.Size(646, 27);
+            this.tbVerificationCode.Size = new System.Drawing.Size(641, 27);
             this.tbVerificationCode.TabIndex = 2;
             // 
             // btnGenerate
             // 
             this.btnGenerate.AutoSize = true;
             this.btnGenerate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGenerate.Location = new System.Drawing.Point(655, 3);
+            this.btnGenerate.Location = new System.Drawing.Point(650, 3);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(34, 24);
+            this.btnGenerate.Size = new System.Drawing.Size(39, 24);
             this.btnGenerate.TabIndex = 3;
-            this.btnGenerate.Text = "Gen";
+            this.btnGenerate.Text = "產生";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 

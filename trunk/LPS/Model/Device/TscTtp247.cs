@@ -26,7 +26,7 @@ namespace LPS.Model.Device
 
             string ResultSerial = string.Format("{0}{1}{2}", Machine.機台代碼, PN.簡碼, Serial);
 
-            TSCLIB_DLL.setup("18", "12", "2", "12", "1", "3", "0");
+            TSCLIB_DLL.setup("18", "12", "2", "7", "1", "3", "0");
             TSCLIB_DLL.clearbuffer();
             TSCLIB_DLL.sendcommand(string.Format("QRCODE 12,8,L,2,A,0,M2,S7,\"UCC,{0},{1}\"", ResultSerial, TestTime.ToString("yyyy/MM/dd")));
             TSCLIB_DLL.windowsfont(76, 11, 30, 0, 2, 0, "新細明體", "OK");

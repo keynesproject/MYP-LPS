@@ -82,6 +82,13 @@ namespace LPS.View.Pages
 
         private void BtnDel_MouseUp(object sender, MouseEventArgs e)
         {
+            //檢查是否只剩一組帳號;//
+            if(dgvUser.Rows.Count <= 1)
+            {
+                MessageBoxEx.Show(this, "最少須保留1組操作者資訊!", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (CheckDataAndSelect() == false)
                 return;
 

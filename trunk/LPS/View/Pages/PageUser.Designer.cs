@@ -32,17 +32,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
             this.dgvUser = new System.Windows.Forms.DataGridView();
-            this.tlpOption = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDel = new System.Windows.Forms.Button();
-            this.pnlLine1 = new System.Windows.Forms.Panel();
             this.columnSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStrPermission = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnPW = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSerial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPermission = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tlpOption = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
+            this.pnlLine1 = new System.Windows.Forms.Panel();
             this.tlpBase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
             this.tlpOption.SuspendLayout();
@@ -108,6 +108,75 @@
             this.dgvUser.Size = new System.Drawing.Size(759, 321);
             this.dgvUser.TabIndex = 8;
             this.dgvUser.TabStop = false;
+            // 
+            // columnSN
+            // 
+            this.columnSN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnSN.DataPropertyName = "代碼";
+            this.columnSN.FillWeight = 50F;
+            this.columnSN.HeaderText = "代碼";
+            this.columnSN.MaxInputLength = 128;
+            this.columnSN.MinimumWidth = 100;
+            this.columnSN.Name = "columnSN";
+            this.columnSN.ReadOnly = true;
+            // 
+            // columnName
+            // 
+            this.columnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnName.DataPropertyName = "作業員姓名";
+            this.columnName.FillWeight = 50F;
+            this.columnName.HeaderText = "姓名";
+            this.columnName.MaxInputLength = 128;
+            this.columnName.MinimumWidth = 100;
+            this.columnName.Name = "columnName";
+            this.columnName.ReadOnly = true;
+            // 
+            // ColumnStrPermission
+            // 
+            this.ColumnStrPermission.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnStrPermission.DataPropertyName = "Permission";
+            this.ColumnStrPermission.FillWeight = 50F;
+            this.ColumnStrPermission.HeaderText = "管理者權限";
+            this.ColumnStrPermission.MaxInputLength = 128;
+            this.ColumnStrPermission.MinimumWidth = 100;
+            this.ColumnStrPermission.Name = "ColumnStrPermission";
+            this.ColumnStrPermission.ReadOnly = true;
+            this.ColumnStrPermission.Visible = false;
+            // 
+            // columnPW
+            // 
+            this.columnPW.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.columnPW.DataPropertyName = "密碼";
+            this.columnPW.FillWeight = 50F;
+            this.columnPW.HeaderText = "密碼";
+            this.columnPW.MaxInputLength = 64;
+            this.columnPW.MinimumWidth = 100;
+            this.columnPW.Name = "columnPW";
+            this.columnPW.ReadOnly = true;
+            this.columnPW.Visible = false;
+            // 
+            // ColumnSerial
+            // 
+            this.ColumnSerial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnSerial.DataPropertyName = "Serial";
+            this.ColumnSerial.FillWeight = 50F;
+            this.ColumnSerial.HeaderText = "代碼姓名";
+            this.ColumnSerial.MaxInputLength = 128;
+            this.ColumnSerial.MinimumWidth = 100;
+            this.ColumnSerial.Name = "ColumnSerial";
+            this.ColumnSerial.ReadOnly = true;
+            this.ColumnSerial.Visible = false;
+            // 
+            // ColumnPermission
+            // 
+            this.ColumnPermission.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnPermission.DataPropertyName = "權限";
+            this.ColumnPermission.FillWeight = 50F;
+            this.ColumnPermission.HeaderText = "管理者權限";
+            this.ColumnPermission.MaxInputLength = 128;
+            this.ColumnPermission.MinimumWidth = 100;
+            this.ColumnPermission.Name = "ColumnPermission";
+            this.ColumnPermission.ReadOnly = true;
             // 
             // tlpOption
             // 
@@ -180,75 +249,6 @@
             this.pnlLine1.Name = "pnlLine1";
             this.pnlLine1.Size = new System.Drawing.Size(759, 1);
             this.pnlLine1.TabIndex = 7;
-            // 
-            // columnSN
-            // 
-            this.columnSN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnSN.DataPropertyName = "代碼";
-            this.columnSN.FillWeight = 50F;
-            this.columnSN.HeaderText = "代碼";
-            this.columnSN.MaxInputLength = 128;
-            this.columnSN.MinimumWidth = 100;
-            this.columnSN.Name = "columnSN";
-            this.columnSN.ReadOnly = true;
-            // 
-            // columnName
-            // 
-            this.columnName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnName.DataPropertyName = "作業員姓名";
-            this.columnName.FillWeight = 50F;
-            this.columnName.HeaderText = "姓名";
-            this.columnName.MaxInputLength = 128;
-            this.columnName.MinimumWidth = 100;
-            this.columnName.Name = "columnName";
-            this.columnName.ReadOnly = true;
-            // 
-            // ColumnStrPermission
-            // 
-            this.ColumnStrPermission.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnStrPermission.DataPropertyName = "Permission";
-            this.ColumnStrPermission.FillWeight = 50F;
-            this.ColumnStrPermission.HeaderText = "管理者權限";
-            this.ColumnStrPermission.MaxInputLength = 128;
-            this.ColumnStrPermission.MinimumWidth = 100;
-            this.ColumnStrPermission.Name = "ColumnStrPermission";
-            this.ColumnStrPermission.ReadOnly = true;
-            this.ColumnStrPermission.Visible = false;
-            // 
-            // columnPW
-            // 
-            this.columnPW.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.columnPW.DataPropertyName = "密碼";
-            this.columnPW.FillWeight = 50F;
-            this.columnPW.HeaderText = "密碼";
-            this.columnPW.MaxInputLength = 64;
-            this.columnPW.MinimumWidth = 100;
-            this.columnPW.Name = "columnPW";
-            this.columnPW.ReadOnly = true;
-            this.columnPW.Visible = false;
-            // 
-            // ColumnSerial
-            // 
-            this.ColumnSerial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnSerial.DataPropertyName = "Serial";
-            this.ColumnSerial.FillWeight = 50F;
-            this.ColumnSerial.HeaderText = "代碼姓名";
-            this.ColumnSerial.MaxInputLength = 128;
-            this.ColumnSerial.MinimumWidth = 100;
-            this.ColumnSerial.Name = "ColumnSerial";
-            this.ColumnSerial.ReadOnly = true;
-            this.ColumnSerial.Visible = false;
-            // 
-            // ColumnPermission
-            // 
-            this.ColumnPermission.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnPermission.DataPropertyName = "權限";
-            this.ColumnPermission.FillWeight = 50F;
-            this.ColumnPermission.HeaderText = "管理者權限";
-            this.ColumnPermission.MaxInputLength = 128;
-            this.ColumnPermission.MinimumWidth = 100;
-            this.ColumnPermission.Name = "ColumnPermission";
-            this.ColumnPermission.ReadOnly = true;
             // 
             // PageUser
             // 

@@ -67,7 +67,7 @@
             this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tlpPageCheange.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -89,7 +89,7 @@
             // 
             this.tbCurrentPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbCurrentPage.Font = new System.Drawing.Font("Arial", 12F);
-            this.tbCurrentPage.Location = new System.Drawing.Point(210, 0);
+            this.tbCurrentPage.Location = new System.Drawing.Point(227, 0);
             this.tbCurrentPage.Margin = new System.Windows.Forms.Padding(0);
             this.tbCurrentPage.MaxLength = 3;
             this.tbCurrentPage.Name = "tbCurrentPage";
@@ -107,11 +107,11 @@
             this.lblTotalPage.AutoSize = true;
             this.lblTotalPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTotalPage.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTotalPage.Location = new System.Drawing.Point(263, 0);
+            this.lblTotalPage.Location = new System.Drawing.Point(280, 0);
             this.lblTotalPage.Name = "lblTotalPage";
-            this.lblTotalPage.Size = new System.Drawing.Size(64, 24);
+            this.lblTotalPage.Size = new System.Drawing.Size(30, 24);
             this.lblTotalPage.TabIndex = 5;
-            this.lblTotalPage.Text = "of 1";
+            this.lblTotalPage.Text = "/  1";
             this.lblTotalPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnArrowFirst
@@ -119,7 +119,7 @@
             this.btnArrowFirst.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnArrowFirst.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnArrowFirst.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowFirst.Location = new System.Drawing.Point(140, 0);
+            this.btnArrowFirst.Location = new System.Drawing.Point(157, 0);
             this.btnArrowFirst.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.btnArrowFirst.Name = "btnArrowFirst";
             this.btnArrowFirst.Size = new System.Drawing.Size(30, 24);
@@ -133,7 +133,7 @@
             this.btnArrowLeft.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnArrowLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnArrowLeft.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowLeft.Location = new System.Drawing.Point(175, 0);
+            this.btnArrowLeft.Location = new System.Drawing.Point(192, 0);
             this.btnArrowLeft.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.btnArrowLeft.Name = "btnArrowLeft";
             this.btnArrowLeft.Size = new System.Drawing.Size(30, 24);
@@ -147,7 +147,7 @@
             this.btnArrowRight.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnArrowRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnArrowRight.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowRight.Location = new System.Drawing.Point(335, 0);
+            this.btnArrowRight.Location = new System.Drawing.Point(318, 0);
             this.btnArrowRight.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnArrowRight.Name = "btnArrowRight";
             this.btnArrowRight.Size = new System.Drawing.Size(30, 24);
@@ -161,7 +161,7 @@
             this.btnArrowLast.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnArrowLast.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnArrowLast.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.btnArrowLast.Location = new System.Drawing.Point(370, 0);
+            this.btnArrowLast.Location = new System.Drawing.Point(353, 0);
             this.btnArrowLast.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.btnArrowLast.Name = "btnArrowLast";
             this.btnArrowLast.Size = new System.Drawing.Size(30, 24);
@@ -172,7 +172,7 @@
             // 
             // dgvData
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
