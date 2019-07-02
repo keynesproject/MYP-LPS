@@ -844,7 +844,6 @@ namespace LPS.Model.DataAccessObject
         {
             DaoErrMsg Err = new DaoErrMsg();
 
-            ServerDbPath = @"C:\Users\Keynes\Desktop\Db.mdb";
             DaoDbCommon ServerSQL = CreateDbCom(ServerDbPath);
 
             Err = ServerSQL.Connect();
