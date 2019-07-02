@@ -74,7 +74,11 @@ namespace MypKey
             //檢查序號是否存在,不存在則回傳失敗;//
             string SN = this.GetExistKey();
             if (SN == null)
-                return ValidateResult.eVALIDATE_NO_SN;
+            {
+                //建立一組試用天數為30天序號;//
+                SN = CreateTrialSerialKey(30);                
+                //return ValidateResult.eVALIDATE_NO_SN;
+            }
 
             //將此序號儲存至指定的目錄，此用意是防止使用者修改序號檔案資訊;//
             this.SaveSN(SN);

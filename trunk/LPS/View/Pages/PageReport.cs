@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MonthCalendar;
 using LPS.Model.DataAccessObject;
 using LPS.Model.FileExport;
+using LPS.View.Component;
 
 namespace LPS.View.Pages
 {
@@ -173,7 +174,7 @@ namespace LPS.View.Pages
             //先取得資料看有無資訊，沒有的話就不執行匯出動作;//
             if (m_dgvTestHistory.Rows.Count <= 0)
             {
-                MessageBox.Show("沒有任何測試紀錄可供匯出檔案.", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBoxEx.Show(this, "沒有任何測試紀錄可供匯出檔案.", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -199,11 +200,11 @@ namespace LPS.View.Pages
                 try
                 {
                     FileExport.ExportDataSetToExcel(Ds, Dialog.FileName);
-                    MessageBox.Show(string.Format("匯出檔案成功!\r\n檔名:{0}", Dialog.FileName), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxEx.Show(this, string.Format("匯出檔案成功!\r\n檔名:{0}", Dialog.FileName), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(string.Format("匯出檔案失敗!\r\n資訊:{0}", ex.Message), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBoxEx.Show(this, string.Format("匯出檔案失敗!\r\n資訊:{0}", ex.Message), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
         }

@@ -207,6 +207,34 @@ namespace LPS.Model.DataAccessObject
             return new DaoErrMsg();
         }
 
+        internal DaoErrMsg InsertDateTable(DataTable dt, string InsertTableName)
+        {
+            DbCommand DbCmd = DbProviderFactories.GetFactory(m_DbConnection.ToString().RemoveLastIndexof('.')).CreateCommand();
+            DbCmd.CommandText = "SELECT * FROM " + InsertTableName;
+            DbCmd.Connection = m_DbConnection;
+            
+            DbDataAdapter DbAdapter = DbProviderFactories.GetFactory(m_DbConnection.ToString().RemoveLastIndexof('.')).CreateDataAdapter();           
+            DbAdapter.SelectCommand = DbCmd;
+            
+            //DbCmd.ExecuteNonQuery();
+            try
+            {
+                using (DbCommandBuilder Builder = DbProviderFactories.GetFactory(m_DbConnection.ToString().RemoveLastIndexof('.')).CreateCommandBuilder())
+                {
+                    Builder.DataAdapter = DbAdapter;
+                    DbAdapter.InsertCommand = Builder.GetInsertCommand();
+                    DbAdapter.Update(dt);
+                }
+            }
+            catch (Exception Ex)
+            {
+                PrintErrorLog(Ex.Message, DbCmd.CommandText);
+                return new DaoErrMsg(true, Ex.Message);
+            }
+
+            return new DaoErrMsg();
+        }
+
         /// <summary>
         /// 列印出錯誤訊息至檔案
         /// </summary>
@@ -237,7 +265,7 @@ namespace LPS.Model.DataAccessObject
             }
             Logger.Error(ErrorMsg + "\r\nCall Stack:" + Environment.StackTrace);
 #if DEBUG
-            MessageBox.Show(ExceptionMsg, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ExceptionMsg, "資料庫", MessageBoxButtons.OK, MessageBoxIcon.Error);
 #endif
         }
     }

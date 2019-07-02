@@ -44,18 +44,19 @@
             this.lblPW = new System.Windows.Forms.Label();
             this.tbAccount = new System.Windows.Forms.TextBox();
             this.lblAccount = new System.Windows.Forms.Label();
+            this.btnServerTest = new System.Windows.Forms.Button();
             this.pnlLine4_2 = new System.Windows.Forms.Label();
             this.pnlLine4_1 = new System.Windows.Forms.Label();
             this.lblTitleDb = new System.Windows.Forms.Label();
-            this.tbPathDb = new System.Windows.Forms.TextBox();
             this.lblTitleReport = new System.Windows.Forms.Label();
+            this.tbPathDb = new System.Windows.Forms.TextBox();
             this.tbPathReport = new System.Windows.Forms.TextBox();
+            this.btnServerDbTest = new System.Windows.Forms.Button();
             this.tlpOption = new System.Windows.Forms.TableLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnBackup = new System.Windows.Forms.Button();
             this.pnlLine1 = new System.Windows.Forms.Panel();
-            this.btnServerTest = new System.Windows.Forms.Button();
             this.tlpBase.SuspendLayout();
             this.tlpSetting.SuspendLayout();
             this.tlpBackup.SuspendLayout();
@@ -95,27 +96,27 @@
             this.tlpSetting.Controls.Add(this.pnlLine2_2, 1, 1);
             this.tlpSetting.Controls.Add(this.pnlLine2_1, 0, 1);
             this.tlpSetting.Controls.Add(this.tlpServerSetting, 1, 2);
-            this.tlpSetting.Controls.Add(this.pnlLine4_2, 1, 5);
-            this.tlpSetting.Controls.Add(this.pnlLine4_1, 0, 5);
+            this.tlpSetting.Controls.Add(this.pnlLine4_2, 1, 6);
+            this.tlpSetting.Controls.Add(this.pnlLine4_1, 0, 6);
             this.tlpSetting.Controls.Add(this.lblTitleDb, 0, 3);
-            this.tlpSetting.Controls.Add(this.lblTitleReport, 0, 4);
+            this.tlpSetting.Controls.Add(this.lblTitleReport, 0, 5);
             this.tlpSetting.Controls.Add(this.tbPathDb, 1, 3);
-            this.tlpSetting.Controls.Add(this.tbPathReport, 1, 4);
+            this.tlpSetting.Controls.Add(this.tbPathReport, 1, 5);
+            this.tlpSetting.Controls.Add(this.btnServerDbTest, 1, 4);
             this.tlpSetting.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
             this.tlpSetting.Location = new System.Drawing.Point(3, 68);
             this.tlpSetting.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tlpSetting.Name = "tlpSetting";
-            this.tlpSetting.RowCount = 7;
+            this.tlpSetting.RowCount = 8;
             this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
+            this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 4F));
             this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpSetting.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpSetting.Size = new System.Drawing.Size(759, 319);
             this.tlpSetting.TabIndex = 8;
             // 
@@ -240,6 +241,7 @@
             this.tbPathServer.Name = "tbPathServer";
             this.tbPathServer.Size = new System.Drawing.Size(599, 24);
             this.tbPathServer.TabIndex = 0;
+            this.tbPathServer.Text = "\\\\192.168.0.130\\TestScan";
             // 
             // tlpLogin
             // 
@@ -274,6 +276,7 @@
             this.tbPW.PasswordChar = '*';
             this.tbPW.Size = new System.Drawing.Size(525, 24);
             this.tbPW.TabIndex = 1;
+            this.tbPW.Text = "Qwpo1111";
             this.tbPW.UseSystemPasswordChar = true;
             // 
             // lblPW
@@ -299,6 +302,7 @@
             this.tbAccount.Name = "tbAccount";
             this.tbAccount.Size = new System.Drawing.Size(525, 24);
             this.tbAccount.TabIndex = 0;
+            this.tbAccount.Text = "QUANTA\\10801049";
             // 
             // lblAccount
             // 
@@ -312,12 +316,27 @@
             this.lblAccount.Text = "帳    號:";
             this.lblAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnServerTest
+            // 
+            this.btnServerTest.AutoSize = true;
+            this.btnServerTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnServerTest.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnServerTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnServerTest.Location = new System.Drawing.Point(473, 72);
+            this.btnServerTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnServerTest.Name = "btnServerTest";
+            this.btnServerTest.Size = new System.Drawing.Size(123, 28);
+            this.btnServerTest.TabIndex = 3;
+            this.btnServerTest.Text = "伺服器連接測試";
+            this.btnServerTest.UseVisualStyleBackColor = true;
+            this.btnServerTest.Click += new System.EventHandler(this.BtnServerTest_Click);
+            // 
             // pnlLine4_2
             // 
             this.pnlLine4_2.AutoSize = true;
             this.pnlLine4_2.BackColor = System.Drawing.Color.DarkGray;
             this.pnlLine4_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLine4_2.Location = new System.Drawing.Point(154, 252);
+            this.pnlLine4_2.Location = new System.Drawing.Point(154, 288);
             this.pnlLine4_2.Margin = new System.Windows.Forms.Padding(0);
             this.pnlLine4_2.Name = "pnlLine4_2";
             this.pnlLine4_2.Size = new System.Drawing.Size(605, 4);
@@ -329,7 +348,7 @@
             this.pnlLine4_1.AutoSize = true;
             this.pnlLine4_1.BackColor = System.Drawing.Color.DarkGray;
             this.pnlLine4_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLine4_1.Location = new System.Drawing.Point(0, 252);
+            this.pnlLine4_1.Location = new System.Drawing.Point(0, 288);
             this.pnlLine4_1.Margin = new System.Windows.Forms.Padding(0);
             this.pnlLine4_1.Name = "pnlLine4_1";
             this.pnlLine4_1.Size = new System.Drawing.Size(154, 4);
@@ -349,6 +368,19 @@
             this.lblTitleDb.Text = "伺服器資料庫路徑:";
             this.lblTitleDb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lblTitleReport
+            // 
+            this.lblTitleReport.AutoSize = true;
+            this.lblTitleReport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitleReport.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
+            this.lblTitleReport.Location = new System.Drawing.Point(3, 258);
+            this.lblTitleReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lblTitleReport.Name = "lblTitleReport";
+            this.lblTitleReport.Size = new System.Drawing.Size(148, 26);
+            this.lblTitleReport.TabIndex = 0;
+            this.lblTitleReport.Text = "每日報表匯出路徑:";
+            this.lblTitleReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // tbPathDb
             // 
             this.tbPathDb.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -360,31 +392,35 @@
             this.tbPathDb.Name = "tbPathDb";
             this.tbPathDb.Size = new System.Drawing.Size(599, 24);
             this.tbPathDb.TabIndex = 0;
-            // 
-            // lblTitleReport
-            // 
-            this.lblTitleReport.AutoSize = true;
-            this.lblTitleReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitleReport.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
-            this.lblTitleReport.Location = new System.Drawing.Point(3, 222);
-            this.lblTitleReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lblTitleReport.Name = "lblTitleReport";
-            this.lblTitleReport.Size = new System.Drawing.Size(148, 26);
-            this.lblTitleReport.TabIndex = 0;
-            this.lblTitleReport.Text = "每日報表匯出路徑:";
-            this.lblTitleReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tbPathDb.Text = "\\\\192.168.0.130\\TestScan\\DB\\Db.mdb";
             // 
             // tbPathReport
             // 
             this.tbPathReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbPathReport.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.tbPathReport.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.tbPathReport.Location = new System.Drawing.Point(157, 224);
+            this.tbPathReport.Location = new System.Drawing.Point(157, 260);
             this.tbPathReport.Margin = new System.Windows.Forms.Padding(3, 6, 3, 4);
             this.tbPathReport.MaxLength = 1024;
             this.tbPathReport.Name = "tbPathReport";
             this.tbPathReport.Size = new System.Drawing.Size(599, 24);
             this.tbPathReport.TabIndex = 0;
+            this.tbPathReport.Text = "\\\\192.168.0.130\\TestScan\\BackupDataNew";
+            // 
+            // btnServerDbTest
+            // 
+            this.btnServerDbTest.AutoSize = true;
+            this.btnServerDbTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnServerDbTest.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnServerDbTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.btnServerDbTest.Location = new System.Drawing.Point(633, 222);
+            this.btnServerDbTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnServerDbTest.Name = "btnServerDbTest";
+            this.btnServerDbTest.Size = new System.Drawing.Size(123, 28);
+            this.btnServerDbTest.TabIndex = 41;
+            this.btnServerDbTest.Text = "資料庫連接測試";
+            this.btnServerDbTest.UseVisualStyleBackColor = true;
+            this.btnServerDbTest.Click += new System.EventHandler(this.BtnServerDbTest_Click);
             // 
             // tlpOption
             // 
@@ -460,21 +496,6 @@
             this.pnlLine1.Size = new System.Drawing.Size(759, 1);
             this.pnlLine1.TabIndex = 7;
             // 
-            // btnServerTest
-            // 
-            this.btnServerTest.AutoSize = true;
-            this.btnServerTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnServerTest.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnServerTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.btnServerTest.Location = new System.Drawing.Point(473, 72);
-            this.btnServerTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnServerTest.Name = "btnServerTest";
-            this.btnServerTest.Size = new System.Drawing.Size(123, 28);
-            this.btnServerTest.TabIndex = 3;
-            this.btnServerTest.Text = "伺服器連接測試";
-            this.btnServerTest.UseVisualStyleBackColor = true;
-            this.btnServerTest.Click += new System.EventHandler(this.BtnServerTest_Click);
-            // 
             // PageBackup
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -528,5 +549,6 @@
         private System.Windows.Forms.Label lblTitleDb;
         private System.Windows.Forms.TextBox tbPathDb;
         private System.Windows.Forms.Button btnServerTest;
+        private System.Windows.Forms.Button btnServerDbTest;
     }
 }

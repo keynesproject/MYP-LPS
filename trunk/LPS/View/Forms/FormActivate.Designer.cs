@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormActivate));
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
+            this.lblProduct = new System.Windows.Forms.Label();
             this.tlpButton = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnActivate = new System.Windows.Forms.Button();
@@ -69,22 +70,36 @@
             // 
             this.tlpBase.ColumnCount = 1;
             this.tlpBase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBase.Controls.Add(this.tlpButton, 0, 4);
+            this.tlpBase.Controls.Add(this.lblProduct, 0, 1);
+            this.tlpBase.Controls.Add(this.tlpButton, 0, 5);
             this.tlpBase.Controls.Add(this.pbLogoUniCalsonic, 0, 0);
-            this.tlpBase.Controls.Add(this.lblSplit1, 0, 1);
-            this.tlpBase.Controls.Add(this.lblSplit2, 0, 3);
-            this.tlpBase.Controls.Add(this.tlpInfo, 0, 2);
+            this.tlpBase.Controls.Add(this.lblSplit1, 0, 2);
+            this.tlpBase.Controls.Add(this.lblSplit2, 0, 4);
+            this.tlpBase.Controls.Add(this.tlpInfo, 0, 3);
             this.tlpBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpBase.Location = new System.Drawing.Point(0, 0);
             this.tlpBase.Name = "tlpBase";
-            this.tlpBase.RowCount = 5;
+            this.tlpBase.RowCount = 6;
+            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 3F));
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 3F));
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tlpBase.Size = new System.Drawing.Size(398, 437);
+            this.tlpBase.Size = new System.Drawing.Size(398, 451);
             this.tlpBase.TabIndex = 1;
+            // 
+            // lblProduct
+            // 
+            this.lblProduct.AutoSize = true;
+            this.lblProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblProduct.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProduct.Location = new System.Drawing.Point(3, 132);
+            this.lblProduct.Name = "lblProduct";
+            this.lblProduct.Size = new System.Drawing.Size(392, 24);
+            this.lblProduct.TabIndex = 12;
+            this.lblProduct.Text = "友永標籤作業平台 - 軟體啟用驗證";
+            this.lblProduct.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tlpButton
             // 
@@ -96,11 +111,11 @@
             this.tlpButton.Controls.Add(this.btnCancel, 2, 0);
             this.tlpButton.Controls.Add(this.btnActivate, 1, 0);
             this.tlpButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButton.Location = new System.Drawing.Point(3, 370);
+            this.tlpButton.Location = new System.Drawing.Point(3, 394);
             this.tlpButton.Name = "tlpButton";
             this.tlpButton.RowCount = 1;
             this.tlpButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpButton.Size = new System.Drawing.Size(392, 64);
+            this.tlpButton.Size = new System.Drawing.Size(392, 54);
             this.tlpButton.TabIndex = 11;
             // 
             // btnCancel
@@ -111,7 +126,7 @@
             this.btnCancel.Location = new System.Drawing.Point(276, 4);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(112, 56);
+            this.btnCancel.Size = new System.Drawing.Size(112, 46);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "離 開";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -126,7 +141,7 @@
             this.btnActivate.Location = new System.Drawing.Point(156, 4);
             this.btnActivate.Margin = new System.Windows.Forms.Padding(4);
             this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(112, 56);
+            this.btnActivate.Size = new System.Drawing.Size(112, 46);
             this.btnActivate.TabIndex = 0;
             this.btnActivate.Text = "啟 用";
             this.btnActivate.UseVisualStyleBackColor = true;
@@ -149,7 +164,7 @@
             this.lblSplit1.AutoSize = true;
             this.lblSplit1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblSplit1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSplit1.Location = new System.Drawing.Point(3, 132);
+            this.lblSplit1.Location = new System.Drawing.Point(3, 156);
             this.lblSplit1.Name = "lblSplit1";
             this.lblSplit1.Size = new System.Drawing.Size(392, 3);
             this.lblSplit1.TabIndex = 2;
@@ -159,7 +174,7 @@
             this.lblSplit2.AutoSize = true;
             this.lblSplit2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblSplit2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSplit2.Location = new System.Drawing.Point(3, 364);
+            this.lblSplit2.Location = new System.Drawing.Point(3, 388);
             this.lblSplit2.Name = "lblSplit2";
             this.lblSplit2.Size = new System.Drawing.Size(392, 3);
             this.lblSplit2.TabIndex = 3;
@@ -179,7 +194,7 @@
             this.tlpInfo.Controls.Add(this.pnlUnderLineInfo, 0, 2);
             this.tlpInfo.Controls.Add(this.tbVerificationCode, 0, 7);
             this.tlpInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpInfo.Location = new System.Drawing.Point(3, 138);
+            this.tlpInfo.Location = new System.Drawing.Point(3, 162);
             this.tlpInfo.Name = "tlpInfo";
             this.tlpInfo.RowCount = 8;
             this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -470,7 +485,7 @@
             // FormActivate
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(398, 437);
+            this.ClientSize = new System.Drawing.Size(398, 451);
             this.Controls.Add(this.tlpBase);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial", 9F);
@@ -527,5 +542,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnActivate;
         private System.Windows.Forms.LinkLabel llSupportMyp;
+        private System.Windows.Forms.Label lblProduct;
     }
 }

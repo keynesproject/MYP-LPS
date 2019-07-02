@@ -60,7 +60,7 @@ namespace LPS.Model.DataAccessObject
                 else
                 {
                     //檢查必要資料表是否存在;//
-                    Msg = CheckDatabase();
+                    Msg = CheckDatabase(m_SQL);
                 }
             }
             catch (Exception ex)
@@ -89,6 +89,15 @@ namespace LPS.Model.DataAccessObject
             DatabaseConnectedChange?.Invoke(false);
         }
 
+        private DaoDbCommon CreateDbCom(string DbPath)
+        {
+            string DbPW = "BIS";
+            string strConnection = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source={0}; User ID=Admin;Jet OLEDB:Database Password={1};",
+                                                 DbPath, DbPW);
+
+            return new DaoDbCommon(strConnection, new OleDbConnection());
+        }
+
         /// <summary>
         /// 連接Access資料庫
         /// </summary>
@@ -103,12 +112,7 @@ namespace LPS.Model.DataAccessObject
                 return Err;
             }
 
-            string ServerPath = DaoConfigFile.Instance.FileDatabase;
-            string DbPW = "BIS";
-            string strConnection = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0; Data Source={0}; Jet OLEDB:Database Password={1};",
-                                                 ServerPath, DbPW);
-
-            m_SQL = new DaoDbCommon(strConnection, new OleDbConnection());
+            m_SQL = CreateDbCom(DaoConfigFile.Instance.FileDatabase);
 
             Err = m_SQL.Connect();
 
@@ -139,18 +143,34 @@ namespace LPS.Model.DataAccessObject
 
             return Dt;
         }
-        
+
+        /// <summary>
+        /// 照SQL語法取得Table資料
+        /// </summary>
+        /// <param name="Schema"></param>
+        /// <returns></returns>
+        private DataTable GetDataTable(DaoDbCommon DbCom, string Schema, params object[] Values)
+        {
+            DataTable Dt;
+            DaoErrMsg Err = DbCom.GetDataTable(Schema, out Dt, Values);
+
+            if (Err.isError)
+                return null;
+
+            return Dt;
+        }
+
         /// <summary>
         /// 檢查指定的資料表裡有沒有指定的欄位
         /// </summary>
         /// <param name="TableName"></param>
         /// <param name="FieldName"></param>
         /// <returns></returns>
-        internal bool CheckFileld(string TableName, string FieldName)
+        private bool CheckFileld(DaoDbCommon DbCom, string TableName, string FieldName)
         {
             string strSchema = "select * from " + TableName;
 
-            DataTable Dt = GetDataTable(strSchema);
+            DataTable Dt = GetDataTable(DbCom, strSchema);
 
             if (Dt == null)
                 return false;
@@ -159,33 +179,71 @@ namespace LPS.Model.DataAccessObject
         }              
 
         /// <summary>
+        /// 檢查指定的Table是否存在
+        /// </summary>
+        /// <param name="TableName"></param>
+        /// <returns></returns>
+        private bool CheckTable(DaoDbCommon DbCom, string TableName)
+        {
+            string strSchema = string.Format("select count(*) from MSysObjects where Name='{0}'", TableName);
+            
+            string TableCount;
+            DaoErrMsg err = DbCom.ExecuteScalar(strSchema, out TableCount);
+
+            if (TableCount.ToInt() <= 0)
+                return false;
+
+            return true;
+        }
+
+        private DaoErrMsg CreateUpdateTimeTable(DaoDbCommon DbCom)
+        {
+            DaoErrMsg err = new DaoErrMsg();
+
+            if (CheckTable(DbCom, "更新時間") == false)
+            {
+                string strSchema = @"CREATE TABLE `更新時間` (
+	                                `ID` Long NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	                                `UpdateTime` DateTime NOT NULL,
+	                                `OpCode` VarChar(16) NOT NULL,
+	                                `User` VarChar(32) NOT NULL)";
+
+                err = DbCom.ExecuteNonQuery(strSchema.ToString());
+                if (err.isError == true)
+                    return err;
+            }
+
+            return err;
+        }
+
+        /// <summary>
         /// 檢查資料庫是否有必要的資料表，沒有的話就建立
         /// </summary>
-        private DaoErrMsg CheckDatabase()
+        private DaoErrMsg CheckDatabase(DaoDbCommon DbCom)
         {
             StringBuilder sbSchema = new StringBuilder();
 
             DaoErrMsg err = new DaoErrMsg();
 
-            if (CheckFileld("機台資訊", "預設機台") == false)
+            if (CheckFileld(DbCom, "機台資訊", "預設機台") == false)
             {
                 sbSchema.Append(@"ALTER TABLE 機台資訊 ADD COLUMN 預設機台 VARCHAR(1) DEFAULT 'N'; ");
-                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                err = DbCom.ExecuteNonQuery(sbSchema.ToString());
                 if (err.isError == true)
                     return err;
 
                 sbSchema.Init();
                 sbSchema.Append(@"UPDATE 機台資訊 SET 預設機台='N';");
-                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                err = DbCom.ExecuteNonQuery(sbSchema.ToString());
                 if (err.isError == true)
                     return err;
             }
 
-            if (CheckFileld("備份路徑", "Type") == false)
+            if (CheckFileld(DbCom, "備份路徑", "Type") == false)
             {
                 sbSchema.Init();
                 sbSchema.Append("DROP TABLE 備份路徑;");
-                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                err = DbCom.ExecuteNonQuery(sbSchema.ToString());
                 if (err.isError == true)
                     return err;
                 
@@ -193,7 +251,7 @@ namespace LPS.Model.DataAccessObject
                 sbSchema.Append(@"CREATE TABLE `備份路徑` (
                                         `Type` VarChar(15) DEFAULT '',
 	                                    `ADDR` VarChar(50) WITH COMP );");
-                err = m_SQL.ExecuteNonQuery(sbSchema.ToString());
+                err = DbCom.ExecuteNonQuery(sbSchema.ToString());
                 if (err.isError == true)
                     return err;
 
@@ -209,6 +267,11 @@ namespace LPS.Model.DataAccessObject
                 if (err.isError == true)
                     return err;
             }
+
+            //建立更新時間Table;//
+            //err = CreateUpdateTimeTable(DbCom);
+            //if (err.isError == true)
+            //    return err;
 
             return err;
         }
@@ -684,6 +747,151 @@ namespace LPS.Model.DataAccessObject
                 if (err.isError == true)
                     return;
             }
+        }
+
+        /// <summary>
+        /// 檢查Server端的Database是否可以連線
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        internal DaoErrMsg CheckServerDb(string Path)
+        {
+            DaoDbCommon ServerSQL = CreateDbCom(Path);
+
+            DaoErrMsg Err = ServerSQL.Connect();
+
+            if (Err.isError)
+            {
+                System.Diagnostics.Debug.WriteLine(Err.ErrorMsg);                
+                ServerSQL = null;
+                return Err;
+            }
+
+            //檢查欄位資訊並更新;//
+            CheckDatabase(ServerSQL);
+
+            ServerSQL.Close();
+
+            ServerSQL = null;
+
+            return Err;
+        }
+
+        /// <summary>
+        /// 抓取Server端資料庫，更新本地端資料庫，主要更新[作業員]及[車型資料]這兩個表
+        /// </summary>
+        /// <param name="ServerDbPath"></param>
+        /// <returns></returns>
+        internal DaoErrMsg UpdateLocalDatabase(string ServerDbPath)
+        {
+            DaoErrMsg Err = new DaoErrMsg();
+                        
+            DaoDbCommon ServerSQL = CreateDbCom(ServerDbPath);
+
+            Err = ServerSQL.Connect();
+
+            if (Err.isError)
+            {
+                System.Diagnostics.Debug.WriteLine(Err.ErrorMsg);
+                Logger.Info(Err.ErrorMsg);
+                ServerSQL = null;
+                return Err;
+            }
+
+            //將Server DB的[作業員]及[車型資料]更新至本地端;//
+            string strSchema;
+
+            //讀取Server車型資料;//
+            DataTable dtOp = GetDataTable(ServerSQL, "SELECT * FROM 作業員");
+
+            //更新至本地資料庫作業員表格;//
+            m_SQL.ExecuteNonQuery("DELETE * FROM 作業員");
+            foreach(DataRow row in dtOp.Rows)
+            {
+                strSchema = string.Format("INSERT INTO 作業員(代碼, 作業員姓名, 密碼, 權限) VALUES( '{0}', '{1}', '{2}', '{3}')",
+                    row[0].ToString(),
+                    row[1].ToString(),
+                    row[2].ToString(),
+                    row[3].ToString());
+
+                m_SQL.ExecuteNonQuery(strSchema);
+            }
+
+            //讀取Server車型資料;//
+            DataTable dtCar = GetDataTable(ServerSQL, "SELECT * FROM 車型資料");
+
+            //更新至本地資料庫車型資料表格;//
+            m_SQL.ExecuteNonQuery("DELETE * FROM 車型資料");
+            foreach (DataRow row in dtCar.Rows)
+            {
+                strSchema = string.Format("INSERT INTO 車型資料(件號, 車型, 簡碼) VALUES( '{0}', '{1}', '{2}')",
+                    row[0].ToString(),
+                    row[1].ToString(),
+                    row[2].ToString());
+
+                m_SQL.ExecuteNonQuery(strSchema);
+            }
+
+            return new DaoErrMsg();
+        }
+
+        /// <summary>
+        /// 上傳本地資料庫資料至Server端資料庫，主要上傳[作業員]及[車型資料]這兩個表
+        /// </summary>
+        /// <param name="ServerDbPath"></param>
+        /// <returns></returns>
+        internal DaoErrMsg UploadLocalDatabase(string ServerDbPath)
+        {
+            DaoErrMsg Err = new DaoErrMsg();
+
+            ServerDbPath = @"C:\Users\Keynes\Desktop\Db.mdb";
+            DaoDbCommon ServerSQL = CreateDbCom(ServerDbPath);
+
+            Err = ServerSQL.Connect();
+
+            if (Err.isError)
+            {
+                System.Diagnostics.Debug.WriteLine(Err.ErrorMsg);
+                Logger.Info(Err.ErrorMsg);
+                ServerSQL = null;
+                return Err;
+            }
+
+            //將本地資料庫的[作業員]及[車型資料]更新至Server端;//
+            string strSchema;
+
+            //讀取本地端車型資料;//
+            DataTable dtOp = GetDataTable(m_SQL, "SELECT * FROM 作業員");
+
+            //更新至Server資料庫作業員表格;//
+            ServerSQL.ExecuteNonQuery("DELETE * FROM 作業員");
+            foreach (DataRow row in dtOp.Rows)
+            {
+                strSchema = string.Format("INSERT INTO 作業員(代碼, 作業員姓名, 密碼, 權限) VALUES( '{0}', '{1}', '{2}', '{3}')",
+                    row[0].ToString(),
+                    row[1].ToString(),
+                    row[2].ToString(),
+                    row[3].ToString());
+
+                ServerSQL.ExecuteNonQuery(strSchema);
+            }
+
+            //讀取本地車型資料;//
+            DataTable dtCar = GetDataTable(m_SQL, "SELECT * FROM 車型資料");
+
+            //更新至Server資料庫車型資料表格;//
+            ServerSQL.ExecuteNonQuery("DELETE * FROM 車型資料");
+            foreach (DataRow row in dtCar.Rows)
+            {
+                strSchema = string.Format("INSERT INTO 車型資料(件號, 車型, 簡碼) VALUES( '{0}', '{1}', '{2}')",
+                    row[0].ToString(),
+                    row[1].ToString(),
+                    row[2].ToString());
+
+                ServerSQL.ExecuteNonQuery(strSchema);
+            }
+
+            return new DaoErrMsg();
         }
     }
 }

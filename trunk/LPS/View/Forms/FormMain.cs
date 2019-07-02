@@ -1,6 +1,7 @@
 ﻿using LPS.Model.DataAccessObject;
 using LPS.Model.Device;
 using LPS.Model.Log;
+using LPS.View.Component;
 using LPS.View.Pages;
 using System;
 using System.Collections.Generic;
@@ -121,7 +122,7 @@ namespace LPS.View.Forms
         {
             if (tabMain.SelectedTab == tabMain.TabPages["tabLogout"])
             {
-                DialogResult Ret = MessageBox.Show("是否真的要登出標籤作業平台?", "登出", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult Ret = MessageBoxEx.Show(this, "是否真的要登出標籤作業平台?", "登出", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (Ret == DialogResult.Yes)
                 {
                     Logger.Info(string.Format("User : {0} logout.", m_User.代碼));

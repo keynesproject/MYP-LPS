@@ -22,6 +22,7 @@ namespace LPS.View.Pages
 
         internal void Setup()
         {
+#if !DEBUG
             DataTable dt = DaoSQL.Instance.GetBackupInfo();
 
             for(int i=0; i<dt.Rows.Count; i++)
@@ -53,6 +54,7 @@ namespace LPS.View.Pages
                         break;
                 }
             }
+#endif
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -73,12 +75,36 @@ namespace LPS.View.Pages
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
+            DialogResult Ret = MessageBoxEx.Show(this, "確定要更新本地端[車型代號]及[操作員代號]資訊??", "訊息", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Ret != DialogResult.Yes)
+                return;
 
+            DaoErrMsg Err = DaoSQL.Instance.UpdateLocalDatabase(tbPathDb.Text);
+            if(Err.isError)
+            {
+                MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBoxEx.Show(this, "[車型代號]及[操作員代號]已更新", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
         }
 
         private void BtnBackup_Click(object sender, EventArgs e)
         {
+            DialogResult Ret = MessageBoxEx.Show(this, "確定要上傳本地端[車型代號]及[操作員代號]至伺服器??", "訊息", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Ret != DialogResult.Yes)
+                return;
 
+            DaoErrMsg Err = DaoSQL.Instance.UploadLocalDatabase(tbPathDb.Text);
+            if (Err.isError)
+            {
+                MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBoxEx.Show(this, "[車型代號]及[操作員代號]資訊已上傳完畢", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
@@ -122,29 +148,69 @@ namespace LPS.View.Pages
         private void BtnServerTest_Click(object sender, EventArgs e)
         {
             //檢查必要欄位;//
-            if (this.CheckControl(tbPathServer, lblTitleServer) == false
-                || this.CheckControl(tbAccount, lblAccount) == false
-                || this.CheckControl(tbPW, lblPW) == false)
-            {
+            if ( this.CheckControl(tbPathServer, lblTitleServer) == false)
                 return;
-            }
 
             this.Cursor = Cursors.AppStarting;
 
-            NetTranslate.KillLink(tbPathServer.Text);
-
-            if (NetTranslate.connectState(tbPathServer.Text, tbAccount.Text, tbPW.Text) == false)
+            if( MyNetworkPlacesTest(tbPathServer.Text, true) == false)
             {
                 this.Cursor = Cursors.Default;
                 return;
             }
 
-            MessageBox.Show("伺服器連接成功!", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            NetTranslate.KillLink(tbPathServer.Text);
+            MessageBoxEx.Show(this, "伺服器連接成功!", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.Cursor = Cursors.Default;
         }
 
+        private void BtnServerDbTest_Click(object sender, EventArgs e)
+        {
+            //檢查必要欄位;//
+            if (this.CheckControl(tbPathDb, lblTitleDb) == false)
+                return;
+            
+            this.Cursor = Cursors.AppStarting;
+
+            if (MyNetworkPlacesTest(tbPathServer.Text, true) == false)
+            {
+                this.Cursor = Cursors.Default;
+                return;
+            }
+
+            DaoErrMsg Err = DaoSQL.Instance.CheckServerDb(tbPathDb.Text);
+            if (Err.isError== true)
+            {
+                this.Cursor = Cursors.Default;
+                MessageBoxEx.Show(this, string.Format("資料庫連接失敗!\r\n錯誤資訊:{0}", Err.ErrorMsg), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            MessageBoxEx.Show(this, "資料庫連接成功!", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private bool MyNetworkPlacesTest(string Path, bool isClose)
+        {
+            //檢查必要欄位;//
+            if (   this.CheckControl(tbAccount, lblAccount) == false
+                || this.CheckControl(tbPW, lblPW) == false)
+            {
+                return false;
+            }
+
+            NetTranslate.KillLink(tbPathServer.Text);
+
+            if (NetTranslate.connectState(Path, tbAccount.Text, tbPW.Text) == false)
+            {
+                return false;
+            }
+
+            if (isClose)
+                NetTranslate.KillLink(tbPathServer.Text);
+
+            return true;
+        }
     }
 }
