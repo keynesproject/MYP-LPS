@@ -52,8 +52,7 @@ namespace LPS
                 DaoSQL.Instance.OpenDatabase();
 
                 while (true)
-                {                    
-
+                {
                     //驗證本機序號;//
                     if (FormSnVerify.VerifyMachineSN() == false)
                     {

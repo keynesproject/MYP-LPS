@@ -48,8 +48,8 @@
             this.lblConfirmPW = new System.Windows.Forms.Label();
             this.lblAdmin = new System.Windows.Forms.Label();
             this.tbConfirmPW = new System.Windows.Forms.TextBox();
-            this.lblSplit = new System.Windows.Forms.Label();
             this.cbAdmin = new System.Windows.Forms.ComboBox();
+            this.lblSplit = new System.Windows.Forms.Label();
             this.tlpBase.SuspendLayout();
             this.tlpButton.SuspendLayout();
             this.tlpOption.SuspendLayout();
@@ -86,11 +86,11 @@
             this.tlpButton.Controls.Add(this.btnCancel, 2, 0);
             this.tlpButton.Controls.Add(this.btnAdd, 1, 0);
             this.tlpButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpButton.Location = new System.Drawing.Point(3, 176);
+            this.tlpButton.Location = new System.Drawing.Point(3, 177);
             this.tlpButton.Name = "tlpButton";
             this.tlpButton.RowCount = 1;
             this.tlpButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpButton.Size = new System.Drawing.Size(326, 60);
+            this.tlpButton.Size = new System.Drawing.Size(326, 59);
             this.tlpButton.TabIndex = 12;
             // 
             // btnCancel
@@ -102,9 +102,9 @@
             this.btnCancel.Location = new System.Drawing.Point(231, 4);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(91, 52);
+            this.btnCancel.Size = new System.Drawing.Size(91, 51);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "取  消";
+            this.btnCancel.Text = "離  開";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCancel_MouseUp);
             // 
@@ -117,7 +117,7 @@
             this.btnAdd.Location = new System.Drawing.Point(134, 4);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(89, 52);
+            this.btnAdd.Size = new System.Drawing.Size(89, 51);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "新  增";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -155,7 +155,7 @@
             this.tlpOption.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpOption.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpOption.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpOption.Size = new System.Drawing.Size(326, 154);
+            this.tlpOption.Size = new System.Drawing.Size(326, 155);
             this.tlpOption.TabIndex = 1;
             // 
             // lblDotAdmin
@@ -167,7 +167,7 @@
             this.lblDotAdmin.Location = new System.Drawing.Point(3, 127);
             this.lblDotAdmin.Margin = new System.Windows.Forms.Padding(3);
             this.lblDotAdmin.Name = "lblDotAdmin";
-            this.lblDotAdmin.Size = new System.Drawing.Size(14, 24);
+            this.lblDotAdmin.Size = new System.Drawing.Size(14, 25);
             this.lblDotAdmin.TabIndex = 166;
             this.lblDotAdmin.Text = "˙";
             this.lblDotAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -325,7 +325,7 @@
             this.lblAdmin.Location = new System.Drawing.Point(23, 127);
             this.lblAdmin.Margin = new System.Windows.Forms.Padding(3);
             this.lblAdmin.Name = "lblAdmin";
-            this.lblAdmin.Size = new System.Drawing.Size(88, 24);
+            this.lblAdmin.Size = new System.Drawing.Size(88, 25);
             this.lblAdmin.TabIndex = 168;
             this.lblAdmin.Text = "管理者權限";
             this.lblAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -342,16 +342,6 @@
             this.tbConfirmPW.TabIndex = 3;
             this.tbConfirmPW.UseSystemPasswordChar = true;
             // 
-            // lblSplit
-            // 
-            this.lblSplit.AutoSize = true;
-            this.lblSplit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSplit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSplit.Location = new System.Drawing.Point(3, 165);
-            this.lblSplit.Name = "lblSplit";
-            this.lblSplit.Size = new System.Drawing.Size(326, 3);
-            this.lblSplit.TabIndex = 4;
-            // 
             // cbAdmin
             // 
             this.cbAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -365,6 +355,16 @@
             this.cbAdmin.Name = "cbAdmin";
             this.cbAdmin.Size = new System.Drawing.Size(186, 25);
             this.cbAdmin.TabIndex = 4;
+            // 
+            // lblSplit
+            // 
+            this.lblSplit.AutoSize = true;
+            this.lblSplit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSplit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSplit.Location = new System.Drawing.Point(3, 166);
+            this.lblSplit.Name = "lblSplit";
+            this.lblSplit.Size = new System.Drawing.Size(326, 3);
+            this.lblSplit.TabIndex = 4;
             // 
             // FormSettingUser
             // 

@@ -41,9 +41,7 @@ namespace LPS.View.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabTest = new System.Windows.Forms.TabPage();
-            this.ptMain = new LPS.View.Pages.PageTest();
             this.tabPrinter = new System.Windows.Forms.TabPage();
-            this.ptPrint = new LPS.View.Pages.PageTest();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.tlpSettingBase = new System.Windows.Forms.TableLayoutPanel();
             this.tlpSettingBtn = new System.Windows.Forms.TableLayoutPanel();
@@ -54,11 +52,13 @@ namespace LPS.View.Forms
             this.rbtnMachine = new System.Windows.Forms.RadioButton();
             this.pnlSettingSplit = new System.Windows.Forms.Panel();
             this.tabHelp = new System.Windows.Forms.TabPage();
-            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabLogout = new System.Windows.Forms.TabPage();
             this.ssButtom = new System.Windows.Forms.StatusStrip();
             this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
+            this.ptMain = new LPS.View.Pages.PageTest();
+            this.ptPrint = new LPS.View.Pages.PageTest();
+            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabMain.SuspendLayout();
             this.tabTest.SuspendLayout();
             this.tabPrinter.SuspendLayout();
@@ -104,17 +104,6 @@ namespace LPS.View.Forms
             this.tabTest.TabIndex = 0;
             this.tabTest.Text = "作業平台";
             // 
-            // ptMain
-            // 
-            this.ptMain.AutoSize = true;
-            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
-            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptMain.Location = new System.Drawing.Point(0, 0);
-            this.ptMain.Name = "ptMain";
-            this.ptMain.Size = new System.Drawing.Size(968, 480);
-            this.ptMain.TabIndex = 0;
-            // 
             // tabPrinter
             // 
             this.tabPrinter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -126,16 +115,6 @@ namespace LPS.View.Forms
             this.tabPrinter.TabIndex = 1;
             this.tabPrinter.Text = "補印標籤";
             this.tabPrinter.UseVisualStyleBackColor = true;
-            // 
-            // ptPrint
-            // 
-            this.ptPrint.AutoSize = true;
-            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptPrint.Location = new System.Drawing.Point(0, 0);
-            this.ptPrint.Name = "ptPrint";
-            this.ptPrint.Size = new System.Drawing.Size(968, 480);
-            this.ptPrint.TabIndex = 0;
             // 
             // tabSetting
             // 
@@ -298,23 +277,13 @@ namespace LPS.View.Forms
             this.tabHelp.Text = "幫助";
             this.tabHelp.UseVisualStyleBackColor = true;
             // 
-            // pageHelp1
-            // 
-            this.pageHelp1.AutoSize = true;
-            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
-            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
-            this.pageHelp1.Name = "pageHelp1";
-            this.pageHelp1.Size = new System.Drawing.Size(968, 480);
-            this.pageHelp1.TabIndex = 0;
-            // 
             // tabLogout
             // 
             this.tabLogout.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tabLogout.Location = new System.Drawing.Point(4, 44);
             this.tabLogout.Margin = new System.Windows.Forms.Padding(0);
             this.tabLogout.Name = "tabLogout";
-            this.tabLogout.Size = new System.Drawing.Size(720, 332);
+            this.tabLogout.Size = new System.Drawing.Size(970, 482);
             this.tabLogout.TabIndex = 4;
             this.tabLogout.Text = "登出";
             this.tabLogout.UseVisualStyleBackColor = true;
@@ -336,6 +305,7 @@ namespace LPS.View.Forms
             this.tsStatus.Name = "tsStatus";
             this.tsStatus.Size = new System.Drawing.Size(185, 19);
             this.tsStatus.Text = "測試設備連接狀態 : 未連線";
+            this.tsStatus.Click += new System.EventHandler(this.TsStatus_Click);
             // 
             // tlpBase
             // 
@@ -348,9 +318,40 @@ namespace LPS.View.Forms
             this.tlpBase.Name = "tlpBase";
             this.tlpBase.RowCount = 1;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 388F));
+            this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 538F));
             this.tlpBase.Size = new System.Drawing.Size(984, 538);
             this.tlpBase.TabIndex = 2;
+            // 
+            // ptMain
+            // 
+            this.ptMain.AutoSize = true;
+            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
+            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptMain.Location = new System.Drawing.Point(0, 0);
+            this.ptMain.Name = "ptMain";
+            this.ptMain.Size = new System.Drawing.Size(968, 480);
+            this.ptMain.TabIndex = 0;
+            // 
+            // ptPrint
+            // 
+            this.ptPrint.AutoSize = true;
+            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptPrint.Location = new System.Drawing.Point(0, 0);
+            this.ptPrint.Name = "ptPrint";
+            this.ptPrint.Size = new System.Drawing.Size(968, 480);
+            this.ptPrint.TabIndex = 0;
+            // 
+            // pageHelp1
+            // 
+            this.pageHelp1.AutoSize = true;
+            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
+            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
+            this.pageHelp1.Name = "pageHelp1";
+            this.pageHelp1.Size = new System.Drawing.Size(968, 480);
+            this.pageHelp1.TabIndex = 0;
             // 
             // FormMain
             // 
@@ -365,6 +366,7 @@ namespace LPS.View.Forms
             this.MinimumSize = new System.Drawing.Size(750, 450);
             this.Name = "FormMain";
             this.Text = "標籤作業平台";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabMain.ResumeLayout(false);
             this.tabTest.ResumeLayout(false);

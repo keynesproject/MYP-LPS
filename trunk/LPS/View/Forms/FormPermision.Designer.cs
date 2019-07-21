@@ -188,7 +188,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 39);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "取消";
+            this.btnCancel.Text = "離開";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCancel_MouseUp);
             // 

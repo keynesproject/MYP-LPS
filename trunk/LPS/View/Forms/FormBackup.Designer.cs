@@ -34,7 +34,7 @@
             // FormBackup
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(398, 353);
+            this.ClientSize = new System.Drawing.Size(464, 125);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial", 9F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

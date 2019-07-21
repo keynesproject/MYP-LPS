@@ -88,6 +88,7 @@
     <Compile Include="Model\Device\CH340.cs" />
     <Compile Include="Model\Device\DevCtrl.cs" />
     <Compile Include="Model\Device\TscTtp247.cs" />
+    <Compile Include="Model\Device\Uart.cs" />
     <Compile Include="Model\Device\UsbDetect.cs" />
     <Compile Include="Model\Extension\AssemblyInfoExtension.cs" />
     <Compile Include="Model\Extension\DataTableExtension.cs" />
@@ -108,6 +109,7 @@
       <DependentUpon>PageDataGridView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\EventHandlers\KeyEventHandlers.cs" />
+    <Compile Include="View\Extension\ComBoxExtension.cs" />
     <Compile Include="View\Forms\FormActivate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +145,12 @@
     </Compile>
     <Compile Include="View\Forms\FormSearchPN.Designer.cs">
       <DependentUpon>FormSearchPN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\FormSerialPort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\FormSerialPort.Designer.cs">
+      <DependentUpon>FormSerialPort.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Forms\FormSettingCars.cs">
       <SubType>Form</SubType>
@@ -236,6 +244,9 @@
     <EmbeddedResource Include="View\Forms\FormSearchPN.resx">
       <DependentUpon>FormSearchPN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\FormSerialPort.resx">
+      <DependentUpon>FormSerialPort.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\FormSettingCars.resx">
       <DependentUpon>FormSettingCars.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +329,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MYP.ico" />
+    <None Include="Resources\IconSetting.png" />
     <None Include="Resources\ModifyIconCross_.png" />
     <None Include="Resources\ModifyIconCross.png" />
     <None Include="Resources\Cross.png" />

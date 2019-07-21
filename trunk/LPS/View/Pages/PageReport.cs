@@ -253,6 +253,8 @@ namespace LPS.View.Pages
             Calendar.Visible = true;
 
             Calendar.Focus();
+
+            Calendar.Refresh();
         }
 
         private void TbSearchDateFrom_Click(object sender, EventArgs e)

@@ -40,10 +40,10 @@
             this.lblPN = new System.Windows.Forms.Label();
             this.lblCar = new System.Windows.Forms.Label();
             this.lblCode = new System.Windows.Forms.Label();
-            this.lblSplit = new System.Windows.Forms.Label();
             this.tbPN = new System.Windows.Forms.TextBox();
             this.tbCar = new System.Windows.Forms.TextBox();
             this.tbCode = new System.Windows.Forms.TextBox();
+            this.lblSplit = new System.Windows.Forms.Label();
             this.tlpBase.SuspendLayout();
             this.tlpButton.SuspendLayout();
             this.tlpOption.SuspendLayout();
@@ -98,7 +98,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 48);
             this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "取  消";
+            this.btnCancel.Text = "離  開";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BtnCancel_MouseUp);
             // 
@@ -228,16 +228,6 @@
             this.lblCode.Text = "簡    碼";
             this.lblCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblSplit
-            // 
-            this.lblSplit.AutoSize = true;
-            this.lblSplit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSplit.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSplit.Location = new System.Drawing.Point(3, 104);
-            this.lblSplit.Name = "lblSplit";
-            this.lblSplit.Size = new System.Drawing.Size(326, 3);
-            this.lblSplit.TabIndex = 4;
-            // 
             // tbPN
             // 
             this.tbPN.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -267,6 +257,16 @@
             this.tbCode.Name = "tbCode";
             this.tbCode.Size = new System.Drawing.Size(218, 25);
             this.tbCode.TabIndex = 2;
+            // 
+            // lblSplit
+            // 
+            this.lblSplit.AutoSize = true;
+            this.lblSplit.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSplit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSplit.Location = new System.Drawing.Point(3, 104);
+            this.lblSplit.Name = "lblSplit";
+            this.lblSplit.Size = new System.Drawing.Size(326, 3);
+            this.lblSplit.TabIndex = 4;
             // 
             // FormSettingCars
             // 

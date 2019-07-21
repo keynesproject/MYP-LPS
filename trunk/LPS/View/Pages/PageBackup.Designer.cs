@@ -241,7 +241,7 @@
             this.tbPathServer.Name = "tbPathServer";
             this.tbPathServer.Size = new System.Drawing.Size(599, 24);
             this.tbPathServer.TabIndex = 0;
-            this.tbPathServer.Text = "\\\\192.168.0.130\\TestScan";
+            this.tbPathServer.Text = "\\\\192.168.0.190\\TestScan";
             // 
             // tlpLogin
             // 
@@ -276,7 +276,6 @@
             this.tbPW.PasswordChar = '*';
             this.tbPW.Size = new System.Drawing.Size(525, 24);
             this.tbPW.TabIndex = 1;
-            this.tbPW.Text = "Qwpo1111";
             this.tbPW.UseSystemPasswordChar = true;
             // 
             // lblPW
@@ -302,7 +301,6 @@
             this.tbAccount.Name = "tbAccount";
             this.tbAccount.Size = new System.Drawing.Size(525, 24);
             this.tbAccount.TabIndex = 0;
-            this.tbAccount.Text = "QUANTA\\10801049";
             // 
             // lblAccount
             // 
@@ -392,7 +390,7 @@
             this.tbPathDb.Name = "tbPathDb";
             this.tbPathDb.Size = new System.Drawing.Size(599, 24);
             this.tbPathDb.TabIndex = 0;
-            this.tbPathDb.Text = "\\\\192.168.0.130\\TestScan\\DB\\Db.mdb";
+            this.tbPathDb.Text = "\\\\192.168.0.190\\TestScan\\DB\\Db.mdb";
             // 
             // tbPathReport
             // 
@@ -405,7 +403,7 @@
             this.tbPathReport.Name = "tbPathReport";
             this.tbPathReport.Size = new System.Drawing.Size(599, 24);
             this.tbPathReport.TabIndex = 0;
-            this.tbPathReport.Text = "\\\\192.168.0.130\\TestScan\\BackupDataNew";
+            this.tbPathReport.Text = "\\\\192.168.0.190\\TestScan\\BackupDataNew";
             // 
             // btnServerDbTest
             // 
@@ -433,8 +431,6 @@
             this.tlpOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tlpOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tlpOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpOption.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpOption.Controls.Add(this.btnSave, 1, 0);
             this.tlpOption.Controls.Add(this.btnUpdate, 3, 0);
             this.tlpOption.Controls.Add(this.btnBackup, 5, 0);
@@ -453,9 +449,9 @@
             this.btnSave.Font = new System.Drawing.Font("Arial", 11F);
             this.btnSave.Location = new System.Drawing.Point(13, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(58, 44);
+            this.btnSave.Size = new System.Drawing.Size(82, 44);
             this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "儲  存";
+            this.btnSave.Text = "儲存設定";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
@@ -464,11 +460,11 @@
             this.btnUpdate.AutoSize = true;
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdate.Font = new System.Drawing.Font("Arial", 11F);
-            this.btnUpdate.Location = new System.Drawing.Point(87, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(111, 3);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(58, 44);
+            this.btnUpdate.Size = new System.Drawing.Size(82, 44);
             this.btnUpdate.TabIndex = 1;
-            this.btnUpdate.Text = "更  新";
+            this.btnUpdate.Text = "更新資料";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
@@ -477,11 +473,11 @@
             this.btnBackup.AutoSize = true;
             this.btnBackup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBackup.Font = new System.Drawing.Font("Arial", 11F);
-            this.btnBackup.Location = new System.Drawing.Point(161, 3);
+            this.btnBackup.Location = new System.Drawing.Point(209, 3);
             this.btnBackup.Name = "btnBackup";
-            this.btnBackup.Size = new System.Drawing.Size(58, 44);
+            this.btnBackup.Size = new System.Drawing.Size(82, 44);
             this.btnBackup.TabIndex = 2;
-            this.btnBackup.Text = "備  份";
+            this.btnBackup.Text = "上傳資料";
             this.btnBackup.UseVisualStyleBackColor = true;
             this.btnBackup.Click += new System.EventHandler(this.BtnBackup_Click);
             // 

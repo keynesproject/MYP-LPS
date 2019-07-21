@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Windows.Forms;
 
@@ -53,6 +54,8 @@ namespace LPS.View.Forms
             ptPrint.Setup(Pages.PageTest.eTestType.eTT_PRINT, Machine, User);
             DevCtrl.Instance.CH340ConnectChange += this.TestDeviceConnectState;
             DevCtrl.Instance.TestResult += this.TestResult;
+            Uart.Instance.UartConnectChange += this.TestDeviceConnectState;
+            Uart.Instance.TestResult += this.TestResult;
 
             DaoSnControl.Instance.UpdateSnEvent += this.SnUpdate;
 
@@ -101,11 +104,23 @@ namespace LPS.View.Forms
         /// <param name="isConnect"></param>
         private void TestDeviceConnectState(bool isConnect)
         {
-            tsStatus.Text = string.Format( "測試設備連接狀態 : {0}", isConnect == true ? "已連線" : "未連線");
-            m_DevConnect = isConnect;
+            //UART的連線為優先，當UART沒連線時再判斷USB的連線狀態;//
+            if (Uart.Instance.IsConnect() == false)
+            {
+                tsStatus.Text = string.Format("測試設備連接狀態 : {0}", isConnect == true ? "已連線" : "未連線");
+                m_DevConnect = isConnect;
 
-            ptMain.DeviceConnectState(isConnect);
-            ptPrint.DeviceConnectState(isConnect);
+                ptMain.DeviceConnectState(isConnect);
+                ptPrint.DeviceConnectState(isConnect);
+            }
+            else
+            {
+                tsStatus.Text = "測試設備連接狀態 : 已連線";
+
+                m_DevConnect = true;
+                ptMain.DeviceConnectState(true);
+                ptPrint.DeviceConnectState(true);
+            }
         }
 
         private void TestResult(bool isSuccess)
@@ -232,6 +247,60 @@ namespace LPS.View.Forms
 
                 tlpSettingBase.Controls.Add(m_LastSettingPage, 2, 0);
                 m_LastSettingPage.Dock = DockStyle.Fill;
+            }
+        }
+
+        /// <summary>
+        /// 清空列印佇列資料
+        /// </summary>
+        private void CancelPrintJob()
+        {
+            ManagementObjectSearcher serrchPrintJobs;
+            ManagementObjectCollection printJobCollection;
+
+            try
+            {
+                string searchQuery = "SELECT * FROM Win32_PrintJob";
+                serrchPrintJobs = new ManagementObjectSearcher(searchQuery);
+                printJobCollection = serrchPrintJobs.Get();
+
+                string jobName = null;
+                char[] splitArr;
+                int printJobID;
+                foreach (ManagementObject printJob in printJobCollection)
+                {
+                    jobName = printJob.Properties["Name"].Value.ToString();
+
+                    splitArr = new char[1];
+                    splitArr[0] = Convert.ToChar(",");
+
+                    printJobID = Convert.ToInt32(jobName.Split(splitArr)[1]);
+
+                    printJob.Delete();
+                }
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CancelPrintJob();
+        }
+
+        private void TsStatus_Click(object sender, EventArgs e)
+        {
+            if ((   m_DevConnect == true 
+                  && Uart.Instance.IsConnect() == true ) 
+                  || m_DevConnect == false)
+            {
+                FormSerialPort formSerial = new FormSerialPort();
+                DialogResult ret = formSerial.ShowDialog();
+
+                formSerial.Close();
+                formSerial.Dispose();
             }
         }
     }

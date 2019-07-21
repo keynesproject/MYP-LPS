@@ -14,18 +14,17 @@ namespace LPS.Model.Device
     public class CH340
     {
         #region Singleton物件宣告，Thread safe，並在使用時才會建立實體
-        private static class CH340GpioCtrlHolder
+        private static class CH340Holder
         {
             internal static readonly CH340 Instance = new CH340();
 
-            static CH340GpioCtrlHolder() { }
+            static CH340Holder() { }
         }
 
         public static CH340 Instance
         {
-            get { return CH340GpioCtrlHolder.Instance; }
+            get { return CH340Holder.Instance; }
         }
-
 
         #endregion //Singleton物件宣告，Thread safe，並在使用時才會建立實體;//
         

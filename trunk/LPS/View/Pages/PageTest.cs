@@ -30,7 +30,7 @@ namespace LPS.View.Pages
         /// <summary>
         /// 紀錄測試設備是否連接
         /// </summary>
-        private bool m_isDeviceConnect = false;
+        private bool m_isUsbDeviceConnect = false;
 
         /// <summary>
         /// 紀錄是否輸入正確件號
@@ -99,9 +99,9 @@ namespace LPS.View.Pages
         /// <param name="isConnect"></param>
         internal void DeviceConnectState(bool isConnect)
         {
-            m_isDeviceConnect = isConnect;
+            m_isUsbDeviceConnect = isConnect;
 
-            if (m_isDeviceConnect == true && m_isInputPn == true)
+            if (m_isUsbDeviceConnect == true && m_isInputPn == true)
             {
                 //顯示測試中圖示;//
                 SetTestIcon(eTestIconState.eTEST_WAITING);
@@ -119,7 +119,7 @@ namespace LPS.View.Pages
         /// <param name="ByOp"></param>
         internal void TestResult(bool isSuccess, bool ByOp = false)
         {
-            if (m_isDeviceConnect == false)
+            if (m_isUsbDeviceConnect == false)
             {
                 Invoke((MethodInvoker)delegate
                 {

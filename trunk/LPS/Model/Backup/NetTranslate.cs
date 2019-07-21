@@ -62,7 +62,11 @@ namespace LPS.Model.Network
                 proc.StartInfo.RedirectStandardError = true;
                 proc.StartInfo.CreateNoWindow = true;
                 proc.Start();
-                string dosLine = "net use " + path + " " + passWord + " /user:" + userName;
+                string dosLine = "net use " + path;
+                if(passWord.Length > 0 && userName.Length > 0)
+                {
+                    dosLine = dosLine + " " + passWord + " /user:" + userName;
+                }
                 proc.StandardInput.WriteLine(dosLine);
                 proc.StandardInput.WriteLine("exit");
                 while (!proc.HasExited)
@@ -110,7 +114,7 @@ namespace LPS.Model.Network
             {
                 Directory.CreateDirectory(dst);
             }
-            dst = dst + fileName;
+            dst = dst + "\\" + fileName;
             FileStream outFileStream = new FileStream(dst, FileMode.OpenOrCreate);
 
             byte[] buf = new byte[inFileStream.Length];

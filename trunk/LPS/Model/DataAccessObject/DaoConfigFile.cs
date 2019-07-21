@@ -24,7 +24,7 @@ namespace LPS.Model.DataAccessObject
 
         private string m_DirConfig = "Config";
 
-        private string m_FileDatabase = "Db.mdb";
+        internal string m_FileDatabase = "Db.mdb";
 
         private string m_FileConfigLog4Net = "log4net.config";                
 

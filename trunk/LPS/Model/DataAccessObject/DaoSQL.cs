@@ -771,7 +771,6 @@ namespace LPS.Model.DataAccessObject
             CheckDatabase(ServerSQL);
 
             ServerSQL.Close();
-
             ServerSQL = null;
 
             return Err;
@@ -832,6 +831,9 @@ namespace LPS.Model.DataAccessObject
                 m_SQL.ExecuteNonQuery(strSchema);
             }
 
+            ServerSQL.Close();
+            ServerSQL = null;
+
             return new DaoErrMsg();
         }
 
@@ -889,6 +891,9 @@ namespace LPS.Model.DataAccessObject
 
                 ServerSQL.ExecuteNonQuery(strSchema);
             }
+
+            ServerSQL.Close();
+            ServerSQL = null;
 
             return new DaoErrMsg();
         }

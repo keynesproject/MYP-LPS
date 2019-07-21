@@ -15,6 +15,14 @@ namespace LPS.View.Pages
 {
     public partial class PageBackup : UserControl
     {
+        private enum DbCheckState
+        {
+            eDB_FOUND,
+            eDB_NOT_FOUND,
+            eDB_PATH_ERROR,
+            eDB_PATH_FIELD_EMPTY,
+        }
+
         public PageBackup()
         {
             InitializeComponent();
@@ -79,15 +87,21 @@ namespace LPS.View.Pages
             if (Ret != DialogResult.Yes)
                 return;
 
+            this.Cursor = Cursors.AppStarting;
+
             DaoErrMsg Err = DaoSQL.Instance.UpdateLocalDatabase(tbPathDb.Text);
-            if(Err.isError)
+
+            if (Err.isError)
             {
                 MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 MessageBoxEx.Show(this, "[車型代號]及[操作員代號]已更新", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }            
+            }
+
+
+            this.Cursor = Cursors.Default;
         }
 
         private void BtnBackup_Click(object sender, EventArgs e)
@@ -96,15 +110,49 @@ namespace LPS.View.Pages
             if (Ret != DialogResult.Yes)
                 return;
 
-            DaoErrMsg Err = DaoSQL.Instance.UploadLocalDatabase(tbPathDb.Text);
-            if (Err.isError)
+            this.Cursor = Cursors.AppStarting;
+
+            string Msg = string.Empty;
+            DbCheckState DbState = MyNetworkPlacesDbTest(out Msg);
+
+            switch (DbState)
             {
-                MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                case DbCheckState.eDB_FOUND:
+                    //查遠端資料庫存在,更新指定資料表;//
+                    DaoErrMsg Err = DaoSQL.Instance.UploadLocalDatabase(tbPathDb.Text);
+                    if (Err.isError)
+                    {
+                        MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBoxEx.Show(this, "[車型代號]及[操作員代號]資訊已上傳成功", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    break;
+
+                case DbCheckState.eDB_NOT_FOUND:
+                    //查遠端資料庫不存在,直接上傳本地端的DB;//
+                    DaoSQL.Instance.CloseDatabase();
+                    string DestPath = Path.GetDirectoryName(tbPathDb.Text);
+                    string FileName = Path.GetFileName(tbPathDb.Text);
+
+                    if (DestPath == null)
+                    {
+                        DestPath = tbPathDb.Text;
+                        FileName = DaoConfigFile.Instance.m_FileDatabase;
+                    }
+                    else if(FileName == null || FileName.Length == 0 || Path.GetExtension(FileName) != "mdb")
+                    {
+                        FileName = DaoConfigFile.Instance.m_FileDatabase;
+                    }
+                    
+                    NetTranslate.Transport(DaoConfigFile.Instance.FileDatabase, DestPath, FileName);
+                    MessageBoxEx.Show(this, "[車型代號]及[操作員代號]資訊已上傳成功", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DaoSQL.Instance.OpenDatabase();
+                    break;
             }
-            else
-            {
-                MessageBoxEx.Show(this, "[車型代號]及[操作員代號]資訊已上傳完畢", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+
+            this.Cursor = Cursors.Default;
         }
 
         /// <summary>
@@ -172,17 +220,11 @@ namespace LPS.View.Pages
             
             this.Cursor = Cursors.AppStarting;
 
-            if (MyNetworkPlacesTest(tbPathServer.Text, true) == false)
+            string Msg = string.Empty;
+            if(MyNetworkPlacesDbTest(out Msg) != DbCheckState.eDB_FOUND )
             {
                 this.Cursor = Cursors.Default;
-                return;
-            }
-
-            DaoErrMsg Err = DaoSQL.Instance.CheckServerDb(tbPathDb.Text);
-            if (Err.isError== true)
-            {
-                this.Cursor = Cursors.Default;
-                MessageBoxEx.Show(this, string.Format("資料庫連接失敗!\r\n錯誤資訊:{0}", Err.ErrorMsg), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBoxEx.Show(this, string.Format("資料庫連接失敗!\r\n錯誤資訊:{0}", Msg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning));
                 return;
             }
 
@@ -190,15 +232,36 @@ namespace LPS.View.Pages
 
             this.Cursor = Cursors.Default;
         }
+                
+        private DbCheckState MyNetworkPlacesDbTest(out string ErrMsg)
+        {
+            ErrMsg = string.Empty;
+
+            //檢查必要欄位;//
+            if (this.CheckControl(tbPathDb, lblTitleDb) == false)
+                return DbCheckState.eDB_PATH_FIELD_EMPTY;
+
+            if (MyNetworkPlacesTest(tbPathServer.Text, true) == false)
+                return DbCheckState.eDB_PATH_ERROR;
+
+            DaoErrMsg Err = DaoSQL.Instance.CheckServerDb(tbPathDb.Text);
+            if (Err.isError == true)
+            {
+                ErrMsg = Err.ErrorMsg;
+                return DbCheckState.eDB_NOT_FOUND;
+            }
+
+            return DbCheckState.eDB_FOUND;
+        }
 
         private bool MyNetworkPlacesTest(string Path, bool isClose)
         {
             //檢查必要欄位;//
-            if (   this.CheckControl(tbAccount, lblAccount) == false
-                || this.CheckControl(tbPW, lblPW) == false)
-            {
-                return false;
-            }
+            //if (   this.CheckControl(tbAccount, lblAccount) == false
+            //    || this.CheckControl(tbPW, lblPW) == false)
+            //{
+            //    return false;
+            //}
 
             NetTranslate.KillLink(tbPathServer.Text);
 
