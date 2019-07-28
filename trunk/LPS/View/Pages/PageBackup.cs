@@ -78,7 +78,11 @@ namespace LPS.View.Pages
             dt.Rows.Add("Report", tbPathReport.Text);
             dt.Rows.Add("Database", tbPathDb.Text);
 
-            DaoSQL.Instance.UpdateBackupInfo(dt);
+            DaoErrMsg Msg = DaoSQL.Instance.UpdateBackupInfo(dt);
+            if(Msg.isError == false)
+            {
+                MessageBoxEx.Show(this, "資訊儲存成功.", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void BtnUpdate_Click(object sender, EventArgs e)
@@ -89,17 +93,31 @@ namespace LPS.View.Pages
 
             this.Cursor = Cursors.AppStarting;
 
-            DaoErrMsg Err = DaoSQL.Instance.UpdateLocalDatabase(tbPathDb.Text);
+            string Msg = string.Empty;
+            DbCheckState DbState = MyNetworkPlacesDbTest(out Msg);
 
-            if (Err.isError)
+            switch (DbState)
             {
-                MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                MessageBoxEx.Show(this, "[車型代號]及[操作員代號]已更新", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+                case DbCheckState.eDB_FOUND:
+                    DaoErrMsg Err = DaoSQL.Instance.UpdateLocalDatabase(tbPathDb.Text);
 
+                    if (Err.isError)
+                    {
+                        MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBoxEx.Show(this, "[車型代號]及[操作員代號]已更新", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    break;
+                case DbCheckState.eDB_NOT_FOUND:
+                case DbCheckState.eDB_PATH_ERROR:
+                    MessageBoxEx.Show(this, string.Format("更新失敗!\r\n錯誤資訊:{0}", Msg), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;                
+
+                case DbCheckState.eDB_PATH_FIELD_EMPTY:
+                    break;
+            }
 
             this.Cursor = Cursors.Default;
         }
@@ -224,7 +242,7 @@ namespace LPS.View.Pages
             if(MyNetworkPlacesDbTest(out Msg) != DbCheckState.eDB_FOUND )
             {
                 this.Cursor = Cursors.Default;
-                MessageBoxEx.Show(this, string.Format("資料庫連接失敗!\r\n錯誤資訊:{0}", Msg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning));
+                MessageBoxEx.Show(this, string.Format("資料庫連接失敗!\r\n錯誤資訊:{0}", Msg), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

@@ -53,6 +53,14 @@ namespace LPS.View.Forms
             return m_SelectPN;
         }
 
+        private void DgvPN_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPN.SelectedRows.Count <= 0)
+                return;
 
+            m_SelectPN = dgvPN.SelectedRows[0].Cells["columnPN"].Value.ToString();
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
+        }
     }
 }

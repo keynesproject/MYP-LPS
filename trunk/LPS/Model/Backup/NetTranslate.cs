@@ -115,7 +115,7 @@ namespace LPS.Model.Network
                 Directory.CreateDirectory(dst);
             }
             dst = dst + "\\" + fileName;
-            FileStream outFileStream = new FileStream(dst, FileMode.OpenOrCreate);
+            FileStream outFileStream = new FileStream(dst, FileMode.Create);
 
             byte[] buf = new byte[inFileStream.Length];
 

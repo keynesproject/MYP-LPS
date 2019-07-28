@@ -20,7 +20,7 @@ namespace LPS.Model.DataAccessObject
         /// <summary>
         /// 資料夾目錄
         /// </summary>
-        private string m_DirBase = @".\Data\";
+        internal string m_DirBase = @".\Data\";
 
         private string m_DirConfig = "Config";
 

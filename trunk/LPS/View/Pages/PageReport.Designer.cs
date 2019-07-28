@@ -41,8 +41,8 @@
             this.llbSearchStart = new System.Windows.Forms.LinkLabel();
             this.tbSearchDateFrom = new System.Windows.Forms.TextBox();
             this.tbSearchDateTo = new System.Windows.Forms.TextBox();
-            this.Calendar = new MonthCalendar.Calendar();
             this.pdgvHistory = new LPS.View.Components.PageDataGridView();
+            this.Calendar = new MonthCalendar.Calendar();
             this.tlpBase.SuspendLayout();
             this.tlpSearchDateBase.SuspendLayout();
             this.tlpDateSearch.SuspendLayout();
@@ -268,6 +268,16 @@
             this.tbSearchDateTo.TabStop = false;
             this.tbSearchDateTo.Click += new System.EventHandler(this.TbSearchDateTo_Click);
             // 
+            // pdgvHistory
+            // 
+            this.pdgvHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pdgvHistory.Location = new System.Drawing.Point(0, 80);
+            this.pdgvHistory.Margin = new System.Windows.Forms.Padding(0);
+            this.pdgvHistory.Name = "pdgvHistory";
+            this.pdgvHistory.Size = new System.Drawing.Size(765, 311);
+            this.pdgvHistory.TabIndex = 7;
+            this.pdgvHistory.ChangePage += new LPS.View.Components.PageDataGridView.ChangePageDelegate(this.PdgvHistory_ChangePage);
+            // 
             // Calendar
             // 
             this.Calendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(245)))), ((int)(((byte)(197)))));
@@ -458,16 +468,6 @@
             this.Calendar.Weeknumbers.TextTransparency = 255;
             this.Calendar.Weeknumbers.Visible = false;
             this.Calendar.SelectDay += new MonthCalendar.SelectDayEventHandler(this.Calendar_SelectDay);
-            // 
-            // pdgvHistory
-            // 
-            this.pdgvHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pdgvHistory.Location = new System.Drawing.Point(0, 80);
-            this.pdgvHistory.Margin = new System.Windows.Forms.Padding(0);
-            this.pdgvHistory.Name = "pdgvHistory";
-            this.pdgvHistory.Size = new System.Drawing.Size(765, 311);
-            this.pdgvHistory.TabIndex = 7;
-            this.pdgvHistory.ChangePage += new LPS.View.Components.PageDataGridView.ChangePageDelegate(this.PdgvHistory_ChangePage);
             // 
             // PageReport
             // 

@@ -107,12 +107,12 @@ namespace LPS.View.Pages
                     DaoErrMsg Msg = DaoSQL.Instance.DeleteMachine(Machine);
                     if (Msg.isError == false)
                     {
-                        MessageBoxEx.Show(this, string.Format("機台 {0} 已刪除。", Machine.機台代碼), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBoxEx.Show(this, string.Format("機台 {0} 已刪除.", Machine.機台代碼), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Setup();
                     }
                     else
                     {
-                        MessageBoxEx.Show(this, string.Format("無法刪除機台 {0} 。", Machine.機台代碼), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBoxEx.Show(this, string.Format("無法刪除機台 {0},{1}", Machine.機台代碼, Msg.ErrorMsg), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

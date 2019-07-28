@@ -36,7 +36,7 @@
             this.tbPN = new System.Windows.Forms.TextBox();
             this.lblPN = new System.Windows.Forms.Label();
             this.lblDotPN = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.btnSelect = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.dgvPN = new System.Windows.Forms.DataGridView();
             this.columnPN = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +73,7 @@
             this.tlpTop.Controls.Add(this.tbPN, 0, 0);
             this.tlpTop.Controls.Add(this.lblPN, 0, 0);
             this.tlpTop.Controls.Add(this.lblDotPN, 0, 0);
-            this.tlpTop.Controls.Add(this.btnOK, 3, 0);
+            this.tlpTop.Controls.Add(this.btnSelect, 3, 0);
             this.tlpTop.Controls.Add(this.btnExit, 4, 0);
             this.tlpTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpTop.Location = new System.Drawing.Point(0, 0);
@@ -89,11 +89,11 @@
             this.tbPN.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbPN.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold);
             this.tbPN.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tbPN.Location = new System.Drawing.Point(109, 6);
+            this.tbPN.Location = new System.Drawing.Point(143, 6);
             this.tbPN.Margin = new System.Windows.Forms.Padding(3, 6, 3, 4);
             this.tbPN.MaxLength = 64;
             this.tbPN.Name = "tbPN";
-            this.tbPN.Size = new System.Drawing.Size(528, 24);
+            this.tbPN.Size = new System.Drawing.Size(494, 24);
             this.tbPN.TabIndex = 14;
             this.tbPN.TextChanged += new System.EventHandler(this.TbPN_TextChanged);
             // 
@@ -105,9 +105,9 @@
             this.lblPN.Location = new System.Drawing.Point(23, 4);
             this.lblPN.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblPN.Name = "lblPN";
-            this.lblPN.Size = new System.Drawing.Size(80, 30);
+            this.lblPN.Size = new System.Drawing.Size(114, 30);
             this.lblPN.TabIndex = 2;
-            this.lblPN.Text = "友永件號:";
+            this.lblPN.Text = "搜尋友永件號:";
             this.lblPN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblDotPN
@@ -124,19 +124,19 @@
             this.lblDotPN.Text = "˙";
             this.lblDotPN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnOK
+            // btnSelect
             // 
-            this.btnOK.AutoSize = true;
-            this.btnOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnOK.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnOK.Location = new System.Drawing.Point(643, 4);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(41, 30);
-            this.btnOK.TabIndex = 12;
-            this.btnOK.Text = "確定";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.BtnOK_Click);
+            this.btnSelect.AutoSize = true;
+            this.btnSelect.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSelect.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSelect.Location = new System.Drawing.Point(643, 4);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(41, 30);
+            this.btnSelect.TabIndex = 12;
+            this.btnSelect.Text = "選擇";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.BtnOK_Click);
             // 
             // btnExit
             // 
@@ -190,6 +190,7 @@
             this.dgvPN.Size = new System.Drawing.Size(728, 368);
             this.dgvPN.TabIndex = 1;
             this.dgvPN.TabStop = false;
+            this.dgvPN.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvPN_CellDoubleClick);
             // 
             // columnPN
             // 
@@ -250,7 +251,7 @@
         private System.Windows.Forms.TableLayoutPanel tlpTop;
         private System.Windows.Forms.Label lblDotPN;
         private System.Windows.Forms.Label lblPN;
-        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.TextBox tbPN;
         private System.Windows.Forms.DataGridView dgvPN;

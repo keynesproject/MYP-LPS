@@ -102,12 +102,12 @@ namespace LPS.View.Pages
                     DaoErrMsg Msg = DaoSQL.Instance.DeleteUser(User);
                     if (Msg.isError == false)
                     {
-                        MessageBoxEx.Show(this, string.Format("作業員 {0} 已刪除。", User.Serial), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBoxEx.Show(this, string.Format("作業員 {0} 已刪除.", User.Serial), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Setup();
                     }
                     else
                     {
-                        MessageBoxEx.Show(this, string.Format("無法刪除作業員 {0} 。", User.Serial), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBoxEx.Show(this, string.Format("無法刪除作業員 {0},{1}.", User.Serial, Msg.ErrorMsg), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

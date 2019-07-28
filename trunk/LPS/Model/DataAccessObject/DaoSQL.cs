@@ -338,10 +338,10 @@ namespace LPS.Model.DataAccessObject
             string strSchema = @"SELECT * FROM 作業員 order by 代碼;";
 
             DataTable dt = GetDataTable(strSchema);
-
+            
             dt.Columns.Add("Serial", typeof(string));
             dt.Columns.Add("Permission", typeof(bool));
-
+            
             return dt.ToList<DaoUser>().ToList();
         }
 
@@ -498,7 +498,16 @@ namespace LPS.Model.DataAccessObject
         /// <returns></returns>
         internal DaoErrMsg DeleteMachine(DaoMachine Machine)
         {
-            string strSchema = string.Format("DELETE FROM 機台資訊 WHERE 機台代碼 = '{0}' ", Machine.機台代碼);
+            string strSchema = string.Empty;
+            string strOut = "";
+            
+            //先取得機台剩餘數量，數量剩餘一台就不可刪除;//
+            strSchema = "select count(*) from 機台資訊;";
+            m_SQL.ExecuteScalar(strSchema, out strOut);
+            if(strOut.ToInt() <= 1)
+                return new DaoErrMsg(true, "最少需保留一組機台資訊.");
+
+            strSchema = string.Format("DELETE FROM 機台資訊 WHERE 機台代碼 = '{0}' ", Machine.機台代碼);
 
             return m_SQL.ExecuteNonQuery(strSchema);
         }
@@ -613,7 +622,16 @@ namespace LPS.Model.DataAccessObject
         /// <returns></returns>
         internal DaoErrMsg DeleteUser(DaoUser User)
         {
-            string strSchema = string.Format("DELETE FROM 作業員 WHERE 代碼 = '{0}' ", User.代碼);
+            string strSchema = string.Empty;
+            string strOut = "";
+
+            //先取得作業員剩餘數量，數量剩餘1就不可刪除;//
+            strSchema = "select count(*) from 作業員;";
+            m_SQL.ExecuteScalar(strSchema, out strOut);
+            if (strOut.ToInt() <= 1)
+                return new DaoErrMsg(true, "最少需保留一組作業員資訊.");
+
+            strSchema = string.Format("DELETE FROM 作業員 WHERE 代碼 = '{0}' ", User.代碼);
 
             return m_SQL.ExecuteNonQuery(strSchema);
         }
@@ -719,8 +737,9 @@ namespace LPS.Model.DataAccessObject
             }
 
             strSchema += "ORDER BY 生產日期 DESC, 生產時間 DESC";
-
-            return GetDataTable(strSchema);
+            DataTable dt = GetDataTable(strSchema);
+            dt.TableName = "測試報告";
+            return dt;
         }
 
         /// <summary>
@@ -738,15 +757,18 @@ namespace LPS.Model.DataAccessObject
         /// 更新備分路徑資訊
         /// </summary>
         /// <param name="dt"></param>
-        internal void UpdateBackupInfo(DataTable dt)
+        internal DaoErrMsg UpdateBackupInfo(DataTable dt)
         {
-            for(int i=0; i<dt.Rows.Count; i++)
+            DaoErrMsg err = new DaoErrMsg();
+            for (int i=0; i<dt.Rows.Count; i++)
             {
                 string strSchema = string.Format("UPDATE 備份路徑 SET ADDR='{0}' WHERE Type='{1}';", dt.Rows[i]["ADDR"].ToString(), dt.Rows[i]["Type"].ToString());
-                DaoErrMsg err = m_SQL.ExecuteNonQuery(strSchema.ToString());
+                err = m_SQL.ExecuteNonQuery(strSchema.ToString());
                 if (err.isError == true)
-                    return;
+                    return err;
             }
+
+            return err;
         }
 
         /// <summary>

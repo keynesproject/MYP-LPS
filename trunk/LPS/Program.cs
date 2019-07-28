@@ -97,7 +97,10 @@ namespace LPS
                 //There is another instance of this process.
                 HandleRunningInstance(instance);
             }
-            
+
+            //啟動備份流程;//
+            BackupProc();
+
             Logger.Info("LPS application close.");
 
             //強制關閉，避免因thread或是timer尚在啟動，造成程式無法關閉;//
@@ -126,6 +129,21 @@ namespace LPS
         {
             m_Machine = Machine;
             m_LoginUser = User;
+        }
+
+        private static void BackupProc()
+        {
+            //表示沒有登入過，不做備份資料的動作;//
+            if (m_Machine.機台代碼 == null
+                || m_Machine.機台代碼.Length <= 0)
+                return;
+
+            FormBackup formBackup = new FormBackup();
+            formBackup.Setup(m_Machine);
+            formBackup.BringToFront();
+            formBackup.ShowDialog();
+            formBackup.Close();
+            formBackup.Dispose();
         }
 
         public static Process RunningInstance()
