@@ -461,7 +461,7 @@ namespace MypKey
         /// <summary>
         /// 刪除所有儲存Serial Key的資料
         /// </summary>
-        private void DeleteAllKey()
+        public void DeleteAllKey()
         {
             //刪除註冊表機碼;//
             DeleteKeyInRegistry();

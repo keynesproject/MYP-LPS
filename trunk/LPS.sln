@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MypSnGenerator", "MypSnGene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonthCalendar", "MonthCalendar\MonthCalendar.csproj", "{09CD4358-741A-45DC-8E0A-04E38A0DA440}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LPS_Setup", "LPS_Setup\LPS_Setup.vdproj", "{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,7 +47,6 @@ Global
 		{51CE4B9F-1805-4B05-BC6F-808EE023E7CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51CE4B9F-1805-4B05-BC6F-808EE023E7CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{51CE4B9F-1805-4B05-BC6F-808EE023E7CA}.Release|x86.ActiveCfg = Release|Any CPU
-		{51CE4B9F-1805-4B05-BC6F-808EE023E7CA}.Release|x86.Build.0 = Release|Any CPU
 		{09CD4358-741A-45DC-8E0A-04E38A0DA440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09CD4358-741A-45DC-8E0A-04E38A0DA440}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09CD4358-741A-45DC-8E0A-04E38A0DA440}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -54,6 +55,10 @@ Global
 		{09CD4358-741A-45DC-8E0A-04E38A0DA440}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09CD4358-741A-45DC-8E0A-04E38A0DA440}.Release|x86.ActiveCfg = Release|Any CPU
 		{09CD4358-741A-45DC-8E0A-04E38A0DA440}.Release|x86.Build.0 = Release|Any CPU
+		{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}.Debug|Any CPU.ActiveCfg = Debug
+		{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}.Debug|x86.ActiveCfg = Debug
+		{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}.Release|Any CPU.ActiveCfg = Release
+		{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -47,6 +47,7 @@
             this.tlpVerifyDaysLeft = new System.Windows.Forms.TableLayoutPanel();
             this.lblVerifyDaysLeftInfo = new System.Windows.Forms.Label();
             this.numVerifyDaysLeft = new System.Windows.Forms.NumericUpDown();
+            this.btnClear = new System.Windows.Forms.Button();
             this.lblCustomSN = new System.Windows.Forms.Label();
             this.tlpVerifyGenCode = new System.Windows.Forms.TableLayoutPanel();
             this.tbVerificationCode = new System.Windows.Forms.TextBox();
@@ -178,6 +179,7 @@
             this.tlpVerifyInfo.Controls.Add(this.lblVerifyMachineCode, 0, 2);
             this.tlpVerifyInfo.Controls.Add(this.lblVerifyDayLeft, 2, 0);
             this.tlpVerifyInfo.Controls.Add(this.tlpVerifyDaysLeft, 3, 0);
+            this.tlpVerifyInfo.Controls.Add(this.btnClear, 3, 2);
             this.tlpVerifyInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpVerifyInfo.Location = new System.Drawing.Point(3, 249);
             this.tlpVerifyInfo.Name = "tlpVerifyInfo";
@@ -386,6 +388,18 @@
             0,
             0,
             0});
+            // 
+            // btnClear
+            // 
+            this.btnClear.AutoSize = true;
+            this.btnClear.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnClear.Location = new System.Drawing.Point(590, 58);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(99, 23);
+            this.btnClear.TabIndex = 35;
+            this.btnClear.Text = "清除本機註冊碼";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
             // 
             // lblCustomSN
             // 
@@ -753,6 +767,7 @@
         private System.Windows.Forms.Label lblCustomDaysLeft;
         private System.Windows.Forms.Label lblCustomMachineCode;
         private System.Windows.Forms.Panel pnlUnderlineVerifyCode;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

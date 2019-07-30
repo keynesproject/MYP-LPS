@@ -134,5 +134,10 @@ namespace MypSnGenerator
                 tbCustomSerialNo.Text = m_TextBoxInfo;
             }
         }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            m_KeyGen.DeleteAllKey();
+        }
     }
 }

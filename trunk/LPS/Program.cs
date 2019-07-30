@@ -47,7 +47,10 @@ namespace LPS
                 Application.DoEvents();
 
                 Logger.Info("LPS application booting.");
-                
+
+                //檢查必要的安裝檔;//
+                CheckNecessaryInstaller();
+
                 //開啟資料庫;//
                 DaoSQL.Instance.OpenDatabase();
 
@@ -144,6 +147,16 @@ namespace LPS
             formBackup.ShowDialog();
             formBackup.Close();
             formBackup.Dispose();
+        }
+
+        /// <summary>
+        /// 檢查必要的安裝檔
+        /// </summary>
+        private static void CheckNecessaryInstaller()
+        {
+            Installer Install = new Installer();
+
+            Install.CheckNecessaryInstall();
         }
 
         public static Process RunningInstance()
