@@ -20,8 +20,13 @@ namespace LPS.View.Forms
 
             DevCtrl.Instance.CH340ConnectChange -= this.TestDeviceConnectState;
             DevCtrl.Instance.TestResult -= this.TestResult;
+            Uart.Instance.UartConnectChange -= this.TestDeviceConnectState;
+            Uart.Instance.TestResult -= this.TestResult;
 
             DaoSnControl.Instance.UpdateSnEvent -= this.SnUpdate;
+
+            ptMain.CloseAppEvent -= this.CloseApp;
+            ptPrint.CloseAppEvent -= this.CloseApp;
 
             if (disposing && (components != null))
             {
@@ -41,7 +46,9 @@ namespace LPS.View.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabTest = new System.Windows.Forms.TabPage();
+            this.ptMain = new LPS.View.Pages.PageTest();
             this.tabPrinter = new System.Windows.Forms.TabPage();
+            this.ptPrint = new LPS.View.Pages.PageTest();
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.tlpSettingBase = new System.Windows.Forms.TableLayoutPanel();
             this.tlpSettingBtn = new System.Windows.Forms.TableLayoutPanel();
@@ -52,13 +59,11 @@ namespace LPS.View.Forms
             this.rbtnMachine = new System.Windows.Forms.RadioButton();
             this.pnlSettingSplit = new System.Windows.Forms.Panel();
             this.tabHelp = new System.Windows.Forms.TabPage();
+            this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabLogout = new System.Windows.Forms.TabPage();
             this.ssButtom = new System.Windows.Forms.StatusStrip();
-            this.tsStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
-            this.ptMain = new LPS.View.Pages.PageTest();
-            this.ptPrint = new LPS.View.Pages.PageTest();
-            this.pageHelp1 = new LPS.View.Pages.PageHelp();
+            this.tsStatusBtn = new System.Windows.Forms.ToolStripSplitButton();
             this.tabMain.SuspendLayout();
             this.tabTest.SuspendLayout();
             this.tabPrinter.SuspendLayout();
@@ -86,7 +91,7 @@ namespace LPS.View.Forms
             this.tabMain.Multiline = true;
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(978, 530);
+            this.tabMain.Size = new System.Drawing.Size(978, 529);
             this.tabMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabMain.TabIndex = 0;
             this.tabMain.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabMain_Selecting);
@@ -100,9 +105,20 @@ namespace LPS.View.Forms
             this.tabTest.Location = new System.Drawing.Point(4, 44);
             this.tabTest.Margin = new System.Windows.Forms.Padding(0);
             this.tabTest.Name = "tabTest";
-            this.tabTest.Size = new System.Drawing.Size(970, 482);
+            this.tabTest.Size = new System.Drawing.Size(970, 481);
             this.tabTest.TabIndex = 0;
             this.tabTest.Text = "作業平台";
+            // 
+            // ptMain
+            // 
+            this.ptMain.AutoSize = true;
+            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
+            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptMain.Location = new System.Drawing.Point(0, 0);
+            this.ptMain.Name = "ptMain";
+            this.ptMain.Size = new System.Drawing.Size(968, 479);
+            this.ptMain.TabIndex = 0;
             // 
             // tabPrinter
             // 
@@ -115,6 +131,16 @@ namespace LPS.View.Forms
             this.tabPrinter.TabIndex = 1;
             this.tabPrinter.Text = "補印標籤";
             this.tabPrinter.UseVisualStyleBackColor = true;
+            // 
+            // ptPrint
+            // 
+            this.ptPrint.AutoSize = true;
+            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ptPrint.Location = new System.Drawing.Point(0, 0);
+            this.ptPrint.Name = "ptPrint";
+            this.ptPrint.Size = new System.Drawing.Size(968, 480);
+            this.ptPrint.TabIndex = 0;
             // 
             // tabSetting
             // 
@@ -277,6 +303,16 @@ namespace LPS.View.Forms
             this.tabHelp.Text = "幫助";
             this.tabHelp.UseVisualStyleBackColor = true;
             // 
+            // pageHelp1
+            // 
+            this.pageHelp1.AutoSize = true;
+            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
+            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
+            this.pageHelp1.Name = "pageHelp1";
+            this.pageHelp1.Size = new System.Drawing.Size(968, 480);
+            this.pageHelp1.TabIndex = 0;
+            // 
             // tabLogout
             // 
             this.tabLogout.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -291,21 +327,13 @@ namespace LPS.View.Forms
             // ssButtom
             // 
             this.ssButtom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsStatus});
-            this.ssButtom.Location = new System.Drawing.Point(0, 538);
+            this.tsStatusBtn});
+            this.ssButtom.Location = new System.Drawing.Point(0, 537);
             this.ssButtom.Name = "ssButtom";
             this.ssButtom.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.ssButtom.Size = new System.Drawing.Size(984, 24);
+            this.ssButtom.Size = new System.Drawing.Size(984, 25);
             this.ssButtom.TabIndex = 1;
             this.ssButtom.Text = "statusStrip1";
-            // 
-            // tsStatus
-            // 
-            this.tsStatus.Font = new System.Drawing.Font("微軟正黑體", 11F);
-            this.tsStatus.Name = "tsStatus";
-            this.tsStatus.Size = new System.Drawing.Size(185, 19);
-            this.tsStatus.Text = "測試設備連接狀態 : 未連線";
-            this.tsStatus.Click += new System.EventHandler(this.TsStatus_Click);
             // 
             // tlpBase
             // 
@@ -319,39 +347,20 @@ namespace LPS.View.Forms
             this.tlpBase.RowCount = 1;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 538F));
-            this.tlpBase.Size = new System.Drawing.Size(984, 538);
+            this.tlpBase.Size = new System.Drawing.Size(984, 537);
             this.tlpBase.TabIndex = 2;
             // 
-            // ptMain
+            // tsStatusBtn
             // 
-            this.ptMain.AutoSize = true;
-            this.ptMain.BackColor = System.Drawing.SystemColors.Control;
-            this.ptMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptMain.Location = new System.Drawing.Point(0, 0);
-            this.ptMain.Name = "ptMain";
-            this.ptMain.Size = new System.Drawing.Size(968, 480);
-            this.ptMain.TabIndex = 0;
-            // 
-            // ptPrint
-            // 
-            this.ptPrint.AutoSize = true;
-            this.ptPrint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ptPrint.Location = new System.Drawing.Point(0, 0);
-            this.ptPrint.Name = "ptPrint";
-            this.ptPrint.Size = new System.Drawing.Size(968, 480);
-            this.ptPrint.TabIndex = 0;
-            // 
-            // pageHelp1
-            // 
-            this.pageHelp1.AutoSize = true;
-            this.pageHelp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pageHelp1.Location = new System.Drawing.Point(0, 0);
-            this.pageHelp1.Margin = new System.Windows.Forms.Padding(4);
-            this.pageHelp1.Name = "pageHelp1";
-            this.pageHelp1.Size = new System.Drawing.Size(968, 480);
-            this.pageHelp1.TabIndex = 0;
+            this.tsStatusBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsStatusBtn.DropDownButtonWidth = 12;
+            this.tsStatusBtn.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.tsStatusBtn.Image = ((System.Drawing.Image)(resources.GetObject("tsStatusBtn.Image")));
+            this.tsStatusBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsStatusBtn.Name = "tsStatusBtn";
+            this.tsStatusBtn.Size = new System.Drawing.Size(202, 23);
+            this.tsStatusBtn.Text = "測試設備連接狀態 : 未連線";
+            this.tsStatusBtn.Click += new System.EventHandler(this.TsStatusBtn_Click);
             // 
             // FormMain
             // 
@@ -403,12 +412,12 @@ namespace LPS.View.Forms
         private System.Windows.Forms.RadioButton rbtnCar;
         private System.Windows.Forms.RadioButton rbtnMachine;
         private System.Windows.Forms.StatusStrip ssButtom;
-        private System.Windows.Forms.ToolStripStatusLabel tsStatus;
         private System.Windows.Forms.Panel pnlSettingSplit;
         private System.Windows.Forms.TableLayoutPanel tlpBase;
         private Pages.PageTest ptMain;
         private Pages.PageTest ptPrint;
         private System.Windows.Forms.TabPage tabLogout;
         private Pages.PageHelp pageHelp1;
+        private System.Windows.Forms.ToolStripSplitButton tsStatusBtn;
     }
 }

@@ -31,7 +31,7 @@ namespace LPS.Model.Network
             {
                 FileExport.FileExport.ExportDataSetToExcel(Ds, "./Test.xls");
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
                 return;
             }

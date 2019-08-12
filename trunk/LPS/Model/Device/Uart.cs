@@ -137,6 +137,11 @@ namespace LPS.Model.Device
             return m_Com.IsOpen;
         }
 
+        public string ConnectPort()
+        {
+            return m_Com.IsOpen == true ? m_Com.PortName : "";
+        }
+
         /// <summary>
         /// Comport收到資料事件觸發
         /// </summary>

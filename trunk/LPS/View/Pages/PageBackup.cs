@@ -274,13 +274,6 @@ namespace LPS.View.Pages
 
         private bool MyNetworkPlacesTest(string Path, bool isClose)
         {
-            //檢查必要欄位;//
-            //if (   this.CheckControl(tbAccount, lblAccount) == false
-            //    || this.CheckControl(tbPW, lblPW) == false)
-            //{
-            //    return false;
-            //}
-
             NetTranslate.KillLink(tbPathServer.Text);
 
             if (NetTranslate.connectState(Path, tbAccount.Text, tbPW.Text) == false)

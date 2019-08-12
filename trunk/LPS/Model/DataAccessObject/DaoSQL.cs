@@ -74,6 +74,7 @@ namespace LPS.Model.DataAccessObject
             return Msg;
         }
 
+
         /// <summary>
         /// 關閉資料庫連接
         /// </summary>
@@ -690,7 +691,7 @@ namespace LPS.Model.DataAccessObject
         /// <param name="m_DateSearchFrom"></param>
         /// <param name="m_DateSearchTo"></param>
         /// <returns></returns>
-        internal DataTable GetTestHistory(string DateSearchFrom, string DateSearchTo)
+        internal DataTable GetTestHistory(string DateSearchFrom="", string DateSearchTo="")
         {
             //string strSchema = @"select RIGHT(流水號,7) as 序號, 
             //                            trim(format(生產日期,'yyyy/mm/dd')) as 日期, 
@@ -919,5 +920,47 @@ namespace LPS.Model.DataAccessObject
 
             return new DaoErrMsg();
         }
+
+        /// <summary>
+        /// 檢查Server Database路徑的欄位有無設定
+        /// </summary>
+        /// <param name="Server"></param>
+        /// <param name="DbPath"></param>
+        /// <returns></returns>
+        internal bool CheckServerDbInfo(out string ServerPath, out string DbPath)
+        {
+            string strSchema = "SELECT ADDR FROM 備份路徑 WHERE Type='Database'";
+            m_SQL.ExecuteScalar(strSchema ,out DbPath);
+
+            strSchema = "SELECT ADDR FROM 備份路徑 WHERE Type='Server'";
+            m_SQL.ExecuteScalar(strSchema, out ServerPath);
+
+            return DbPath.Length <= 0 || DbPath.Length <= 0 ? false : true;
+        }
+        
+        /// <summary>
+        /// 取得Server的登入帳號密碼
+        /// </summary>
+        /// <param name="Account"></param>
+        /// <param name="PW"></param>
+        internal void GetServerAccount(out string Account, out string PW)
+        {
+            string strSchema = "SELECT ADDR FROM 備份路徑 WHERE Type='ServerAccount'";
+            m_SQL.ExecuteScalar(strSchema, out Account);
+
+            strSchema = "SELECT ADDR FROM 備份路徑 WHERE Type='ServerPW'";
+            m_SQL.ExecuteScalar(strSchema, out PW);
+        }
+
+        internal string GetServerDbPath()
+        {
+            string strSchema = "SELECT ADDR FROM 備份路徑 WHERE Type='Database'";
+
+            string DbPath = string.Empty;
+            m_SQL.ExecuteScalar(strSchema, out DbPath);
+
+            return DbPath;
+        }
+
     }
 }

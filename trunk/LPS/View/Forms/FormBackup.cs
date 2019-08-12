@@ -18,12 +18,12 @@ namespace LPS.View.Forms
     public partial class FormBackup : Form
     {
         private DaoMachine m_Machine = new DaoMachine();
-        private string PathLocalBackup { get; set; }
-        private string PathServer { get; set; }
-        private string Account { get; set; }
-        private string PW { get; set; }
-        private string PathReport { get; set; }
-        private string PathDb { get; set; }
+        private string _PathLocalBackup { get; set; }
+        private string _PathServer { get; set; }
+        private string _Account { get; set; }
+        private string _PW { get; set; }
+        private string _PathReport { get; set; }
+        private string _PathDb { get; set; }
 
         public FormBackup()
         {
@@ -41,27 +41,27 @@ namespace LPS.View.Forms
                 switch (dt.Rows[i]["Type"].ToString())
                 {
                     case "Local":
-                        PathLocalBackup = dt.Rows[i]["ADDR"].ToString();
+                        _PathLocalBackup = dt.Rows[i]["ADDR"].ToString();
                         break;
 
                     case "Server":
-                        PathServer = dt.Rows[i]["ADDR"].ToString();
+                        _PathServer = dt.Rows[i]["ADDR"].ToString();
                         break;
 
                     case "ServerAccount":
-                        Account = dt.Rows[i]["ADDR"].ToString();
+                        _Account = dt.Rows[i]["ADDR"].ToString();
                         break;
 
                     case "ServerPW":
-                        PW = dt.Rows[i]["ADDR"].ToString();
+                        _PW = dt.Rows[i]["ADDR"].ToString();
                         break;
 
                     case "Report":
-                        PathReport = dt.Rows[i]["ADDR"].ToString();
+                        _PathReport = dt.Rows[i]["ADDR"].ToString();
                         break;
 
                     case "Database":
-                        PathDb = dt.Rows[i]["ADDR"].ToString();
+                        _PathDb = dt.Rows[i]["ADDR"].ToString();
                         break;
                 }
             }
@@ -97,7 +97,7 @@ namespace LPS.View.Forms
             Thread.Sleep(300);
 
             //檢查伺服器路徑是否可以連線;//
-            if (MyNetworkPlacesTest(PathServer, false) == false)
+            if (MyNetworkPlacesTest() == false)
             {
                 SetMsg("無法備份資料至伺服器，請檢察網路狀態或備份路徑設定。");
                 SetProcess(66);
@@ -122,7 +122,7 @@ namespace LPS.View.Forms
                 Thread.Sleep(300);
             }
 
-            NetTranslate.KillLink(PathServer);
+            NetTranslate.KillLink(_PathServer);
             this.DialogResult = DialogResult.Cancel;
         }
         
@@ -131,20 +131,20 @@ namespace LPS.View.Forms
         /// </summary>
         private void BackupLocalData()
         {
-            if (PathLocalBackup.Length <= 0)
+            if (_PathLocalBackup.Length <= 0)
                 return;
 
             //檢查路徑是否存在;//
-            if(Directory.Exists(PathLocalBackup) == false )
+            if(Directory.Exists(_PathLocalBackup) == false )
             {
                 try
                 {
                     //建立目錄;//
-                    Directory.CreateDirectory(PathLocalBackup);
+                    Directory.CreateDirectory(_PathLocalBackup);
                 }
                 catch(Exception Ex)
                 {
-                    Logger.Error(string.Format("{0}\r\n路徑:{1}", Ex.Message, PathLocalBackup));
+                    Logger.Error(string.Format("{0}\r\n路徑:{1}", Ex.Message, _PathLocalBackup));
                     return;
                 }
             }
@@ -152,7 +152,7 @@ namespace LPS.View.Forms
             try
             {
                 //將本地端的Data資料Copy至指定目錄;//
-                CopyDirectory(DaoConfigFile.Instance.m_DirBase, PathLocalBackup);
+                CopyDirectory(DaoConfigFile.Instance.m_DirBase, _PathLocalBackup);
             }
             catch(Exception Ex)
             {
@@ -209,10 +209,10 @@ namespace LPS.View.Forms
 
         private void BackupToServer()
         {
-            if (PathServer.Length <= 0)
+            if (_PathServer.Length <= 0)
                 return;
 
-            string DestDir = PathServer + "\\Line_" + m_Machine.機台代碼;
+            string DestDir = _PathServer + "\\Line_" + m_Machine.機台代碼;
 
             //檢查路徑是否存在;//
             if (Directory.Exists(DestDir) == false)
@@ -242,8 +242,12 @@ namespace LPS.View.Forms
         
         private void ExportDaliyReport()
         {
-            if (PathReport.Length <= 0)
+            if (_PathReport.Length <= 0)
+            {
+                SetMsg("匯出報表至伺服器失敗，沒有設定[每日報表匯出路徑]。");
+                Thread.Sleep(300);
                 return;
+            }
 
             //先判斷今天是否有測試紀錄;//
             string DateFrom = DateTime.Today.ToString("yyyy-MM-dd") + " 00:00:00";
@@ -251,14 +255,19 @@ namespace LPS.View.Forms
             DataTable dtTest = DaoSQL.Instance.GetTestHistory(DateFrom, DateTo);
             if (dtTest.Rows.Count <= 0)
                 return;
+
+            //客戶要求取得全部的測試資料;//
+            dtTest = DaoSQL.Instance.GetTestHistory();
             dtTest.TableName = DateTime.Today.ToString("yyyy-MM-dd");
 
             //先取得所有資料集;//
             DataSet Ds = new DataSet();
             Ds.Tables.Add(dtTest);
 
-            String TimeForFileName = DateTime.Now.ToString("yyyy-MM-dd");
-            string FileName = string.Format("./{0}-{1}_{2}.xls", m_Machine.機台代碼, m_Machine.描述, TimeForFileName);
+            //String TimeForFileName = DateTime.Now.ToString("yyyy-MM-dd");
+            //string FileName = string.Format("./{0}-{1}_{2}.xls", m_Machine.機台代碼, m_Machine.描述, TimeForFileName);    
+            //客戶要求每次上傳報告都是上傳全部，所以不須加上時間;//
+            string FileName = string.Format("./{0}-{1}.xls", m_Machine.機台代碼, m_Machine.描述);
 
             //輸出檔案成Excel檔;//
             try
@@ -273,7 +282,7 @@ namespace LPS.View.Forms
             //將這檔案上傳到指定路徑;//
             try
             {
-                NetTranslate.Transport(FileName, PathReport, Path.GetFileName(FileName));
+                NetTranslate.Transport(FileName, _PathReport, Path.GetFileName(FileName));
             }
             catch(Exception Ex)
             {
@@ -288,19 +297,16 @@ namespace LPS.View.Forms
         /// 檢查伺服器狀態
         /// </summary>
         /// <returns></returns>
-        private bool MyNetworkPlacesTest(string Path, bool isClose)
+        private bool MyNetworkPlacesTest()
         {
-            if (Path.Length <= 0)
+            if (_PathServer.Length <= 0)
                 return false;
 
-            NetTranslate.KillLink(PathServer);
+            NetTranslate.KillLink(_PathServer);
 
-            if (NetTranslate.connectState(Path, Account, PW) == false)
+            if (NetTranslate.connectState(_PathServer, _Account, _PW) == false)
                 return false;
-
-            if(isClose == true)
-                NetTranslate.KillLink(Path);
-
+            
             return true;
         }
     }

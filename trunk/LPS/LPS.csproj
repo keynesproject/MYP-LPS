@@ -84,6 +84,7 @@
     <Compile Include="Installer.Designer.cs">
       <DependentUpon>Installer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Backup\ServerDbControl.cs" />
     <Compile Include="Model\DataAccessObject\DaoConfigFile.cs" />
     <Compile Include="Model\DataAccessObject\DaoDbCommon.cs" />
     <Compile Include="Model\DataAccessObject\DaoLastTestResult.cs" />

@@ -461,10 +461,10 @@ namespace LPS.View.Pages
             this.llSupportMyp.AutoSize = true;
             this.llSupportMyp.Location = new System.Drawing.Point(3, 0);
             this.llSupportMyp.Name = "llSupportMyp";
-            this.llSupportMyp.Size = new System.Drawing.Size(179, 19);
+            this.llSupportMyp.Size = new System.Drawing.Size(145, 19);
             this.llSupportMyp.TabIndex = 10;
             this.llSupportMyp.TabStop = true;
-            this.llSupportMyp.Text = "木研科技股份有限公司";
+            this.llSupportMyp.Text = "木研科技有限公司";
             this.llSupportMyp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlSupportMyp_LinkClicked);
             // 
             // llSupportHar

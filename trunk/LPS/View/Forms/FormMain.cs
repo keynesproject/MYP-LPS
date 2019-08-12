@@ -58,6 +58,9 @@ namespace LPS.View.Forms
             Uart.Instance.TestResult += this.TestResult;
 
             DaoSnControl.Instance.UpdateSnEvent += this.SnUpdate;
+            
+            ptMain.CloseAppEvent += this.CloseApp;
+            ptPrint.CloseAppEvent += this.CloseApp;
 
             rbtnMachine.Checked = true;
         }
@@ -69,7 +72,7 @@ namespace LPS.View.Forms
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            DevCtrl.Instance.DeviceChange();
+            //DevCtrl.Instance.DeviceChange();
 
             CheckSN();
         }
@@ -95,7 +98,7 @@ namespace LPS.View.Forms
         {
             base.WndProc(ref m);
 
-            DevCtrl.Instance.ConnectedDetect(ref m);
+            //DevCtrl.Instance.ConnectedDetect(ref m);
         }
 
         /// <summary>
@@ -107,7 +110,7 @@ namespace LPS.View.Forms
             //UART的連線為優先，當UART沒連線時再判斷USB的連線狀態;//
             if (Uart.Instance.IsConnect() == false)
             {
-                tsStatus.Text = string.Format("測試設備連接狀態 : {0}", isConnect == true ? "已連線" : "未連線");
+                tsStatusBtn.Text = string.Format("測試設備連接狀態 : {0}", isConnect == true ? "已連線-" + Uart.Instance.ConnectPort() : "未連線");
                 m_DevConnect = isConnect;
 
                 ptMain.DeviceConnectState(isConnect);
@@ -115,7 +118,7 @@ namespace LPS.View.Forms
             }
             else
             {
-                tsStatus.Text = "測試設備連接狀態 : 已連線";
+                tsStatusBtn.Text = "測試設備連接狀態 : 已連線-" + Uart.Instance.ConnectPort();
 
                 m_DevConnect = true;
                 ptMain.DeviceConnectState(true);
@@ -141,6 +144,8 @@ namespace LPS.View.Forms
                 if (Ret == DialogResult.Yes)
                 {
                     Logger.Info(string.Format("User : {0} logout.", m_User.代碼));
+
+                    Uart.Instance.Close();
 
                     //將視窗標示為 Retry 表示要回Login畫面;//
                     this.DialogResult = DialogResult.Retry;
@@ -279,7 +284,7 @@ namespace LPS.View.Forms
                     printJob.Delete();
                 }
             }
-            catch(Exception ex)
+            catch(Exception /*ex*/)
             {
 
             }
@@ -290,11 +295,20 @@ namespace LPS.View.Forms
             CancelPrintJob();
         }
 
-        private void TsStatus_Click(object sender, EventArgs e)
+        private void CloseApp()
         {
-            if ((   m_DevConnect == true 
-                  && Uart.Instance.IsConnect() == true ) 
-                  || m_DevConnect == false)
+            Uart.Instance.Close();
+
+            this.DialogResult = DialogResult.Cancel;
+
+            this.Close();
+        }
+        
+        private void TsStatusBtn_Click(object sender, EventArgs e)
+        {
+            if ((m_DevConnect == true
+                 && Uart.Instance.IsConnect() == true)
+                || m_DevConnect == false)
             {
                 FormSerialPort formSerial = new FormSerialPort();
                 DialogResult ret = formSerial.ShowDialog();

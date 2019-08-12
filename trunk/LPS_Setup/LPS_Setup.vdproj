@@ -15,19 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_004131A012819CFB1F84C6315D5C579A"
-        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_13EB189EE0C4436ABEDE9A37C24B27C5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2EB08404F6FE46E6808E30DB9A72F0AC"
+        "MsmKey" = "8:_05AFEBF3D9EB491BA2859C0CBB83001F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,20 +27,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_43F5A3701AC54C9A817300BDFD78E883"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_603D47F60CC41E5BFD593B3B01F77431"
         "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_73A07F3454412DDF882611E7C5061455"
-        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+        "MsmKey" = "8:_7CE4D7935E4647A7985ED278759E9AFF"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -63,7 +45,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_905CE4182D6BD300EC12580013D93E15"
+        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_97DBEC8FBD644C7A9362B4C5C4C9BAED"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_987EC492D4F048419C8BEECCE594DFEF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -75,19 +69,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B8E819593D524B4AA3E601ACDF35671C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D0C4B16525E8430FA7A4683F298A4E84"
+        "MsmKey" = "8:_DAA2C4F6AE574C0CA80A6EA1DC83E78D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DF396D2EBB3D4F9DBAE2FA7EE6E8E909"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -99,14 +93,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FDAD816A868B4067A02D3B6730463E41"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_E82EF33C0A8EC6889F3D61101F5D44E0"
+        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_004131A012819CFB1F84C6315D5C579A"
+        "MsmKey" = "8:_FAE4AB22B5444A2B9BB86E12054411E0"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -130,7 +124,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_73A07F3454412DDF882611E7C5061455"
+        "OwnerKey" = "8:_905CE4182D6BD300EC12580013D93E15"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E82EF33C0A8EC6889F3D61101F5D44E0"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -151,6 +151,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -184,6 +200,76 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_389BFC7BFA304E729C3D1821FA24211C"
+            {
+            "Name" = "8:TSC_2018.2_M-3.exe"
+            "Condition" = "8:"
+            "Object" = "8:_DF396D2EBB3D4F9DBAE2FA7EE6E8E909"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:/Install"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_50C3BA22_C282_4541_988F_F6636B6B01BA"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_4AC5F14DC3134DD79BE7540A8C39CA29"
+            {
+            "Name" = "8:主要輸出 from LPS (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+            "FileType" = "3:2"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_BCF18F85_77D3_4F2A_87F0_4DFD0303A1E1"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_60FB7CD9DF19447FA56B7BEEE1B64B5A"
+            {
+            "Name" = "8:主要輸出 from LPS (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+            "FileType" = "3:2"
+            "InstallAction" = "3:2"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_2E4813D2_0091_4E5C_8A6E_F251C5293BF9"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_8F042BB4A5634F6BACC6AFC019A98210"
+            {
+            "Name" = "8:主要輸出 from LPS (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+            "FileType" = "3:2"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_63DF4479_BA5A_4886_8D55_1D13A967B939"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_EE7494F15E3A4B28988BC2E709024D54"
+            {
+            "Name" = "8:主要輸出 from LPS (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:2"
+            "Identifier" = "8:_56B68328_EFA0_48A9_AFC7_A0E51BA34494"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -207,61 +293,10 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_004131A012819CFB1F84C6315D5C579A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_05AFEBF3D9EB491BA2859C0CBB83001F"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MypCom, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_004131A012819CFB1F84C6315D5C579A"
-                    {
-                    "Name" = "8:MypCom.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MypCom.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_13EB189EE0C4436ABEDE9A37C24B27C5"
-            {
-            "SourcePath" = "8:..\\Installations\\dotNetFx40_Full_x86_x64.exe"
-            "TargetName" = "8:dotNetFx40_Full_x86_x64.exe"
-            "Tag" = "8:"
-            "Folder" = "8:_8E44C6DA14D1496D892614D39FBD3BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2EB08404F6FE46E6808E30DB9A72F0AC"
-            {
-            "SourcePath" = "8:..\\Installations\\Banner\\LogoMYP.png"
-            "TargetName" = "8:LogoMYP.png"
+            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Installations\\Banner\\MYP.ico"
+            "TargetName" = "8:MYP.ico"
             "Tag" = "8:"
             "Folder" = "8:_6853D5A85DE14F249CFE02BB7F158266"
             "Condition" = "8:"
@@ -291,26 +326,6 @@
             "Hidden" = "11:FALSE"
             "System" = "11:TRUE"
             "Permanent" = "11:TRUE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_43F5A3701AC54C9A817300BDFD78E883"
-            {
-            "SourcePath" = "8:..\\Installations\\Banner\\LogoUniCalsonic.png"
-            "TargetName" = "8:LogoUniCalsonic.png"
-            "Tag" = "8:"
-            "Folder" = "8:_6853D5A85DE14F249CFE02BB7F158266"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
@@ -349,14 +364,54 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_73A07F3454412DDF882611E7C5061455"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7CE4D7935E4647A7985ED278759E9AFF"
+            {
+            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Installations\\Banner\\LogoMYP.png"
+            "TargetName" = "8:LogoMYP.png"
+            "Tag" = "8:"
+            "Folder" = "8:_6853D5A85DE14F249CFE02BB7F158266"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_821BFE0E2C414BE7A77C90F95BED3306"
+            {
+            "SourcePath" = "8:..\\NecessaryFiles\\TSCLIB.dll"
+            "TargetName" = "8:TSCLIB.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_905CE4182D6BD300EC12580013D93E15"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:MypKey, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_73A07F3454412DDF882611E7C5061455"
+                    "_905CE4182D6BD300EC12580013D93E15"
                     {
                     "Name" = "8:MypKey.dll"
                     "Attributes" = "3:512"
@@ -380,12 +435,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_821BFE0E2C414BE7A77C90F95BED3306"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_97DBEC8FBD644C7A9362B4C5C4C9BAED"
             {
-            "SourcePath" = "8:..\\NecessaryFiles\\TSCLIB.dll"
-            "TargetName" = "8:TSCLIB.dll"
+            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Config\\log4net.config"
+            "TargetName" = "8:log4net.config"
             "Tag" = "8:"
-            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
+            "Folder" = "8:_B8B4E70713E4492E96BC519511F3F1C5"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -400,12 +455,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_97DBEC8FBD644C7A9362B4C5C4C9BAED"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_987EC492D4F048419C8BEECCE594DFEF"
             {
-            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Config\\log4net.config"
-            "TargetName" = "8:log4net.config"
+            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Installations\\Banner\\LogoUniCalsonic.png"
+            "TargetName" = "8:LogoUniCalsonic.png"
             "Tag" = "8:"
-            "Folder" = "8:_B8B4E70713E4492E96BC519511F3F1C5"
+            "Folder" = "8:_6853D5A85DE14F249CFE02BB7F158266"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -451,12 +506,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B8E819593D524B4AA3E601ACDF35671C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DAA2C4F6AE574C0CA80A6EA1DC83E78D"
             {
-            "SourcePath" = "8:..\\Installations\\TSC_2018.2_M-3.exe"
-            "TargetName" = "8:TSC_2018.2_M-3.exe"
+            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Installations\\Banner\\UnInstall.ico"
+            "TargetName" = "8:UnInstall.ico"
             "Tag" = "8:"
-            "Folder" = "8:_8E44C6DA14D1496D892614D39FBD3BAE"
+            "Folder" = "8:_6853D5A85DE14F249CFE02BB7F158266"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -471,12 +526,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D0C4B16525E8430FA7A4683F298A4E84"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DF396D2EBB3D4F9DBAE2FA7EE6E8E909"
             {
-            "SourcePath" = "8:..\\Installations\\Banner\\UnInstall.ico"
-            "TargetName" = "8:UnInstall.ico"
+            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Installations\\TSC_2018.2_M-3.exe"
+            "TargetName" = "8:TSC_2018.2_M-3.exe"
             "Tag" = "8:"
-            "Folder" = "8:_6853D5A85DE14F249CFE02BB7F158266"
+            "Folder" = "8:_8E44C6DA14D1496D892614D39FBD3BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -511,12 +566,43 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDAD816A868B4067A02D3B6730463E41"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E82EF33C0A8EC6889F3D61101F5D44E0"
             {
-            "SourcePath" = "8:..\\Installations\\Banner\\MYP.ico"
-            "TargetName" = "8:MYP.ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MypCom, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_E82EF33C0A8EC6889F3D61101F5D44E0"
+                    {
+                    "Name" = "8:MypCom.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MypCom.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_6853D5A85DE14F249CFE02BB7F158266"
+            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FAE4AB22B5444A2B9BB86E12054411E0"
+            {
+            "SourcePath" = "8:..\\NecessaryFiles\\Data\\Installations\\dotNetFx40_Full_x86_x64.exe"
+            "TargetName" = "8:dotNetFx40_Full_x86_x64.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_8E44C6DA14D1496D892614D39FBD3BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -664,15 +750,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:友永標籤作業平台"
-        "ProductCode" = "8:{CED6DB93-A7A0-489B-993E-216FA0DB3DE5}"
-        "PackageCode" = "8:{5D5319C0-639A-4F30-BCBD-9AE56EF6C577}"
+        "ProductCode" = "8:{CF8CF44D-934D-4E5D-8C25-5F8550CEF6B2}"
+        "PackageCode" = "8:{96881D67-0877-4317-9AC3-187920B534D4}"
         "UpgradeCode" = "8:{0568538C-638F-4649-898F-4786F2A828EE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:MYP"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.myp.net.tw/"
@@ -682,7 +768,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:http://www.myp.net.tw/"
-        "ARPPRODUCTICON" = "8:_FDAD816A868B4067A02D3B6730463E41"
+        "ARPPRODUCTICON" = "8:_05AFEBF3D9EB491BA2859C0CBB83001F"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -796,7 +882,7 @@
             "Target" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
             "Folder" = "8:_AD52B72401DE4255888ECC97106804FC"
             "WorkingFolder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
-            "Icon" = "8:_FDAD816A868B4067A02D3B6730463E41"
+            "Icon" = "8:_05AFEBF3D9EB491BA2859C0CBB83001F"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9812488B746442A5BDE26AEF3129FBE3"
@@ -810,13 +896,13 @@
             "Target" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
             "Folder" = "8:_CA383F28342744BE8BE8D7E4F3E58547"
             "WorkingFolder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
-            "Icon" = "8:_FDAD816A868B4067A02D3B6730463E41"
+            "Icon" = "8:_05AFEBF3D9EB491BA2859C0CBB83001F"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BBAE88C888B64F1197D4131D530C27F6"
             {
             "Name" = "8:解除安裝"
-            "Arguments" = "8:/x {CED6DB93-A7A0-489B-993E-216FA0DB3DE5} /qr"
+            "Arguments" = "8:/x {CF8CF44D-934D-4E5D-8C25-5F8550CEF6B2} /qr"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
@@ -824,7 +910,7 @@
             "Target" = "8:_338411F4E1D041CCBA0FC67FBA1CEADD"
             "Folder" = "8:_CA383F28342744BE8BE8D7E4F3E58547"
             "WorkingFolder" = "8:_82F3E40BEFCD423CBCEAE0A2EA3EAD86"
-            "Icon" = "8:_D0C4B16525E8430FA7A4683F298A4E84"
+            "Icon" = "8:_DAA2C4F6AE574C0CA80A6EA1DC83E78D"
             "Feature" = "8:"
             }
         }
@@ -1228,7 +1314,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B9B4A0F5E2124C168C7FC5F623FB1694"
             {
-            "SourcePath" = "8:..\\LPS\\obj\\x86\\Release\\標籤作業平台.exe"
+            "SourcePath" = "8:..\\LPS\\obj\\x86\\Debug\\標籤作業平台.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"

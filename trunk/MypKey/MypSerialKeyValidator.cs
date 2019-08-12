@@ -461,7 +461,11 @@ namespace MypKey
         /// <summary>
         /// 刪除所有儲存Serial Key的資料
         /// </summary>
+#if DEBUG
         public void DeleteAllKey()
+#else
+        private void DeleteAllKey()
+#endif
         {
             //刪除註冊表機碼;//
             DeleteKeyInRegistry();
@@ -532,9 +536,9 @@ namespace MypKey
             }
         }
 
-        #endregion
+#endregion
 
-        #region private parameter
+#region private parameter
 
         /// <summary>
         /// 記錄產品名稱
@@ -547,8 +551,15 @@ namespace MypKey
         private string RegistryPath
         {
             get
-            {                
-                return string.Format(@"SOFTWARE\MYP\{0}", m_Product);
+            {
+                if (Environment.Is64BitOperatingSystem == true)
+                {
+                    return string.Format(@"SOFTWARE\Wow6432Node\MYP\{0}", m_Product);
+                }
+                else
+                {
+                    return string.Format(@"SOFTWARE\MYP\{0}", m_Product);
+                }
             }
         }
 
@@ -600,6 +611,6 @@ namespace MypKey
         /// </summary>
         private readonly string m_DateFormat = "yyyyMMddHHmmss";
 
-        #endregion
+#endregion
     }
 }

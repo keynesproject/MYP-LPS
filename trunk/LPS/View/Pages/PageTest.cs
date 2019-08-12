@@ -12,6 +12,7 @@ using LPS.View.Forms;
 using LPS.Model.Device;
 using LPS.View.Component;
 using LPS.Model.Network;
+using LPS.Model.Backup;
 
 namespace LPS.View.Pages
 {
@@ -46,6 +47,16 @@ namespace LPS.View.Pages
         /// 測試結果事件
         /// </summary>
         internal event LastTestResultDelegate LastTestResultEvent;
+        
+        /// <summary>
+        /// 關閉APP事件通知
+        /// </summary>
+        internal delegate void CloseAppDelegate();
+
+        /// <summary>
+        /// 關閉APP事件
+        /// </summary>
+        internal event CloseAppDelegate CloseAppEvent;
 
         public enum eTestType
         {
@@ -344,6 +355,49 @@ namespace LPS.View.Pages
                 TscTtp247.Instance.PrintOK(m_LastTest.Serial, m_Machine, m_LastTest.PN, m_LastTest.TestTime);
             else
                 TscTtp247.Instance.PrintNG(m_LastTest.TestTime);
+        }
+
+        private void BtnUpdate_MouseUp(object sender, MouseEventArgs e)
+        {
+            DialogResult Ret = MessageBoxEx.Show(this, "確定要更新本地端[車型代號]及[操作員代號]資訊??", "訊息", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Ret != DialogResult.Yes)
+                return;
+
+            this.Cursor = Cursors.AppStarting;
+
+            string Msg = string.Empty;
+            ServerDbControl.DbCheckState DbState = ServerDbControl.MyNetworkPlacesDbTest(out Msg);
+
+            switch (DbState)
+            {
+                case ServerDbControl.DbCheckState.eDB_FOUND:
+                    string ServerDbPath = DaoSQL.Instance.GetServerDbPath();
+                    DaoErrMsg Err = DaoSQL.Instance.UpdateLocalDatabase(ServerDbPath);
+                    if (Err.isError)
+                    {
+                        MessageBoxEx.Show(this, Err.ErrorMsg, "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        MessageBoxEx.Show(this, "[車型代號]及[操作員代號]已更新", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    break;
+                case ServerDbControl.DbCheckState.eDB_NOT_FOUND:
+                case ServerDbControl.DbCheckState.eDB_PATH_ERROR:
+                    MessageBoxEx.Show(this, string.Format("更新失敗!\r\n錯誤資訊:{0}", Msg), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+
+                case ServerDbControl.DbCheckState.eDB_PATH_FIELD_EMPTY:
+                    MessageBoxEx.Show(this, "沒有設定[伺服器備份路徑]及[伺服器資料庫路徑]", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+            }
+
+            this.Cursor = Cursors.Default;
+        }
+
+        private void BtnClose_MouseUp(object sender, MouseEventArgs e)
+        {
+            CloseAppEvent?.Invoke();
         }
     }
 }
