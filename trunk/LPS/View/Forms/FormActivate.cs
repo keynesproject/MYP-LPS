@@ -25,6 +25,11 @@ namespace LPS.View.Forms
             tbSerialNo.Text = DaoSnControl.Instance.GetSN();
         }
 
+        private void FormActivate_Load(object sender, EventArgs e)
+        {
+            this.Text = string.Format("{0}v{1} - 軟體啟用", Properties.Resources.AP_NAME, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
+        }
+
         private void LlSupportMyp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try

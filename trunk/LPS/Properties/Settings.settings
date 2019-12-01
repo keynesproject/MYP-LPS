@@ -23,5 +23,8 @@
     <Setting Name="StopBits" Type="System.IO.Ports.StopBits" Scope="User">
       <Value Profile="(Default)">One</Value>
     </Setting>
+    <Setting Name="PrinterName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TSC TTP-247</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

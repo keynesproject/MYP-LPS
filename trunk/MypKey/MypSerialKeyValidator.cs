@@ -461,12 +461,10 @@ namespace MypKey
         /// <summary>
         /// 刪除所有儲存Serial Key的資料
         /// </summary>
-#if DEBUG
+
         public void DeleteAllKey()
-#else
-        private void DeleteAllKey()
-#endif
         {
+#if DEBUG
             //刪除註冊表機碼;//
             DeleteKeyInRegistry();
 
@@ -475,8 +473,9 @@ namespace MypKey
 
             //刪除安裝目錄下的檔案;//
             DeleteKeyInApplication();
+#endif
         }
-        
+
         /// <summary>
         /// 刪除註冊表機碼
         /// </summary>

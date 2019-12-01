@@ -204,6 +204,12 @@
     <Compile Include="View\Pages\PageMachine.Designer.cs">
       <DependentUpon>PageMachine.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\PagePrinterSetting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Pages\PagePrinterSetting.Designer.cs">
+      <DependentUpon>PagePrinterSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\PageReport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Pages\PageMachine.resx">
       <DependentUpon>PageMachine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Pages\PagePrinterSetting.resx">
+      <DependentUpon>PagePrinterSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Pages\PageReport.resx">
       <DependentUpon>PageReport.cs</DependentUpon>

@@ -15,19 +15,31 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_004131A012819CFB1F84C6315D5C579A"
+        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_05AFEBF3D9EB491BA2859C0CBB83001F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_338411F4E1D041CCBA0FC67FBA1CEADD"
+        "MsmKey" = "8:_4C7F53AE7D4C488C80C764853C778310"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_603D47F60CC41E5BFD593B3B01F77431"
+        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_73A07F3454412DDF882611E7C5061455"
         "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -41,12 +53,6 @@
         {
         "MsmKey" = "8:_821BFE0E2C414BE7A77C90F95BED3306"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_905CE4182D6BD300EC12580013D93E15"
-        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -93,12 +99,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E82EF33C0A8EC6889F3D61101F5D44E0"
-        "OwnerKey" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FAE4AB22B5444A2B9BB86E12054411E0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -124,13 +124,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_905CE4182D6BD300EC12580013D93E15"
+        "OwnerKey" = "8:_73A07F3454412DDF882611E7C5061455"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E82EF33C0A8EC6889F3D61101F5D44E0"
+        "OwnerKey" = "8:_004131A012819CFB1F84C6315D5C579A"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -293,6 +293,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_004131A012819CFB1F84C6315D5C579A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MypCom, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_004131A012819CFB1F84C6315D5C579A"
+                    {
+                    "Name" = "8:MypCom.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MypCom.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_05AFEBF3D9EB491BA2859C0CBB83001F"
             {
             "SourcePath" = "8:..\\NecessaryFiles\\Data\\Installations\\Banner\\MYP.ico"
@@ -313,7 +344,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_338411F4E1D041CCBA0FC67FBA1CEADD"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C7F53AE7D4C488C80C764853C778310"
             {
             "SourcePath" = "8:C:\\Windows\\System32\\msiexec.exe"
             "TargetName" = "8:msiexec.exe"
@@ -347,6 +378,37 @@
                     }
                 }
             "SourcePath" = "8:DocumentFormat.OpenXml.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_73A07F3454412DDF882611E7C5061455"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MypKey, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_73A07F3454412DDF882611E7C5061455"
+                    {
+                    "Name" = "8:MypKey.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MypKey.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
@@ -402,37 +464,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_905CE4182D6BD300EC12580013D93E15"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MypKey, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_905CE4182D6BD300EC12580013D93E15"
-                    {
-                    "Name" = "8:MypKey.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MypKey.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_97DBEC8FBD644C7A9362B4C5C4C9BAED"
@@ -564,37 +595,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E82EF33C0A8EC6889F3D61101F5D44E0"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MypCom, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_E82EF33C0A8EC6889F3D61101F5D44E0"
-                    {
-                    "Name" = "8:MypCom.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MypCom.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FAE4AB22B5444A2B9BB86E12054411E0"
@@ -750,15 +750,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:友永標籤作業平台"
-        "ProductCode" = "8:{CF8CF44D-934D-4E5D-8C25-5F8550CEF6B2}"
-        "PackageCode" = "8:{96881D67-0877-4317-9AC3-187920B534D4}"
+        "ProductCode" = "8:{833763C1-E93B-40DB-9B9A-361089E32FE4}"
+        "PackageCode" = "8:{6D94B6BA-5749-4150-A865-E6AF5BD2D1C3}"
         "UpgradeCode" = "8:{0568538C-638F-4649-898F-4786F2A828EE}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.3"
+        "ProductVersion" = "8:1.0.5"
         "Manufacturer" = "8:MYP"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.myp.net.tw/"
@@ -892,22 +892,22 @@
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
-            "Transitive" = "11:TRUE"
+            "Transitive" = "11:FALSE"
             "Target" = "8:_B9B4A0F5E2124C168C7FC5F623FB1694"
             "Folder" = "8:_CA383F28342744BE8BE8D7E4F3E58547"
             "WorkingFolder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"
             "Icon" = "8:_05AFEBF3D9EB491BA2859C0CBB83001F"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BBAE88C888B64F1197D4131D530C27F6"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D6400511C8594ADD98773586928689E6"
             {
             "Name" = "8:解除安裝"
-            "Arguments" = "8:/x {CF8CF44D-934D-4E5D-8C25-5F8550CEF6B2} /qr"
+            "Arguments" = "8:/x {833763C1-E93B-40DB-9B9A-361089E32FE4} /qr"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_338411F4E1D041CCBA0FC67FBA1CEADD"
+            "Target" = "8:_4C7F53AE7D4C488C80C764853C778310"
             "Folder" = "8:_CA383F28342744BE8BE8D7E4F3E58547"
             "WorkingFolder" = "8:_82F3E40BEFCD423CBCEAE0A2EA3EAD86"
             "Icon" = "8:_DAA2C4F6AE574C0CA80A6EA1DC83E78D"
@@ -1314,7 +1314,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B9B4A0F5E2124C168C7FC5F623FB1694"
             {
-            "SourcePath" = "8:..\\LPS\\obj\\x86\\Debug\\標籤作業平台.exe"
+            "SourcePath" = "8:..\\LPS\\obj\\x86\\Release\\標籤作業平台.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B7CEEB83C55E40D4AA4ECDAD26C823C2"

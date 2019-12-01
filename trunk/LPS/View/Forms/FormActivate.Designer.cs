@@ -497,6 +497,7 @@
             this.Name = "FormActivate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "軟體啟用";
+            this.Load += new System.EventHandler(this.FormActivate_Load);
             this.tlpBase.ResumeLayout(false);
             this.tlpBase.PerformLayout();
             this.tlpButton.ResumeLayout(false);

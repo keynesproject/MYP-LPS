@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
 
 namespace LPS.Model.Device
 {
@@ -17,11 +18,9 @@ namespace LPS.Model.Device
 
         #endregion
 
-        private string m_LabelUsbPrintName = "TSC TTP-247";
-        
         public void PrintOK(string Serial, DaoMachine Machine, DaoPartNumber PN, DateTime TestTime)
         {
-            if (TSCLIB_DLL.openport(m_LabelUsbPrintName) == 0)
+            if (OpenPrinter() == 0)
                 return;
 
             string ResultSerial = string.Format("{0}{1}{2}", Machine.機台代碼, PN.簡碼, Serial);
@@ -39,7 +38,7 @@ namespace LPS.Model.Device
 
         public void PrintNG(DateTime TestTime)
         {
-            if (TSCLIB_DLL.openport(m_LabelUsbPrintName) == 0)
+            if (OpenPrinter() == 0)
                 return;
 
             TSCLIB_DLL.setup("18", "12", "2", "12", "1", "3", "0");
@@ -53,7 +52,7 @@ namespace LPS.Model.Device
 
         public void PrintLabel(string Serial, DaoMachine Machine, DaoPartNumber PN, string Result, DateTime TestTime)
         {
-            if (TSCLIB_DLL.openport(m_LabelUsbPrintName) == 0)
+            if (OpenPrinter() == 0)
                 return;
 
             string ResultSerial = string.Format("{0}{1}{2}", Machine.機台代碼, PN.簡碼, Serial);
@@ -67,6 +66,18 @@ namespace LPS.Model.Device
             TSCLIB_DLL.printlabel("1", "1");
 
             TSCLIB_DLL.closeport();
+        }
+
+        private int OpenPrinter()
+        {
+            string printer = Properties.Settings.Default.PrinterName.Length > 0 ? Properties.Settings.Default.PrinterName : "TSC TTP - 247";
+            int ret = TSCLIB_DLL.openport(printer);
+            if(ret == 0)
+            {
+                MessageBox.Show(string.Format("標籤印表機 {0} 無法連線. \r\n請檢查標籤印表機狀態.", Properties.Settings.Default.PrinterName), "訊息", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            return ret;
         }
 
         private void button1_Click(object sender, EventArgs e)

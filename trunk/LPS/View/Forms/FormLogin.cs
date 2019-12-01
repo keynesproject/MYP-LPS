@@ -26,8 +26,8 @@ namespace LPS.View.Forms
 
         public FormLogin()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
+
             cbMachineNo.DataSource = DaoSQL.Instance.GetMachineNo();
 
             cbUser.DataSource = DaoSQL.Instance.GetUser();               
@@ -35,8 +35,10 @@ namespace LPS.View.Forms
         
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            int ExpDay = DaoSnControl.Instance.GetTrialExp();
+            this.Text = string.Format("{0}v{1} - 系統登入", this.Text, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
 
+            int ExpDay = DaoSnControl.Instance.GetTrialExp();
+                       
             if (ExpDay >= 0 && ExpDay <= 999)
                 this.Text = string.Format("{0} - 試用剩餘 {1} 天", this.Text, ExpDay);
         }

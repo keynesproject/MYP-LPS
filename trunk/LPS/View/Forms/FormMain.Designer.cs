@@ -52,6 +52,7 @@ namespace LPS.View.Forms
             this.tabSetting = new System.Windows.Forms.TabPage();
             this.tlpSettingBase = new System.Windows.Forms.TableLayoutPanel();
             this.tlpSettingBtn = new System.Windows.Forms.TableLayoutPanel();
+            this.rbtnPrinter = new System.Windows.Forms.RadioButton();
             this.rbtnReport = new System.Windows.Forms.RadioButton();
             this.rbtnBackup = new System.Windows.Forms.RadioButton();
             this.rbtnUser = new System.Windows.Forms.RadioButton();
@@ -62,8 +63,9 @@ namespace LPS.View.Forms
             this.pageHelp1 = new LPS.View.Pages.PageHelp();
             this.tabLogout = new System.Windows.Forms.TabPage();
             this.ssButtom = new System.Windows.Forms.StatusStrip();
-            this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
             this.tsStatusBtn = new System.Windows.Forms.ToolStripSplitButton();
+            this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
+            this.tsTestDeviceStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabMain.SuspendLayout();
             this.tabTest.SuspendLayout();
             this.tabPrinter.SuspendLayout();
@@ -91,7 +93,7 @@ namespace LPS.View.Forms
             this.tabMain.Multiline = true;
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(978, 529);
+            this.tabMain.Size = new System.Drawing.Size(978, 530);
             this.tabMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabMain.TabIndex = 0;
             this.tabMain.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabMain_Selecting);
@@ -105,7 +107,7 @@ namespace LPS.View.Forms
             this.tabTest.Location = new System.Drawing.Point(4, 44);
             this.tabTest.Margin = new System.Windows.Forms.Padding(0);
             this.tabTest.Name = "tabTest";
-            this.tabTest.Size = new System.Drawing.Size(970, 481);
+            this.tabTest.Size = new System.Drawing.Size(970, 482);
             this.tabTest.TabIndex = 0;
             this.tabTest.Text = "作業平台";
             // 
@@ -117,7 +119,7 @@ namespace LPS.View.Forms
             this.ptMain.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ptMain.Location = new System.Drawing.Point(0, 0);
             this.ptMain.Name = "ptMain";
-            this.ptMain.Size = new System.Drawing.Size(968, 479);
+            this.ptMain.Size = new System.Drawing.Size(968, 480);
             this.ptMain.TabIndex = 0;
             // 
             // tabPrinter
@@ -127,7 +129,7 @@ namespace LPS.View.Forms
             this.tabPrinter.Location = new System.Drawing.Point(4, 44);
             this.tabPrinter.Margin = new System.Windows.Forms.Padding(0);
             this.tabPrinter.Name = "tabPrinter";
-            this.tabPrinter.Size = new System.Drawing.Size(970, 482);
+            this.tabPrinter.Size = new System.Drawing.Size(970, 481);
             this.tabPrinter.TabIndex = 1;
             this.tabPrinter.Text = "補印標籤";
             this.tabPrinter.UseVisualStyleBackColor = true;
@@ -139,7 +141,7 @@ namespace LPS.View.Forms
             this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ptPrint.Location = new System.Drawing.Point(0, 0);
             this.ptPrint.Name = "ptPrint";
-            this.ptPrint.Size = new System.Drawing.Size(968, 480);
+            this.ptPrint.Size = new System.Drawing.Size(968, 479);
             this.ptPrint.TabIndex = 0;
             // 
             // tabSetting
@@ -149,7 +151,7 @@ namespace LPS.View.Forms
             this.tabSetting.Location = new System.Drawing.Point(4, 44);
             this.tabSetting.Margin = new System.Windows.Forms.Padding(0);
             this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(970, 482);
+            this.tabSetting.Size = new System.Drawing.Size(970, 481);
             this.tabSetting.TabIndex = 2;
             this.tabSetting.Text = "設定";
             this.tabSetting.UseVisualStyleBackColor = true;
@@ -170,13 +172,14 @@ namespace LPS.View.Forms
             this.tlpSettingBase.Name = "tlpSettingBase";
             this.tlpSettingBase.RowCount = 1;
             this.tlpSettingBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSettingBase.Size = new System.Drawing.Size(968, 480);
+            this.tlpSettingBase.Size = new System.Drawing.Size(968, 479);
             this.tlpSettingBase.TabIndex = 0;
             // 
             // tlpSettingBtn
             // 
             this.tlpSettingBtn.ColumnCount = 1;
             this.tlpSettingBtn.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpSettingBtn.Controls.Add(this.rbtnPrinter, 0, 5);
             this.tlpSettingBtn.Controls.Add(this.rbtnReport, 0, 4);
             this.tlpSettingBtn.Controls.Add(this.rbtnBackup, 0, 3);
             this.tlpSettingBtn.Controls.Add(this.rbtnUser, 0, 2);
@@ -186,14 +189,32 @@ namespace LPS.View.Forms
             this.tlpSettingBtn.Location = new System.Drawing.Point(3, 4);
             this.tlpSettingBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tlpSettingBtn.Name = "tlpSettingBtn";
-            this.tlpSettingBtn.RowCount = 5;
-            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpSettingBtn.Size = new System.Drawing.Size(152, 472);
+            this.tlpSettingBtn.RowCount = 6;
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.tlpSettingBtn.Size = new System.Drawing.Size(152, 471);
             this.tlpSettingBtn.TabIndex = 2;
+            // 
+            // rbtnPrinter
+            // 
+            this.rbtnPrinter.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnPrinter.AutoSize = true;
+            this.rbtnPrinter.BackColor = System.Drawing.Color.Orange;
+            this.rbtnPrinter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rbtnPrinter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnPrinter.Location = new System.Drawing.Point(3, 394);
+            this.rbtnPrinter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbtnPrinter.Name = "rbtnPrinter";
+            this.rbtnPrinter.Size = new System.Drawing.Size(146, 73);
+            this.rbtnPrinter.TabIndex = 9;
+            this.rbtnPrinter.Text = "印表機設定";
+            this.rbtnPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnPrinter.UseVisualStyleBackColor = false;
+            this.rbtnPrinter.CheckedChanged += new System.EventHandler(this.Setting_CheckedChanged);
             // 
             // rbtnReport
             // 
@@ -202,10 +223,10 @@ namespace LPS.View.Forms
             this.rbtnReport.BackColor = System.Drawing.Color.Orange;
             this.rbtnReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnReport.Location = new System.Drawing.Point(3, 380);
+            this.rbtnReport.Location = new System.Drawing.Point(3, 316);
             this.rbtnReport.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnReport.Name = "rbtnReport";
-            this.rbtnReport.Size = new System.Drawing.Size(146, 88);
+            this.rbtnReport.Size = new System.Drawing.Size(146, 70);
             this.rbtnReport.TabIndex = 8;
             this.rbtnReport.Text = "測試結果報表";
             this.rbtnReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -219,10 +240,10 @@ namespace LPS.View.Forms
             this.rbtnBackup.BackColor = System.Drawing.Color.Orange;
             this.rbtnBackup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnBackup.Location = new System.Drawing.Point(3, 286);
+            this.rbtnBackup.Location = new System.Drawing.Point(3, 238);
             this.rbtnBackup.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnBackup.Name = "rbtnBackup";
-            this.rbtnBackup.Size = new System.Drawing.Size(146, 86);
+            this.rbtnBackup.Size = new System.Drawing.Size(146, 70);
             this.rbtnBackup.TabIndex = 7;
             this.rbtnBackup.Text = "資訊備份位置";
             this.rbtnBackup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -236,10 +257,10 @@ namespace LPS.View.Forms
             this.rbtnUser.BackColor = System.Drawing.Color.Orange;
             this.rbtnUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnUser.Location = new System.Drawing.Point(3, 192);
+            this.rbtnUser.Location = new System.Drawing.Point(3, 160);
             this.rbtnUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnUser.Name = "rbtnUser";
-            this.rbtnUser.Size = new System.Drawing.Size(146, 86);
+            this.rbtnUser.Size = new System.Drawing.Size(146, 70);
             this.rbtnUser.TabIndex = 6;
             this.rbtnUser.Text = "操作者代號";
             this.rbtnUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -253,10 +274,10 @@ namespace LPS.View.Forms
             this.rbtnCar.BackColor = System.Drawing.Color.Orange;
             this.rbtnCar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rbtnCar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnCar.Location = new System.Drawing.Point(3, 98);
+            this.rbtnCar.Location = new System.Drawing.Point(3, 82);
             this.rbtnCar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnCar.Name = "rbtnCar";
-            this.rbtnCar.Size = new System.Drawing.Size(146, 86);
+            this.rbtnCar.Size = new System.Drawing.Size(146, 70);
             this.rbtnCar.TabIndex = 5;
             this.rbtnCar.Text = "車型代號";
             this.rbtnCar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -273,7 +294,7 @@ namespace LPS.View.Forms
             this.rbtnMachine.Location = new System.Drawing.Point(3, 4);
             this.rbtnMachine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnMachine.Name = "rbtnMachine";
-            this.rbtnMachine.Size = new System.Drawing.Size(146, 86);
+            this.rbtnMachine.Size = new System.Drawing.Size(146, 70);
             this.rbtnMachine.TabIndex = 4;
             this.rbtnMachine.Text = "機台資訊";
             this.rbtnMachine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,7 +309,7 @@ namespace LPS.View.Forms
             this.pnlSettingSplit.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSettingSplit.Name = "pnlSettingSplit";
             this.pnlSettingSplit.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.pnlSettingSplit.Size = new System.Drawing.Size(2, 480);
+            this.pnlSettingSplit.Size = new System.Drawing.Size(2, 479);
             this.pnlSettingSplit.TabIndex = 3;
             // 
             // tabHelp
@@ -319,7 +340,7 @@ namespace LPS.View.Forms
             this.tabLogout.Location = new System.Drawing.Point(4, 44);
             this.tabLogout.Margin = new System.Windows.Forms.Padding(0);
             this.tabLogout.Name = "tabLogout";
-            this.tabLogout.Size = new System.Drawing.Size(970, 482);
+            this.tabLogout.Size = new System.Drawing.Size(970, 481);
             this.tabLogout.TabIndex = 4;
             this.tabLogout.Text = "登出";
             this.tabLogout.UseVisualStyleBackColor = true;
@@ -327,13 +348,27 @@ namespace LPS.View.Forms
             // ssButtom
             // 
             this.ssButtom.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsStatusBtn});
-            this.ssButtom.Location = new System.Drawing.Point(0, 537);
+            this.tsStatusBtn,
+            this.tsTestDeviceStatus});
+            this.ssButtom.Location = new System.Drawing.Point(0, 538);
             this.ssButtom.Name = "ssButtom";
             this.ssButtom.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.ssButtom.Size = new System.Drawing.Size(984, 25);
+            this.ssButtom.Size = new System.Drawing.Size(984, 24);
             this.ssButtom.TabIndex = 1;
             this.ssButtom.Text = "statusStrip1";
+            // 
+            // tsStatusBtn
+            // 
+            this.tsStatusBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsStatusBtn.DropDownButtonWidth = 12;
+            this.tsStatusBtn.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.tsStatusBtn.Image = ((System.Drawing.Image)(resources.GetObject("tsStatusBtn.Image")));
+            this.tsStatusBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsStatusBtn.Name = "tsStatusBtn";
+            this.tsStatusBtn.Size = new System.Drawing.Size(202, 23);
+            this.tsStatusBtn.Text = "測試設備連接狀態 : 未連線";
+            this.tsStatusBtn.Visible = false;
+            this.tsStatusBtn.ButtonClick += new System.EventHandler(this.TsStatusBtn_Click);
             // 
             // tlpBase
             // 
@@ -347,20 +382,15 @@ namespace LPS.View.Forms
             this.tlpBase.RowCount = 1;
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 538F));
-            this.tlpBase.Size = new System.Drawing.Size(984, 537);
+            this.tlpBase.Size = new System.Drawing.Size(984, 538);
             this.tlpBase.TabIndex = 2;
             // 
-            // tsStatusBtn
+            // tsTestDeviceStatus
             // 
-            this.tsStatusBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsStatusBtn.DropDownButtonWidth = 12;
-            this.tsStatusBtn.Font = new System.Drawing.Font("微軟正黑體", 11F);
-            this.tsStatusBtn.Image = ((System.Drawing.Image)(resources.GetObject("tsStatusBtn.Image")));
-            this.tsStatusBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsStatusBtn.Name = "tsStatusBtn";
-            this.tsStatusBtn.Size = new System.Drawing.Size(202, 23);
-            this.tsStatusBtn.Text = "測試設備連接狀態 : 未連線";
-            this.tsStatusBtn.Click += new System.EventHandler(this.TsStatusBtn_Click);
+            this.tsTestDeviceStatus.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.tsTestDeviceStatus.Name = "tsTestDeviceStatus";
+            this.tsTestDeviceStatus.Size = new System.Drawing.Size(185, 20);
+            this.tsTestDeviceStatus.Text = "測試設備連接狀態 : 未連線";
             // 
             // FormMain
             // 
@@ -419,5 +449,7 @@ namespace LPS.View.Forms
         private System.Windows.Forms.TabPage tabLogout;
         private Pages.PageHelp pageHelp1;
         private System.Windows.Forms.ToolStripSplitButton tsStatusBtn;
+        private System.Windows.Forms.RadioButton rbtnPrinter;
+        private System.Windows.Forms.ToolStripStatusLabel tsTestDeviceStatus;
     }
 }

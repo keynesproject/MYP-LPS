@@ -72,7 +72,7 @@ namespace LPS.View.Forms
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            //DevCtrl.Instance.DeviceChange();
+            DevCtrl.Instance.DeviceChange();
 
             CheckSN();
         }
@@ -84,9 +84,9 @@ namespace LPS.View.Forms
             Invoke((MethodInvoker)delegate
             {
                 if (ExpDay >= 0 && ExpDay <= 999)
-                    this.Text = string.Format("{0} - 試用剩餘 {1} 天", Properties.Resources.AP_NAME, ExpDay);
+                    this.Text = string.Format("{0}v{1} - 試用剩餘 {2} 天", Properties.Resources.AP_NAME, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(), ExpDay);
                 else
-                    this.Text = Properties.Resources.AP_NAME;
+                    this.Text = string.Format("{0}v{1}", Properties.Resources.AP_NAME, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
             });
         }
 
@@ -98,7 +98,7 @@ namespace LPS.View.Forms
         {
             base.WndProc(ref m);
 
-            //DevCtrl.Instance.ConnectedDetect(ref m);
+            DevCtrl.Instance.ConnectedDetect(ref m);
         }
 
         /// <summary>
@@ -111,6 +111,7 @@ namespace LPS.View.Forms
             if (Uart.Instance.IsConnect() == false)
             {
                 tsStatusBtn.Text = string.Format("測試設備連接狀態 : {0}", isConnect == true ? "已連線-" + Uart.Instance.ConnectPort() : "未連線");
+                tsTestDeviceStatus.Text = string.Format("測試設備連接狀態 : {0}", isConnect == true ? "已連線-" + Uart.Instance.ConnectPort() : "未連線");
                 m_DevConnect = isConnect;
 
                 ptMain.DeviceConnectState(isConnect);
@@ -119,6 +120,7 @@ namespace LPS.View.Forms
             else
             {
                 tsStatusBtn.Text = "測試設備連接狀態 : 已連線-" + Uart.Instance.ConnectPort();
+                tsTestDeviceStatus.Text = "測試設備連接狀態 : 已連線-" + Uart.Instance.ConnectPort();
 
                 m_DevConnect = true;
                 ptMain.DeviceConnectState(true);
@@ -247,6 +249,12 @@ namespace LPS.View.Forms
                         PageReport pReport = new PageReport(m_Machine);
                         pReport.Setup();
                         m_LastSettingPage = pReport;
+                        break;
+
+                    case string rbtnName when rbtnPrinter.Name == rbtnName:
+                        PagePrinterSetting pPrinter = new PagePrinterSetting();
+                        pPrinter.Setup();
+                        m_LastSettingPage = pPrinter;
                         break;
                 }
 
