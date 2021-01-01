@@ -16,6 +16,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonthCalendar", "MonthCalen
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LPS_Setup", "LPS_Setup\LPS_Setup.vdproj", "{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MypSnFixTool", "MypSnFixTool\MypSnFixTool.csproj", "{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0F2C14CB-0F3F-4EBF-BA6A-0F5C20D5CAAD} = {0F2C14CB-0F3F-4EBF-BA6A-0F5C20D5CAAD}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +64,14 @@ Global
 		{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}.Debug|x86.ActiveCfg = Debug
 		{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}.Release|Any CPU.ActiveCfg = Release
 		{3D8053D9-2B3F-48C0-85D2-AB13BCCD1B2D}.Release|x86.ActiveCfg = Release
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Debug|x86.Build.0 = Debug|Any CPU
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Release|x86.ActiveCfg = Release|Any CPU
+		{9B5FF93E-5AD7-464A-AB22-17EB3E06E29C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

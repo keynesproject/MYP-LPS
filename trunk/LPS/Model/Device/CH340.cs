@@ -136,8 +136,25 @@ namespace LPS.Model.Device
             //    Console.WriteLine("Manufacturer:" + (string)entity.GetPropertyValue("Manufacturer"));
             //    Console.WriteLine("Service:" + (string)entity.GetPropertyValue("Service"));
             //}
-                        
-            using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Manufacturer = 'wch.cn'"))
+
+            //using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Manufacturer = 'wch.cn'"))
+            //{
+            //    try
+            //    {
+            //        if (searcher.Get().Cast<ManagementBaseObject>().Count() > 0)
+            //        {
+            //            return searcher.Get().Cast<ManagementBaseObject>().First().GetPropertyValue("Caption").ToString();
+            //        }
+            //    }
+            //    catch
+            //    {
+            //        return string.Empty;
+            //    }
+            //}
+
+            //return string.Empty;
+
+            using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE Manufacturer = 'Prolific'"))
             {
                 try
                 {

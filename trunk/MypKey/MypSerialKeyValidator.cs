@@ -277,7 +277,7 @@ namespace MypKey
         /// 3.應用程式安裝目錄\Data\Config
         /// </summary>
         /// <returns></returns>
-        private string GetExistKey()
+        internal string GetExistKey()
         {
             string SerialKey = null;
 
@@ -289,21 +289,21 @@ namespace MypKey
                 return SerialKey;
             }
 
-            //檢查使用者資料夾是否有序號資料;//
-            SerialKey = GetKeyFromAppData();
-            if (   SerialKey != null
-                && this.ValidateKey(SerialKey) == true)
-            {
-                return SerialKey;
-            }
+            ////檢查使用者資料夾是否有序號資料;//
+            //SerialKey = GetKeyFromAppData();
+            //if (   SerialKey != null
+            //    && this.ValidateKey(SerialKey) == true)
+            //{
+            //    return SerialKey;
+            //}
 
-            //檢查檔案目錄下是否有序號資料;//
-            SerialKey = GetKeyFromApplication();
-            if (   SerialKey != null
-                && this.ValidateKey(SerialKey) == true)
-            {
-                return SerialKey;
-            }
+            ////檢查檔案目錄下是否有序號資料;//
+            //SerialKey = GetKeyFromApplication();
+            //if (   SerialKey != null
+            //    && this.ValidateKey(SerialKey) == true)
+            //{
+            //    return SerialKey;
+            //}
 
             return null;
         }
@@ -312,7 +312,7 @@ namespace MypKey
         /// 取得註冊機碼下的Serial Key
         /// </summary>
         /// <returns></returns>
-        private string GetKeyFromRegistry()
+        internal string GetKeyFromRegistry()
         {
             RegistryKey Product = Registry.LocalMachine.OpenSubKey(RegistryPath, true);
             if (Product != null)
@@ -383,7 +383,7 @@ namespace MypKey
         /// 3.應用程式安裝目錄\Data\Config
         /// </summary>
         /// <param name="SN"></param>
-        private void SaveSN(string SN, bool IsUpdateDate = false)
+        internal void SaveSN(string SN, bool IsUpdateDate = false)
         {
             //將資訊記錄至註冊機碼表;//
             this.SaveSnToRegistry(SN, IsUpdateDate);

@@ -352,7 +352,7 @@ namespace LPS.View.Pages
             this.lblCopyright.Name = "lblCopyright";
             this.lblCopyright.Size = new System.Drawing.Size(406, 143);
             this.lblCopyright.TabIndex = 2;
-            this.lblCopyright.Text = "Copyright © 木研科技有限公司 \r\n2019 All rights reserved. Design by Keynes Lu.";
+            this.lblCopyright.Text = "Copyright © 木研科技有限公司 \r\n2019-2021 All rights reserved. Design by Keynes Lu.";
             this.lblCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tlpSupportHar

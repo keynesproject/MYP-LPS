@@ -64,8 +64,8 @@ namespace LPS.View.Forms
             this.tabLogout = new System.Windows.Forms.TabPage();
             this.ssButtom = new System.Windows.Forms.StatusStrip();
             this.tsStatusBtn = new System.Windows.Forms.ToolStripSplitButton();
-            this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
             this.tsTestDeviceStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tlpBase = new System.Windows.Forms.TableLayoutPanel();
             this.tabMain.SuspendLayout();
             this.tabTest.SuspendLayout();
             this.tabPrinter.SuspendLayout();
@@ -129,7 +129,7 @@ namespace LPS.View.Forms
             this.tabPrinter.Location = new System.Drawing.Point(4, 44);
             this.tabPrinter.Margin = new System.Windows.Forms.Padding(0);
             this.tabPrinter.Name = "tabPrinter";
-            this.tabPrinter.Size = new System.Drawing.Size(970, 481);
+            this.tabPrinter.Size = new System.Drawing.Size(970, 482);
             this.tabPrinter.TabIndex = 1;
             this.tabPrinter.Text = "補印標籤";
             this.tabPrinter.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@ namespace LPS.View.Forms
             this.ptPrint.Font = new System.Drawing.Font("新細明體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ptPrint.Location = new System.Drawing.Point(0, 0);
             this.ptPrint.Name = "ptPrint";
-            this.ptPrint.Size = new System.Drawing.Size(968, 479);
+            this.ptPrint.Size = new System.Drawing.Size(968, 480);
             this.ptPrint.TabIndex = 0;
             // 
             // tabSetting
@@ -151,7 +151,7 @@ namespace LPS.View.Forms
             this.tabSetting.Location = new System.Drawing.Point(4, 44);
             this.tabSetting.Margin = new System.Windows.Forms.Padding(0);
             this.tabSetting.Name = "tabSetting";
-            this.tabSetting.Size = new System.Drawing.Size(970, 481);
+            this.tabSetting.Size = new System.Drawing.Size(970, 482);
             this.tabSetting.TabIndex = 2;
             this.tabSetting.Text = "設定";
             this.tabSetting.UseVisualStyleBackColor = true;
@@ -172,7 +172,7 @@ namespace LPS.View.Forms
             this.tlpSettingBase.Name = "tlpSettingBase";
             this.tlpSettingBase.RowCount = 1;
             this.tlpSettingBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpSettingBase.Size = new System.Drawing.Size(968, 479);
+            this.tlpSettingBase.Size = new System.Drawing.Size(968, 480);
             this.tlpSettingBase.TabIndex = 0;
             // 
             // tlpSettingBtn
@@ -196,7 +196,7 @@ namespace LPS.View.Forms
             this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tlpSettingBtn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tlpSettingBtn.Size = new System.Drawing.Size(152, 471);
+            this.tlpSettingBtn.Size = new System.Drawing.Size(152, 472);
             this.tlpSettingBtn.TabIndex = 2;
             // 
             // rbtnPrinter
@@ -209,7 +209,7 @@ namespace LPS.View.Forms
             this.rbtnPrinter.Location = new System.Drawing.Point(3, 394);
             this.rbtnPrinter.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtnPrinter.Name = "rbtnPrinter";
-            this.rbtnPrinter.Size = new System.Drawing.Size(146, 73);
+            this.rbtnPrinter.Size = new System.Drawing.Size(146, 74);
             this.rbtnPrinter.TabIndex = 9;
             this.rbtnPrinter.Text = "印表機設定";
             this.rbtnPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -309,7 +309,7 @@ namespace LPS.View.Forms
             this.pnlSettingSplit.Margin = new System.Windows.Forms.Padding(0);
             this.pnlSettingSplit.Name = "pnlSettingSplit";
             this.pnlSettingSplit.Padding = new System.Windows.Forms.Padding(0, 4, 0, 4);
-            this.pnlSettingSplit.Size = new System.Drawing.Size(2, 479);
+            this.pnlSettingSplit.Size = new System.Drawing.Size(2, 480);
             this.pnlSettingSplit.TabIndex = 3;
             // 
             // tabHelp
@@ -340,7 +340,7 @@ namespace LPS.View.Forms
             this.tabLogout.Location = new System.Drawing.Point(4, 44);
             this.tabLogout.Margin = new System.Windows.Forms.Padding(0);
             this.tabLogout.Name = "tabLogout";
-            this.tabLogout.Size = new System.Drawing.Size(970, 481);
+            this.tabLogout.Size = new System.Drawing.Size(970, 482);
             this.tabLogout.TabIndex = 4;
             this.tabLogout.Text = "登出";
             this.tabLogout.UseVisualStyleBackColor = true;
@@ -370,6 +370,13 @@ namespace LPS.View.Forms
             this.tsStatusBtn.Visible = false;
             this.tsStatusBtn.ButtonClick += new System.EventHandler(this.TsStatusBtn_Click);
             // 
+            // tsTestDeviceStatus
+            // 
+            this.tsTestDeviceStatus.Font = new System.Drawing.Font("微軟正黑體", 11F);
+            this.tsTestDeviceStatus.Name = "tsTestDeviceStatus";
+            this.tsTestDeviceStatus.Size = new System.Drawing.Size(185, 19);
+            this.tsTestDeviceStatus.Text = "測試設備連接狀態 : 未連線";
+            // 
             // tlpBase
             // 
             this.tlpBase.ColumnCount = 1;
@@ -384,13 +391,6 @@ namespace LPS.View.Forms
             this.tlpBase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 538F));
             this.tlpBase.Size = new System.Drawing.Size(984, 538);
             this.tlpBase.TabIndex = 2;
-            // 
-            // tsTestDeviceStatus
-            // 
-            this.tsTestDeviceStatus.Font = new System.Drawing.Font("微軟正黑體", 11F);
-            this.tsTestDeviceStatus.Name = "tsTestDeviceStatus";
-            this.tsTestDeviceStatus.Size = new System.Drawing.Size(185, 20);
-            this.tsTestDeviceStatus.Text = "測試設備連接狀態 : 未連線";
             // 
             // FormMain
             // 

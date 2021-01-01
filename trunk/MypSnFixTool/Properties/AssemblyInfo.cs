@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 組件的一般資訊是由下列的屬性集控制。
 // 變更這些屬性的值即可修改組件的相關
 // 資訊。
-[assembly: AssemblyTitle("MYP Key")]
+[assembly: AssemblyTitle("Myp Sn Fix Tool")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MYP Co., Ltd")]
-[assembly: AssemblyProduct("MYP Key")]
-[assembly: AssemblyCopyright("Copyright © 2019 MYP Co., Ltd. All rights reserved")]
+[assembly: AssemblyProduct("Myp Sn Fix Tool")]
+[assembly: AssemblyCopyright("Copyright © 2021 MYP Co., Ltd. All rights reserved")]
 [assembly: AssemblyTrademark("MYP")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 下列 GUID 為專案公開 (Expose) 至 COM 時所要使用的 typelib ID
-[assembly: Guid("0f2c14cb-0f3f-4ebf-ba6a-0f5c20d5caad")]
+[assembly: Guid("9b5ff93e-5ad7-464a-ab22-17eb3e06e29c")]
 
 // 組件的版本資訊由下列四個值所組成: 
 //
@@ -34,5 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("MypSnGenerator")]
-[assembly: InternalsVisibleTo("MypSnFixTool")]

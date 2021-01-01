@@ -60,7 +60,7 @@ namespace LPS.View.Forms
             DaoSnControl.Instance.UpdateSnEvent += this.SnUpdate;
             
             ptMain.CloseAppEvent += this.CloseApp;
-            ptPrint.CloseAppEvent += this.CloseApp;
+            ptPrint.CloseAppEvent += this.CloseApp; 
 
             rbtnMachine.Checked = true;
         }
